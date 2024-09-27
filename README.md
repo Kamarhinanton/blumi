@@ -55,5 +55,5 @@ yarn start
 Deploy to Vercel automatically after push to branch main
 
 Deploy branch:
-[main](https://blumi.vercel.app/)
+[main](https://blumi-phi.vercel.app/)
 
