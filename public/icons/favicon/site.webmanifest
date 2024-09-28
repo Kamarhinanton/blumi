@@ -1,0 +1,21 @@
+{
+  "name": "Blumi",
+  "short_name": "Blumi",
+  "icons": [
+    {
+      "src": "/icons/favicon/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/favicon/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#BE44D2",
+  "description": "Blumi web app"
+}
