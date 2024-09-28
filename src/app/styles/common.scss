@@ -1,0 +1,53 @@
+@import 'variables/breakpoints';
+
+html {
+  font-size: calc(100vw / 1440);
+
+  @media (width <= $breakpoint-mob) {
+    font-size: calc(100vw / 390);
+  }
+
+  @media (width >= $breakpoint-desktop-large) {
+    font-size: 1px;
+  }
+
+  // hide scroll
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  // hide scroll
+}
+
+body {
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+}
+
+.wrapper {
+  min-height: 100%;
+}
+
+main {
+  position: relative;
+}
+
+.desk-view {
+  @media (width<=$breakpoint-mob) {
+    display: none;
+  }
+}
+
+.mobile-view {
+  display: none;
+  @media (width<= $breakpoint-mob) {
+    display: block;
+  }
+}
