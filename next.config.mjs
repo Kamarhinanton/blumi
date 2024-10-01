@@ -6,6 +6,16 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 export default bundleAnalyzer({
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/**',
+      }
+    ],
+  },
   webpack(config) {
     config.module.rules.push(
       {

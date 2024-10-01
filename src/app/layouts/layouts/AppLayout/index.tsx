@@ -1,15 +1,17 @@
 import { FC, ReactNode } from 'react'
 import Footer from '@/components/Footer/Footer'
+import { QueryResultFooterData } from '@/components/Footer/types'
 
 type AppLayoutProps = {
   children: ReactNode
+  footerData?: QueryResultFooterData
 }
 
-const AppLayout: FC<AppLayoutProps> = ({ children }) => {
+const AppLayout: FC<AppLayoutProps> = ({ children, footerData }) => {
   return (
     <>
       {children}
-      <Footer />
+      <Footer footerData={footerData} />
     </>
   )
 }

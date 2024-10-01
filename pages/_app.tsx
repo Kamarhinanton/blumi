@@ -4,6 +4,7 @@ import Head from 'next/head'
 import AppLayout from '@/app/layouts/layouts/AppLayout'
 import { Provider } from 'react-redux'
 import store from '@/store/store'
+import { QueryResultFooterData } from '@/components/Footer/types'
 
 import '@/app/styles/index.scss'
 
@@ -79,6 +80,8 @@ const nacelle = localFont({
 })
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { data }: { data?: QueryResultFooterData } = pageProps
+
   return (
     <>
       <style jsx global>{`
@@ -95,7 +98,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Provider store={store}>
-        <AppLayout>
+        <AppLayout footerData={data}>
           <Component {...pageProps} />
         </AppLayout>
       </Provider>

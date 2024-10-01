@@ -1,0 +1,13 @@
+.background-image{
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .cowerStyle{
+    object-fit: cover;
+  }
+
+  .containStyle{
+    object-fit: contain;
+  }
+}

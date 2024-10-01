@@ -2,7 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit'
 import footerDataReducer from './reducers/footerDataSlice'
 
 const rootReducer = combineReducers({
-  callMenu: footerDataReducer,
+  footerData: footerDataReducer,
 })
 
 export default rootReducer

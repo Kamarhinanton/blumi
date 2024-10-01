@@ -19,6 +19,7 @@ h5, .h5 {
 }
 
 p {
+  color: var(--primary-text);
   font: var(--font-m);
 
   strong {
@@ -32,5 +33,5 @@ p {
 
 a {
   font: var(--link-s);
-  color: var(--accent);
+  color: var(--primary-text);
 }
