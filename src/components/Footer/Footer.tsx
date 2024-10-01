@@ -5,6 +5,7 @@ import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Link from 'next/link'
 
 import styles from './Footer.module.scss'
+import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 
 type AppLayoutProps = {
   footerData?: QueryResultFooterData
@@ -33,12 +34,16 @@ const Footer: FC<AppLayoutProps> = ({ footerData }) => {
             <div className={styles['columns']}>
               {columns.map((column) => (
                 <div key={column.id} className={styles['columns__column']}>
-                  <p>
+                  <p className={styles['columns__column_title']}>
                     <strong>{column.title}</strong>
                   </p>
-                  <nav>
+                  <nav className={styles['columns__column_nav']}>
                     {column.description.map((item) => (
-                      <Link href={item.link} key={item.id}>
+                      <Link
+                        className={styles['link']}
+                        href={item.link}
+                        key={item.id}
+                      >
                         {item.description}
                       </Link>
                     ))}
@@ -50,7 +55,7 @@ const Footer: FC<AppLayoutProps> = ({ footerData }) => {
               <h5>{cta.title}</h5>
               <div>
                 <input placeholder={cta.placeholderText} type="text" />
-                <button>{cta.buttonText}</button>
+                <ButtonPrimary>{cta.buttonText}</ButtonPrimary>
               </div>
             </div>
           </div>

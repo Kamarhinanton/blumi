@@ -1,0 +1,75 @@
+@import '@/app/styles/variables/breakpoints';
+
+.buttonPrimary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8rem 8rem 8rem 24rem;
+  color: var(--white);
+  font: var(--font-s);
+  background-color: var(--pink-primary);
+  border-radius: 16px;
+
+  @media (width<=$breakpoint-mob) {
+    padding: 6rem 6rem 6rem 14rem;
+    border-radius: 10px;
+  }
+
+  @media (width>$breakpoint-mob) {
+    &:hover {
+      span {
+        &::before {
+          transform: translateX(calc(-50% + 20rem)) translateY(-50%);
+          opacity: 0;
+        }
+
+        &::after {
+          transform: translateX(-50%) translateY(-50%);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  span {
+    position: relative;
+    width: 40rem;
+    height: 40rem;
+    margin: 0 0 0 12rem;
+    overflow: hidden;
+    background-color: var(--white);
+    border-radius: 12px;
+    content: '';
+
+    @media (width<=$breakpoint-mob) {
+      width: 28rem;
+      height: 28rem;
+      margin: 0 0 0 8rem;
+      border-radius: 8px;
+    }
+
+    &::before, &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 24rem;
+      height: 24rem;
+      background-image: url("/icons/arrow.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      transition: var(--duration-hover) var(--ease) var(--hover-delay);
+      content: '';
+    }
+
+    &::before {
+      transform: translateX(-50%) translateY(-50%);
+      opacity: 1;
+    }
+
+    &::after {
+      transform: translateX(calc(-50% - 20rem)) translateY(-50%);
+      opacity: 0;
+    }
+  }
+}

@@ -22,7 +22,7 @@
   // Primary text colors
   --primary-text: #011F63;
   --secondary-text: #465C8D;
-  --accent: #fff;
+  --white: #fff;
 
   // BASE ANIMATIONS
   --ease: ease;
@@ -39,5 +39,6 @@
     //--font-h3: 700 16rem / 100% var(--font-family-primary);
     //--font-h4: 700 16rem / 100% var(--font-family-primary);
     //--font-h5: 700 16rem / 100% var(--font-family-primary);
+    --font-s: 400 14rem / auto var(--font-family-display);
   }
 }
