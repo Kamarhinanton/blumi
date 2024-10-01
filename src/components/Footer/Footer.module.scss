@@ -1,34 +1,35 @@
 @import '@/app/styles/variables/breakpoints';
 
-.footer{
-  &__content{
+.footer {
+  &__content {
     padding: 40rem 0;
 
-    &_top{
+    &_top {
       display: flex;
 
-      .logo{
+      .logo {
         width: 103rem;
         height: 40rem;
       }
 
-      .columns{
+      .columns {
         display: flex;
         margin: 0 0 0 auto;
 
-        &__column{
+        &__column {
           margin: 0 167rem 0 0;
 
-          &_nav{
+          &_nav {
             display: flex;
             flex-direction: column;
 
-            .link{
+            .link {
               margin: 13rem 0 0;
+              font: var(--font-s);
               transition: color var(--duration-hover) var(--ease);
 
-              @media (width>$breakpoint-mob){
-                &:hover{
+              @media (width>$breakpoint-mob) {
+                &:hover {
                   color: var(--pink-primary);
                 }
               }
@@ -37,12 +38,28 @@
         }
       }
 
-      .cta{
+      .cta {
         max-width: 366rem;
+
+        &__form {
+          position: relative;
+          margin: 24rem 0 0;
+
+          .input {
+
+          }
+
+          .button {
+            position: absolute;
+            top: 50%;
+            right: 4rem;
+            transform: translateY(-50%);
+          }
+        }
       }
     }
 
-    &_bottom{
+    &_bottom {
       display: flex;
       justify-content: space-between;
       margin: 40rem 0 0;
@@ -50,6 +67,10 @@
       color: var(--secondary-text);
       background-color: var(--pink-secondary);
       border-radius: 16px;
+
+      p {
+        font: var(--font-s);
+      }
     }
   }
 }

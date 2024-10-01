@@ -3,9 +3,10 @@ import Container from '@/app/layouts/layouts/Container'
 import { QueryResultFooterData } from '@/components/Footer/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Link from 'next/link'
+import TextField from '@/ui/TextField/TextField'
+import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 
 import styles from './Footer.module.scss'
-import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 
 type AppLayoutProps = {
   footerData?: QueryResultFooterData
@@ -53,9 +54,15 @@ const Footer: FC<AppLayoutProps> = ({ footerData }) => {
             </div>
             <div className={styles['cta']}>
               <h5>{cta.title}</h5>
-              <div>
-                <input placeholder={cta.placeholderText} type="text" />
-                <ButtonPrimary>{cta.buttonText}</ButtonPrimary>
+              <div className={styles['cta__form']}>
+                <TextField
+                  className={styles['input']}
+                  name={'name'}
+                  placeholder={cta.placeholderText}
+                />
+                <ButtonPrimary className={styles['button']}>
+                  {cta.buttonText}
+                </ButtonPrimary>
               </div>
             </div>
           </div>
