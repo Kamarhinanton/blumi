@@ -77,6 +77,7 @@ const nacelle = localFont({
 })
 
 export default function App({ Component, pageProps }: AppProps) {
+  console.log(pageProps.data)
   return (
     <>
       <style jsx global>{`

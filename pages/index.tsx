@@ -1,4 +1,7 @@
 import Head from 'next/head'
+import createApolloClient from '@/utils/api/apolloClient'
+import { FooterData } from '@/utils/api/apolloQueries'
+import { QueryResultFooterData } from '@/utils/globalTypes'
 
 export default function Home() {
   return (
@@ -11,4 +14,21 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  try {
+    const client = createApolloClient()
+    const { data } = await client.query<QueryResultFooterData>({
+      query: FooterData,
+    })
+    return {
+      props: { data },
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      props: {},
+    }
+  }
 }
