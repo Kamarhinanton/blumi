@@ -3,8 +3,7 @@ import Container from '@/app/layouts/layouts/Container'
 import { QueryResultFooterData } from '@/components/Footer/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Link from 'next/link'
-import TextField from '@/ui/TextField/TextField'
-import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
+import SmallForm from '@/components/SmallForm/SmallForm'
 
 import styles from './Footer.module.scss'
 
@@ -54,16 +53,10 @@ const Footer: FC<AppLayoutProps> = ({ footerData }) => {
             </div>
             <div className={styles['cta']}>
               <h5 className={'h5'}>{label}</h5>
-              <div className={styles['cta__form']}>
-                <TextField
-                  className={styles['input']}
-                  name={'name'}
-                  placeholder={cta.placeholderText}
-                />
-                <ButtonPrimary className={styles['button']}>
-                  {cta.buttonText}
-                </ButtonPrimary>
-              </div>
+              <SmallForm
+                placeholderText={cta.placeholderText}
+                buttonText={cta.buttonText}
+              />
             </div>
           </div>
           <div className={styles['footer__content_bottom']}>

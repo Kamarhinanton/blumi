@@ -66,26 +66,6 @@
         @media (width<=$breakpoint-mob) {
           margin: 65rem 0 0;
         }
-
-        &__form {
-          position: relative;
-          margin: 24rem 0 0;
-
-          @media (width<=$breakpoint-mob) {
-            margin: 28rem 0 0;
-          }
-
-          .input {
-
-          }
-
-          .button {
-            position: absolute;
-            top: 50%;
-            right: 4rem;
-            transform: translateY(-50%);
-          }
-        }
       }
     }
 

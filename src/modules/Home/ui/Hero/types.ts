@@ -18,6 +18,7 @@ type HeroListIcon = {
   icon: {
     url: string
   }
+  text: string
 }
 
 type HeroPicture = {

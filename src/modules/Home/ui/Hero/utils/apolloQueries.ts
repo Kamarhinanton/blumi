@@ -16,6 +16,7 @@ export const HeroFragment = gql`
       icon {
         url
       }
+      text
     }
     picture {
       url
