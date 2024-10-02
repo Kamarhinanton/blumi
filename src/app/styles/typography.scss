@@ -18,9 +18,7 @@ h4, .h4 {
 
 h5, .h5 {
   font: var(--font-h5);
-  @media (width<=$breakpoint-mob) {
-    letter-spacing: -0.56rem;
-  }
+  letter-spacing: -0.56rem;
 }
 
 p {

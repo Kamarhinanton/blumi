@@ -10,6 +10,7 @@
     color: var(--primary-text);
     font: var(--font-s);
     background-color: var(--pink-secondary);
+    border: 1rem solid var(--pink-light);
     border-radius: 18rem;
 
     @media (width<=$breakpoint-mob) {
