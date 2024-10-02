@@ -12,40 +12,49 @@ type HeroContentType = {
 }
 
 const Hero = ({ heroData }: HeroContentType) => {
+  if (!heroData) {
+    return null
+  }
+
   const { description, title, list, picture, listIcons, cta } = heroData
 
   return (
     <section className={styles['hero']}>
-      <Container>
-        <div className={styles['hero_content']}>
-          <div className={styles['hero_content_column']}>
-            <p>{description}</p>
-            <h1 className={classNames('h1')}>{title}</h1>
-            <ul>
+      <Container size={'small'}>
+        <div className={styles['hero__content']}>
+          <div className={styles['hero__content_smallColumn']}>
+            <p className={styles['description']}>{description}</p>
+            <h1 className={classNames('h1', styles['title'])}>{title}</h1>
+            <ul className={styles['list']}>
               {list.map((link) => (
-                <li key={link.id}>{link.item}</li>
+                <li className={styles['list__link']} key={link.id}>
+                  {link.item}
+                </li>
               ))}
             </ul>
           </div>
-          <div className={styles['hero_content_column']}>
+          <div className={styles['hero__content_largeColumn']}>
             <BackgroundImage
+              className={styles['image']}
               src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${picture.url}`}
               alt={'picture'}
             />
-            <ul>
+            <ul className={styles['list']}>
               {listIcons.map((link) => (
-                <li key={link.id}>
+                <li className={styles['list__link']} key={link.id}>
                   <BackgroundImage
                     src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${link.icon.url}`}
                     alt={'icon'}
+                    className={styles['list__link_icon']}
                   />
-                  <p> {link.text}</p>
+                  {link.text}
                 </li>
               ))}
             </ul>
             <SmallForm
               placeholderText={cta.placeholderText}
               buttonText={cta.buttonText}
+              className={styles['form']}
             />
           </div>
         </div>

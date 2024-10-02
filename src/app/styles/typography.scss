@@ -1,6 +1,7 @@
 @import '@/app/styles/variables/breakpoints';
 
 h1, .h1 {
+  letter-spacing: -1.7rem;
   font: var(--font-h1);
 }
 
@@ -21,7 +22,8 @@ h5, .h5 {
   letter-spacing: -0.56rem;
 }
 
-p {
+p, li {
+  letter-spacing: -0.56rem;
   font: var(--font-m);
 
   strong {

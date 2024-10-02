@@ -8,32 +8,32 @@ import { QueryResultFooterData } from '@/components/Footer/types'
 
 import '@/app/styles/index.scss'
 
-const generalSans = localFont({
-  src: [
-    {
-      path: '../public/fonts/GeneralSans-Regular.woff',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/GeneralSans-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/GeneralSans-Medium.woff',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/GeneralSans-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-  ],
-  preload: true,
-  display: 'swap',
-})
+// const generalSans = localFont({
+//   src: [
+//     {
+//       path: '../public/fonts/GeneralSans-Regular.woff',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../public/fonts/GeneralSans-Regular.woff2',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../public/fonts/GeneralSans-Medium.woff',
+//       weight: '500',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../public/fonts/GeneralSans-Medium.woff2',
+//       weight: '500',
+//       style: 'normal',
+//     },
+//   ],
+//   preload: true,
+//   display: 'swap',
+// })
 
 const inter = localFont({
   src: [
@@ -88,7 +88,6 @@ export default function App({ Component, pageProps }: AppProps) {
         :root {
           --font-family-primary: ${inter.style.fontFamily};
           --font-family-secondary: ${nacelle.style.fontFamily};
-          --font-family-display: ${generalSans.style.fontFamily};
         }
       `}</style>
       <Head>

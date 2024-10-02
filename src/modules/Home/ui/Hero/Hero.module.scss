@@ -1,3 +1,114 @@
-.hero{
+.hero {
+  margin: 24rem 0 120rem;
 
+  .iconText {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 24rem;
+      height: 24rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      content: '';
+    }
+  }
+
+  &__content {
+    display: flex;
+    gap: 19rem;
+
+    &_smallColumn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20rem 0 0 48rem;
+
+      .description {
+        @extend .iconText;
+
+        padding: 0 0 0 32rem;
+        color: var(--pink-primary);
+        font: var(--font-s);
+
+        &::before {
+          background-image: url("/icons/bulb.svg");
+        }
+      }
+
+      .title {
+        margin: 12rem 0 0;
+      }
+
+      .list {
+        margin: 32rem 0 0;
+
+        &__link {
+          @extend .iconText;
+
+          margin: 0 0 24rem;
+          padding: 0 0 0 36rem;
+          color: var(--secondary-text);
+          font: var(--font-s);
+
+          &::before {
+            background-image: url("/icons/success.svg");
+          }
+        }
+      }
+    }
+
+    &_largeColumn {
+      position: relative;
+      flex: 0 0 803rem;
+      height: 890rem;
+
+      .image {
+        overflow: hidden;
+        border-radius: 16rem;
+      }
+
+      .list{
+        position: absolute;
+        bottom: 158rem;
+        left: 50%;
+        display: flex;
+        transform: translateX(-50%);
+
+        &__link{
+          position: relative;
+          margin: 0 29rem 0 0;
+          padding: 8rem 12rem 8rem 48rem;
+          font: var(--font-s);
+          white-space: nowrap;
+          background-color: var(--white);
+          border: 2rem solid var(--pink-secondary);
+          border-radius: 12rem;
+
+          &:last-child{
+            margin: 0;
+          }
+
+          &_icon{
+            position: absolute;
+            top: 50%;
+            left: 8rem;
+            width: 32rem;
+            height: 32rem;
+            transform: translateY(-50%);
+          }
+        }
+      }
+
+      .form{
+        position: absolute;
+        right: 40rem;
+        bottom: 46rem;
+        left: 40rem;
+      }
+    }
+  }
 }

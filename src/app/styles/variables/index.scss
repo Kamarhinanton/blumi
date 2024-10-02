@@ -2,7 +2,7 @@
 
 :root {
   // HEADINGS
-  --font-h1: 500 72rem / 100% var(--font-family-primary);
+  --font-h1: 500 72rem / 110% var(--font-family-primary);
   --font-h2: 500 48rem / 100% var(--font-family-primary);
   --font-h3: 500 36rem / 100% var(--font-family-primary);
   --font-h4: 500 28rem / 100% var(--font-family-primary);
@@ -11,7 +11,7 @@
   // BODY
   --font-l: 400 20rem / 150% var(--font-family-secondary);
   --font-m: 400 18rem / 150% var(--font-family-secondary);
-  --font-s: 400 16rem / 150% var(--font-family-display);
+  --font-s: 400 16rem / 150% var(--font-family-secondary);
 
   // OTHER
 
@@ -37,6 +37,6 @@
     // HEADINGS
     --font-h5: 500 20rem / 120% var(--font-family-primary);
     // BODY
-    --font-s: 400 14rem / auto var(--font-family-display);
+    --font-s: 400 14rem / auto var(--font-family-secondary);
   }
 }
