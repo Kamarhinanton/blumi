@@ -1,4 +1,4 @@
-@import '../variables/breakpoints';
+@import '@/app/styles/variables/breakpoints';
 
 :root {
   // HEADINGS
@@ -34,11 +34,8 @@
 @media (width <= $breakpoint-mob) {
   :root {
     // HEADINGS
-    //--font-h1: 700 36rem / 105% var(--font-family-primary);
-    //--font-h2: 700 24rem / 100% var(--font-family-primary);
-    //--font-h3: 700 16rem / 100% var(--font-family-primary);
-    //--font-h4: 700 16rem / 100% var(--font-family-primary);
-    //--font-h5: 700 16rem / 100% var(--font-family-primary);
+    --font-h5: 500 20rem / 120% var(--font-family-primary);
+    // BODY
     --font-s: 400 14rem / auto var(--font-family-display);
   }
 }

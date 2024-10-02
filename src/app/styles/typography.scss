@@ -1,3 +1,5 @@
+@import '@/app/styles/variables/breakpoints';
+
 h1, .h1 {
   font: var(--font-h1);
 }
@@ -16,6 +18,9 @@ h4, .h4 {
 
 h5, .h5 {
   font: var(--font-h5);
+  @media (width<=$breakpoint-mob) {
+    letter-spacing: -0.56rem;
+  }
 }
 
 p {

@@ -10,10 +10,13 @@
     color: var(--primary-text);
     font: var(--font-s);
     background-color: var(--pink-secondary);
-    border-radius: 18px;
+    border-radius: 18rem;
 
     @media (width<=$breakpoint-mob) {
       padding: 12rem 32rem;
+      font-size: 16rem;
+      line-height: 150%;
+      border-radius: 12rem;
     }
 
     &::placeholder{

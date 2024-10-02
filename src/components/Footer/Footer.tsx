@@ -53,7 +53,7 @@ const Footer: FC<AppLayoutProps> = ({ footerData }) => {
               ))}
             </div>
             <div className={styles['cta']}>
-              <h5>{cta.title}</h5>
+              <h5 className={'h5'}>{cta.title}</h5>
               <div className={styles['cta__form']}>
                 <TextField
                   className={styles['input']}

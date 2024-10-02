@@ -4,8 +4,16 @@
   &__content {
     padding: 40rem 0;
 
+    @media (width<=$breakpoint-mob){
+      padding: 40rem 0 16rem;
+    }
+
     &_top {
       display: flex;
+
+      @media (width<=$breakpoint-mob){
+        flex-direction: column;
+      }
 
       .logo {
         width: 103rem;
@@ -16,8 +24,17 @@
         display: flex;
         margin: 0 0 0 auto;
 
+        @media (width<=$breakpoint-mob){
+          justify-content: space-between;
+          margin: 60rem 0 0;
+        }
+
         &__column {
           margin: 0 167rem 0 0;
+
+          @media (width<=$breakpoint-mob){
+            margin: 0;
+          }
 
           &_nav {
             display: flex;
@@ -27,6 +44,11 @@
               margin: 13rem 0 0;
               font: var(--font-s);
               transition: color var(--duration-hover) var(--ease);
+
+              @media (width<=$breakpoint-mob) {
+                font-size: 16rem;
+                line-height: 150%;
+              }
 
               @media (width>$breakpoint-mob) {
                 &:hover {
@@ -41,9 +63,17 @@
       .cta {
         max-width: 366rem;
 
+        @media (width<=$breakpoint-mob) {
+          margin: 65rem 0 0;
+        }
+
         &__form {
           position: relative;
           margin: 24rem 0 0;
+
+          @media (width<=$breakpoint-mob) {
+            margin: 28rem 0 0;
+          }
 
           .input {
 
@@ -66,7 +96,17 @@
       padding: 24rem;
       color: var(--secondary-text);
       background-color: var(--pink-secondary);
-      border-radius: 16px;
+      border-radius: 16rem;
+
+      @media (width<=$breakpoint-mob){
+        flex-direction: column;
+        gap: 14rem;
+        justify-content: initial;
+        margin: 20rem 0 0;
+        padding: 18rem;
+        text-align: center;
+        border-radius: 12rem;
+      }
 
       p {
         font: var(--font-s);

@@ -8,11 +8,11 @@
   color: var(--white);
   font: var(--font-s);
   background-color: var(--pink-primary);
-  border-radius: 16px;
+  border-radius: 16rem;
 
   @media (width<=$breakpoint-mob) {
     padding: 6rem 6rem 6rem 14rem;
-    border-radius: 10px;
+    border-radius: 10rem;
   }
 
   @media (width>$breakpoint-mob) {
@@ -38,14 +38,14 @@
     margin: 0 0 0 12rem;
     overflow: hidden;
     background-color: var(--white);
-    border-radius: 12px;
+    border-radius: 12rem;
     content: '';
 
     @media (width<=$breakpoint-mob) {
       width: 28rem;
       height: 28rem;
       margin: 0 0 0 8rem;
-      border-radius: 8px;
+      border-radius: 8rem;
     }
 
     &::before, &::after {
@@ -60,6 +60,11 @@
       background-size: contain;
       transition: var(--duration-hover) var(--ease) var(--hover-delay);
       content: '';
+
+      @media (width<=$breakpoint-mob) {
+        width: 16rem;
+        height: 16rem;
+      }
     }
 
     &::before {
