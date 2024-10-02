@@ -80,7 +80,7 @@ const nacelle = localFont({
 })
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { data }: { data?: QueryResultFooterData } = pageProps
+  const { footerData }: { footerData?: QueryResultFooterData } = pageProps
 
   return (
     <>
@@ -98,7 +98,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Provider store={store}>
-        <AppLayout footerData={data}>
+        <AppLayout footerData={footerData}>
           <Component {...pageProps} />
         </AppLayout>
       </Provider>
