@@ -4,10 +4,10 @@ export type QueryResultFooterData = {
       url: string
     }
     columns: FooterDataColumn[]
+    label: string
     cta: {
       buttonText: string
       placeholderText: string
-      title: string
     }
     copyright: {
       copyrightText: string

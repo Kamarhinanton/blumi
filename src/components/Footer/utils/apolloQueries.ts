@@ -15,10 +15,10 @@ export const FooterData = gql`
         title
         id
       }
+      label
       cta {
         buttonText
         placeholderText
-        title
       }
       copyright {
         copyrightText
