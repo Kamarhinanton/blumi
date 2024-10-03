@@ -1,5 +1,4 @@
 import React from 'react'
-import TextField from '@/ui/TextField/TextField'
 import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 import classNames from 'classnames'
 
@@ -9,6 +8,7 @@ type SmallFormType = {
   placeholderText: string
   buttonText: string
   className?: string
+  size?: 'small'
 }
 
 const SmallForm = ({
@@ -18,11 +18,15 @@ const SmallForm = ({
 }: SmallFormType) => {
   return (
     <form action={'#'} className={classNames(styles['form'], className)}>
-      <TextField
-        className={styles['form__input']}
-        name={'name'}
-        placeholder={placeholderText}
-      />
+      <label htmlFor="name" className={styles['form__label']}>
+        <input
+          id={'name'}
+          name={'name'}
+          placeholder={placeholderText}
+          type="text"
+          className={styles['form__label_input']}
+        />
+      </label>
       <ButtonPrimary className={styles['form__button']}>
         {buttonText}
       </ButtonPrimary>

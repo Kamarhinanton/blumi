@@ -128,9 +128,10 @@
         transform: translateX(-50%);
 
         @media (width<=$breakpoint-mob) {
-          bottom: 67rem;
+          bottom: 77rem;
           left: 0;
           max-width: 100%;
+          padding: 0 12rem;
           overflow: auto;
           transform: initial;
           -ms-overflow-style: none;
@@ -203,7 +204,9 @@
         left: 40rem;
 
         @media (width<=$breakpoint-mob) {
+          right: 12rem;
           bottom: 12rem;
+          left: 12rem;
         }
       }
     }
