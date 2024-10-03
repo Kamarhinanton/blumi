@@ -38,6 +38,7 @@ const Hero = ({ heroData }: HeroContentType) => {
               className={styles['image']}
               src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${picture.url}`}
               alt={'picture'}
+              position={'cover'}
             />
             <ul className={styles['list']}>
               {listIcons.map((link) => (

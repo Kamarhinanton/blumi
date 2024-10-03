@@ -1,5 +1,13 @@
+@import '@/app/styles/variables/breakpoints';
+
 .hero {
-  margin: 24rem 0 120rem;
+  margin: 0 0 120rem;
+  padding: 24rem 0 0;
+
+  @media (width<=$breakpoint-mob) {
+    margin: 0 0 40rem;
+    padding: 87rem 0 0;
+  }
 
   .iconText {
     position: relative;
@@ -14,6 +22,13 @@
       background-position: center;
       background-size: contain;
       content: '';
+
+      @media (width<=$breakpoint-mob) {
+        top: -2rem;
+        left: 2rem;
+        width: 20rem;
+        height: 20rem;
+      }
     }
   }
 
@@ -21,11 +36,21 @@
     display: flex;
     gap: 19rem;
 
+    @media (width<=$breakpoint-mob) {
+      flex-direction: column;
+      gap: 27rem;
+    }
+
     &_smallColumn {
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 20rem 0 0 48rem;
+
+      @media (width<=$breakpoint-mob) {
+        justify-content: initial;
+        padding: 0;
+      }
 
       .description {
         @extend .iconText;
@@ -41,10 +66,18 @@
 
       .title {
         margin: 12rem 0 0;
+
+        @media (width<=$breakpoint-mob) {
+          margin: 23rem 0 0;
+        }
       }
 
       .list {
         margin: 32rem 0 0;
+
+        @media (width<=$breakpoint-mob) {
+          margin: 40rem 0 0;
+        }
 
         &__link {
           @extend .iconText;
@@ -54,8 +87,18 @@
           color: var(--secondary-text);
           font: var(--font-s);
 
+          &:last-child {
+            margin: 0;
+          }
+
           &::before {
             background-image: url("/icons/success.svg");
+          }
+
+          @media (width<=$breakpoint-mob) {
+            margin: 0 0 18rem;
+            padding: 0 0 0 30rem;
+            font-size: 16rem;
           }
         }
       }
@@ -66,48 +109,102 @@
       flex: 0 0 803rem;
       height: 890rem;
 
+      @media (width<=$breakpoint-mob) {
+        flex: initial;
+        height: 395rem;
+        overflow: hidden;
+      }
+
       .image {
         overflow: hidden;
         border-radius: 16rem;
       }
 
-      .list{
+      .list {
         position: absolute;
         bottom: 158rem;
         left: 50%;
         display: flex;
         transform: translateX(-50%);
 
-        &__link{
+        @media (width<=$breakpoint-mob) {
+          bottom: 67rem;
+          left: 0;
+          max-width: 100%;
+          overflow: auto;
+          transform: initial;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+
+          // hide scroll
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          // hide scroll
+        }
+
+        &__link {
+          $border: 1rem;
+
           position: relative;
           margin: 0 29rem 0 0;
           padding: 8rem 12rem 8rem 48rem;
           font: var(--font-s);
           white-space: nowrap;
           background-color: var(--white);
-          border: 2rem solid var(--pink-secondary);
+          background-clip: padding-box;
+          border: solid $border transparent;
           border-radius: 12rem;
 
-          &:last-child{
+          &::before {
+            position: absolute;
+            z-index: -1;
+            margin: -$border;
+            background: linear-gradient(to bottom, #9C31EA, #FF03B1);
+            border-radius: inherit;
+            opacity: .3;
+            content: '';
+            inset: 0;
+          }
+
+          @media (width<=$breakpoint-mob) {
+            margin: 0 4rem 0 0;
+            padding: 8rem 12rem 8rem 30rem;
+            border-radius: 8rem;
+          }
+
+          &:last-child {
             margin: 0;
           }
 
-          &_icon{
+          &_icon {
             position: absolute;
             top: 50%;
             left: 8rem;
             width: 32rem;
             height: 32rem;
             transform: translateY(-50%);
+
+            @media (width<=$breakpoint-mob) {
+              left: 6rem;
+              width: 20rem;
+              height: 20rem;
+            }
           }
         }
       }
 
-      .form{
+      .form {
         position: absolute;
         right: 40rem;
         bottom: 46rem;
         left: 40rem;
+
+        @media (width<=$breakpoint-mob) {
+          bottom: 12rem;
+        }
       }
     }
   }

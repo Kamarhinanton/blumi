@@ -35,6 +35,7 @@
 @media (width <= $breakpoint-mob) {
   :root {
     // HEADINGS
+    --font-h1: 500 44rem / 110% var(--font-family-primary);
     --font-h5: 500 20rem / 120% var(--font-family-primary);
     // BODY
     --font-s: 400 14rem / auto var(--font-family-secondary);
