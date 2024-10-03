@@ -4,8 +4,10 @@ import { QueryResultHeroHomeData } from '@/modules/Home/ui/Hero/types'
 import classNames from 'classnames'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import SmallForm from '@/components/SmallForm/SmallForm'
+import Icon from '../../../../../public/icons/bulb.svg'
 
 import styles from './Hero.module.scss'
+import IconDescription from '@/components/IconDescription/IconDescription'
 
 type HeroContentType = {
   heroData: QueryResultHeroHomeData['hero']
@@ -23,7 +25,9 @@ const Hero = ({ heroData }: HeroContentType) => {
       <Container size={'small'}>
         <div className={styles['hero__content']}>
           <div className={styles['hero__content_smallColumn']}>
-            <p className={styles['description']}>{description}</p>
+            <IconDescription description={description}>
+              <Icon />
+            </IconDescription>
             <h1 className={classNames('h1', styles['title'])}>{title}</h1>
             <ul className={styles['list']}>
               {list.map((link) => (

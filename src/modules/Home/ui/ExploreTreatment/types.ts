@@ -1,9 +1,7 @@
-import { type BlocksContent } from '@strapi/blocks-react-renderer'
-
 export type QueryResultExploreTreatmentData = {
   exploreTreatment: {
     description: string
-    title: BlocksContent
+    title: string
     listImages: ImageList[]
     buttonText: string
   }

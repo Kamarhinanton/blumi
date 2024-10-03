@@ -1,0 +1,12 @@
+.exploreTreatment {
+  &__content {
+    .title {
+      display: flex;
+      gap: 71rem;
+
+      &__description {
+        flex: 0 0 171rem;
+      }
+    }
+  }
+}

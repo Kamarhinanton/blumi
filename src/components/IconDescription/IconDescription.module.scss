@@ -1,0 +1,26 @@
+@import '@/app/styles/variables/breakpoints';
+
+.iconDescription {
+  position: relative;
+  padding: 0 0 0 32rem;
+  color: var(--pink-primary);
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24rem;
+    height: 24rem;
+
+    @media (width<=$breakpoint-mob) {
+      top: -4rem;
+      left: 2rem;
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+
+  &__title{
+    font: var(--font-s);
+  }
+}

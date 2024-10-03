@@ -9,29 +9,6 @@
     padding: 87rem 0 0;
   }
 
-  .iconText {
-    position: relative;
-
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 24rem;
-      height: 24rem;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      content: '';
-
-      @media (width<=$breakpoint-mob) {
-        top: -2rem;
-        left: 2rem;
-        width: 20rem;
-        height: 20rem;
-      }
-    }
-  }
-
   &__content {
     display: flex;
     gap: 19rem;
@@ -52,18 +29,6 @@
         padding: 0;
       }
 
-      .description {
-        @extend .iconText;
-
-        padding: 0 0 0 32rem;
-        color: var(--pink-primary);
-        font: var(--font-s);
-
-        &::before {
-          background-image: url("/icons/bulb.svg");
-        }
-      }
-
       .title {
         margin: 12rem 0 0;
 
@@ -80,19 +45,34 @@
         }
 
         &__link {
-          @extend .iconText;
-
+          position: relative;
           margin: 0 0 24rem;
           padding: 0 0 0 36rem;
           color: var(--secondary-text);
           font: var(--font-s);
 
-          &:last-child {
-            margin: 0;
+          &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24rem;
+            height: 24rem;
+            background-image: url("/icons/success.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            content: '';
+
+            @media (width<=$breakpoint-mob) {
+              top: -2rem;
+              left: 2rem;
+              width: 20rem;
+              height: 20rem;
+            }
           }
 
-          &::before {
-            background-image: url("/icons/success.svg");
+          &:last-child {
+            margin: 0;
           }
 
           @media (width<=$breakpoint-mob) {
