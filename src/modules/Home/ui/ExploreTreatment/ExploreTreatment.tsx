@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultExploreTreatmentData } from '@/modules/Home/ui/ExploreTreatment/types'
 import classNames from 'classnames'
@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Icon from '../../../../../public/icons/search.svg'
 import IconDescription from '@/components/IconDescription/IconDescription'
+import useWindowDimensions from '@/hooks/useWindowDimensions'
+import { breakpointMob } from '@/utils/variables'
 
 import styles from './ExploreTreatment.module.scss'
 
@@ -16,11 +18,22 @@ type ExploreTreatmentContentType = {
 const ExploreTreatment = ({
   exploreTreatmentData,
 }: ExploreTreatmentContentType) => {
+  const { description, title, buttonText, listImages } = exploreTreatmentData
+  const [activeIndex, setActiveIndex] = useState<string>(listImages[0].id)
+  const { width } = useWindowDimensions()
+
   if (!exploreTreatmentData) {
     return null
   }
 
-  const { description, title, buttonText, listImages } = exploreTreatmentData
+  const handleClick = (index: string) => {
+    if (width <= breakpointMob) {
+      if (index !== activeIndex) {
+        setActiveIndex(index)
+      }
+    }
+  }
+
   return (
     <section className={styles['exploreTreatment']}>
       <Container>
@@ -32,11 +45,17 @@ const ExploreTreatment = ({
             >
               <Icon />
             </IconDescription>
-            <h2 className={classNames('h1')}>{title}</h2>
+            <h2 className={classNames('h1', 'variant')}>{title}</h2>
           </div>
           <ul className={styles['list']}>
             {listImages.map((item) => (
-              <li className={styles['list__item']} key={item.id}>
+              <li
+                onClick={() => handleClick(item.id)}
+                className={classNames(styles['list__item'], {
+                  [styles['active']]: item.id === activeIndex,
+                })}
+                key={item.id}
+              >
                 <BackgroundImage
                   className={styles['image']}
                   src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${item.image.url}`}

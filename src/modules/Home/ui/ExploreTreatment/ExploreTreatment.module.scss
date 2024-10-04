@@ -3,6 +3,10 @@
 .exploreTreatment {
   margin: 140rem 0 0;
 
+  @media (width<=$breakpoint-mob){
+    margin: 40rem 0 0;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -11,8 +15,17 @@
       display: flex;
       gap: 71rem;
 
+      @media (width<=$breakpoint-mob){
+        flex-direction: column;
+        gap: 12rem;
+      }
+
       &__description {
         flex: 0 0 171rem;
+
+        @media (width<=$breakpoint-mob){
+          flex: initial;
+        }
       }
     }
 
@@ -22,6 +35,11 @@
       gap: 24rem;
       margin: 97rem 0;
 
+      @media (width<=$breakpoint-mob){
+        gap: 4rem;
+        margin: 32rem 0;
+      }
+
       &__item {
         display: flex;
         gap: 8rem;
@@ -29,6 +47,19 @@
         height: 322rem;
         overflow: hidden;
         border-radius: 20rem;
+
+        @media (width<=$breakpoint-mob){
+          position: relative;
+          width: calc((100% - 4rem) / 2);
+          height: 174rem;
+          border-radius: 12rem;
+
+          &.active{
+            .description{
+              opacity: 1;
+            }
+          }
+        }
 
         &:nth-child(4n+3), &:nth-child(4n+4) {
           .image {
@@ -45,6 +76,10 @@
             color: var(--white);
             background-color: var(--pink-primary);
 
+            @media (width<=$breakpoint-mob){
+              background-color: rgb(190 68 210 / 80%);
+            }
+
             &__bottom {
               &_link {
                 color: var(--white);
@@ -55,6 +90,10 @@
 
         .image, .description {
           flex: 0 0 calc((100% - 8rem) / 2);
+
+          @media (width<=$breakpoint-mob){
+            flex: initial;
+          }
         }
 
         .description {
@@ -66,6 +105,17 @@
           color: var(--primary-text);
           background-color: var(--pink-secondary);
 
+          @media (width<=$breakpoint-mob){
+            position: absolute;
+            z-index: 2;
+            height: 100%;
+            padding: 12rem;
+            color: var(--white);
+            background-color: rgb(190 68 210 / 80%);
+            opacity: 0;
+            transition: opacity var(--duration-hover) var(--ease);
+          }
+
           &__bottom {
             display: flex;
             flex-direction: column;
@@ -75,12 +125,23 @@
               overflow: hidden;
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
+
+              @media (width<=$breakpoint-mob){
+                font-size: 14rem;
+                line-height: 120%;
+              }
             }
 
             &_link {
               margin: 14rem 0 0;
               font: var(--font-m);
               text-decoration: underline;
+
+              @media (width<=$breakpoint-mob){
+                color: var(--white);
+                font-size: 14rem;
+                line-height: 120%;
+              }
             }
           }
         }
@@ -99,6 +160,11 @@
           color: var(--white);
           background-color: var(--pink-primary);
         }
+      }
+
+      @media (width<=$breakpoint-mob){
+        padding: 10rem 24rem;
+        border-radius: 10rem;
       }
     }
   }
