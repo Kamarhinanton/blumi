@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '@/modules/Home/ui/Hero/Hero'
 import { HomeContentType } from '../../../../pages'
 import ExploreTreatment from '@/modules/Home/ui/ExploreTreatment/ExploreTreatment'
 
 const HomeContent = ({ homeData }: HomeContentType) => {
-  const { hero } = homeData.home
-  const { exploreTreatment } = homeData.home
+  const { hero, exploreTreatment, howItWorks } = homeData.home
+
+  useEffect(() => {
+    console.log('hello', howItWorks)
+  }, [])
+
   return (
     <main>
       <Hero heroData={hero} />

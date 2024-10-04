@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
+import classNames from 'classnames'
 
 import styles from './IconDescription.module.scss'
-import classNames from 'classnames'
 
 type IconDescriptionType = {
   description: string
