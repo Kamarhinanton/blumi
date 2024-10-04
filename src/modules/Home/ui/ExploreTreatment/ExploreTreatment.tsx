@@ -38,9 +38,10 @@ const ExploreTreatment = ({
             {listImages.map((item) => (
               <li className={styles['list__item']} key={item.id}>
                 <BackgroundImage
-                  className={styles['list__item_image']}
+                  className={styles['image']}
                   src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${item.image.url}`}
                   alt={'picture'}
+                  position={'cover'}
                 />
                 <div className={styles['description']}>
                   <h4
@@ -48,15 +49,24 @@ const ExploreTreatment = ({
                   >
                     {item.title}
                   </h4>
-                  <p className={styles['description__text']}>
-                    {item.description}
-                  </p>
-                  <Link href={'/'}>See more</Link>
+                  <div className={styles['description__bottom']}>
+                    <p className={styles['description__bottom_text']}>
+                      {item.description}
+                    </p>
+                    <Link
+                      className={styles['description__bottom_link']}
+                      href={'/'}
+                    >
+                      See more
+                    </Link>
+                  </div>
                 </div>
               </li>
             ))}
           </ul>
-          <Link href={'/'}>{buttonText}</Link>
+          <Link className={styles['button']} href={'/'}>
+            {buttonText}
+          </Link>
         </div>
       </Container>
     </section>

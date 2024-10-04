@@ -1,11 +1,104 @@
+@import '@/app/styles/variables/breakpoints';
+
 .exploreTreatment {
+  margin: 140rem 0 0;
+
   &__content {
+    display: flex;
+    flex-direction: column;
+
     .title {
       display: flex;
       gap: 71rem;
 
       &__description {
         flex: 0 0 171rem;
+      }
+    }
+
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24rem;
+      margin: 97rem 0;
+
+      &__item {
+        display: flex;
+        gap: 8rem;
+        width: calc((100% - 24rem) / 2);
+        height: 322rem;
+        overflow: hidden;
+        border-radius: 20rem;
+
+        &:nth-child(4n+3), &:nth-child(4n+4) {
+          .image {
+            order: 2;
+          }
+
+          .description {
+            order: 1;
+          }
+        }
+
+        &:nth-child(1) {
+          .description {
+            color: var(--white);
+            background-color: var(--pink-primary);
+
+            &__bottom {
+              &_link {
+                color: var(--white);
+              }
+            }
+          }
+        }
+
+        .image, .description {
+          flex: 0 0 calc((100% - 8rem) / 2);
+        }
+
+        .description {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+          padding: 20rem;
+          color: var(--primary-text);
+          background-color: var(--pink-secondary);
+
+          &__bottom {
+            display: flex;
+            flex-direction: column;
+
+            &_text {
+              display: -webkit-box;
+              overflow: hidden;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+            }
+
+            &_link {
+              margin: 14rem 0 0;
+              font: var(--font-m);
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .button {
+      align-self: center;
+      padding: 20rem 24rem;
+      border: 1rem solid var(--pink-primary);
+      border-radius: 16rem;
+      transition: var(--duration-hover) var(--ease) var(--hover-delay);
+
+      @media (width>$breakpoint-mob) {
+        &:hover {
+          color: var(--white);
+          background-color: var(--pink-primary);
+        }
       }
     }
   }
