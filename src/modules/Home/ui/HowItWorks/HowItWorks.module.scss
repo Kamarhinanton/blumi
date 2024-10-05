@@ -1,0 +1,141 @@
+@import '@/app/styles/variables/breakpoints';
+
+.howItWorks {
+  margin: 120rem 0;
+
+  &__content {
+    &_top {
+      text-align: center;
+
+      .title {
+        margin: 12rem 0 0;
+      }
+
+      .subText {
+        max-width: 540rem;
+        margin: 32rem auto 0;
+      }
+    }
+
+    &_bottom {
+      position: relative;
+      margin: 78rem 0 0;
+
+      .slider {
+        position: relative;
+        right: -78rem;
+
+        &::before {
+          position: absolute;
+          top: 0;
+          right: -78rem;
+          left: 0;
+          z-index: 2;
+          height: 100%;
+          background: linear-gradient(90deg, var(--white) 0%, rgb(255 255 255 / 0%) 10%, rgb(255 255 255 / 0%) 80%, var(--white) 100%);
+          background-size: cover;
+          content: '';
+          pointer-events: none;
+        }
+
+        @media (width<=$breakpoint-mob) {
+
+        }
+
+        &__slide {
+          display: flex;
+          flex-direction: column;
+          width: 553rem;
+          height: 590rem;
+          padding: 24rem;
+          background: linear-gradient(274deg, rgb(249 221 255 / 100%) 0%, rgb(252 238 255 / 50%) 50%);
+          border-radius: 24rem;
+
+          &_step {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 12rem 18rem;
+            color: var(--pink-primary-bright);
+            font: var(--font-s);
+            background-color: rgb(251 232 249 / 50%);
+            border-radius: 12rem;
+          }
+
+          &_image {
+            width: 100%;
+            height: 330rem;
+            margin: 0 0 auto;
+          }
+
+          &_titleIcon {
+            display: flex;
+
+            .icon {
+              flex: 0 0 32rem;
+              height: 32rem;
+              margin: 0 12rem 0 0;
+            }
+          }
+
+          &_description {
+            margin: 25rem 0 0;
+          }
+        }
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        left: -32rem;
+        z-index: 2;
+        width: 56rem;
+        height: 56rem;
+        background-color: var(--pink-secondary);
+        border-radius: 16rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: var(--duration-hover) var(--ease);
+
+        @media (width>$breakpoint-mob) {
+          &:hover {
+            background-color: var(--pink-primary);
+
+            svg {
+              color: var(--white);
+            }
+
+          }
+        }
+
+        svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 24rem;
+          height: 24rem;
+          color: var(--pink-primary);
+          transform: translateY(-50%) translateX(-50%);
+          transition: var(--duration-hover) var(--ease) var(--hover-delay);
+          content: '';
+        }
+
+        //@media (width<=$breakpoint-mob) {
+        //  width: 30rem;
+        //  height: 25rem;
+        //
+        //  svg {
+        //    width: 30rem;
+        //    height: 25rem;
+        //  }
+        //}
+
+        &.next {
+          right: -32rem;
+          left: initial;
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+
+    }
+  }
+}
