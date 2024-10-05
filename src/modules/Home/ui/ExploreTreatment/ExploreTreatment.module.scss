@@ -4,7 +4,7 @@
   margin: 140rem 0 120rem;
 
   @media (width<=$breakpoint-mob){
-    margin: 40rem 0 80rem;
+    margin: 80rem 0;
   }
 
   &__content {
@@ -51,7 +51,7 @@
         @media (width<=$breakpoint-mob){
           position: relative;
           width: calc((100% - 4rem) / 2);
-          height: 174rem;
+          height: 184rem;
           border-radius: 12rem;
 
           &.active{
@@ -163,7 +163,7 @@
       }
 
       @media (width<=$breakpoint-mob){
-        padding: 10rem 24rem;
+        padding: 12rem 24rem;
         border-radius: 10rem;
       }
     }

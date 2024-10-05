@@ -3,23 +3,41 @@
 .howItWorks {
   margin: 120rem 0;
 
+  @media (width<=$breakpoint-mob) {
+    margin: 95rem 0 80rem;
+  }
+
   &__content {
     &_top {
       text-align: center;
 
       .title {
         margin: 12rem 0 0;
+
+        @media (width<=$breakpoint-mob) {
+          margin: 22rem 0 0;
+        }
       }
 
       .subText {
         max-width: 540rem;
         margin: 32rem auto 0;
+        color: var(--secondary-text);
+
+        @media (width<=$breakpoint-mob) {
+          margin: 20rem auto 0;
+        }
       }
     }
 
     &_bottom {
       position: relative;
       margin: 78rem 0 0;
+
+      @media (width<=$breakpoint-mob) {
+        margin: 35rem 0 0;
+        padding: 0 0 72rem;
+      }
 
       .slider {
         position: relative;
@@ -36,10 +54,15 @@
           background-size: cover;
           content: '';
           pointer-events: none;
+
+          @media (width<=$breakpoint-mob){
+            display: none;
+          }
         }
 
         @media (width<=$breakpoint-mob) {
-
+          right: -16rem;
+          margin: 0 0 0 30rem;
         }
 
         &__slide {
@@ -51,6 +74,13 @@
           background: linear-gradient(274deg, rgb(249 221 255 / 100%) 0%, rgb(252 238 255 / 50%) 50%);
           border-radius: 24rem;
 
+          @media (width<=$breakpoint-mob) {
+            width: 251rem;
+            height: 288rem;
+            padding: 10rem;
+            border-radius: 11rem;
+          }
+
           &_step {
             display: inline-block;
             align-self: flex-start;
@@ -59,12 +89,23 @@
             font: var(--font-s);
             background-color: rgb(251 232 249 / 50%);
             border-radius: 12rem;
+
+            @media (width<=$breakpoint-mob) {
+              padding: 5rem 8rem;
+              font-size: 8rem;
+              border-radius: 6rem;
+            }
           }
 
           &_image {
             width: 100%;
             height: 330rem;
             margin: 0 0 auto;
+
+            @media (width<=$breakpoint-mob) {
+              height: 150rem;
+              margin: 15rem 0 auto;
+            }
           }
 
           &_titleIcon {
@@ -74,11 +115,28 @@
               flex: 0 0 32rem;
               height: 32rem;
               margin: 0 12rem 0 0;
+
+              @media (width<=$breakpoint-mob) {
+                flex: 0 0 20rem;
+                height: 20rem;
+                margin: 0 6rem 0 0;
+              }
+            }
+
+            .title {
+              @media (width<=$breakpoint-mob) {
+                font-size: 14rem;
+              }
             }
           }
 
           &_description {
             margin: 25rem 0 0;
+
+            @media (width<=$breakpoint-mob) {
+              margin: 10rem 0 0;
+              font-size: 10rem;
+            }
           }
         }
       }
@@ -119,20 +177,31 @@
           content: '';
         }
 
-        //@media (width<=$breakpoint-mob) {
-        //  width: 30rem;
-        //  height: 25rem;
-        //
-        //  svg {
-        //    width: 30rem;
-        //    height: 25rem;
-        //  }
-        //}
+        @media (width<=$breakpoint-mob) {
+          top: initial;
+          right: 50%;
+          bottom: 0;
+          left: initial;
+          width: 40rem;
+          height: 40rem;
+          border-radius: 8rem;
+          transform: translateX(-4rem);
+
+          svg {
+            width: 17rem;
+            height: 17rem;
+          }
+        }
 
         &.next {
           right: -32rem;
           left: initial;
           transform: translateY(-50%) rotate(180deg);
+
+          @media (width<=$breakpoint-mob){
+            left: 50%;
+            transform: translateX(4rem) rotate(180deg);
+          }
         }
       }
 

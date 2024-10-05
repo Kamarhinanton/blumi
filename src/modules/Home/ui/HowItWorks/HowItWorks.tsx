@@ -45,10 +45,10 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
             <IconDescription description={description}>
               <Icon />
             </IconDescription>
-            <h2 className={classNames('h1', styles['title'])}>{title}</h2>
-            <p className={styles['subText']}>
-              <small>{subText}</small>
-            </p>
+            <h2 className={classNames('h1', styles['title'], 'variant')}>
+              {title}
+            </h2>
+            <p className={styles['subText']}>{subText}</p>
           </div>
           <div className={styles['howItWorks__content_bottom']}>
             <Swiper {...swiperProps} className={styles['slider']}>
