@@ -1,0 +1,11 @@
+{
+  "schema": "./schema.graphql",
+  "documents": "**/*.graphql",
+  "extensions": {
+    "endpoints": {
+      "default": {
+        "url": "${NEXT_PUBLIC_URL_STRAPI}/graphql"
+      }
+    }
+  }
+}

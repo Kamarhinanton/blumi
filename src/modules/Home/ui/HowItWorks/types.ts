@@ -11,7 +11,7 @@ type HowItWorksSliderItem = {
   image: {
     url: string
   }
-  icon: {
+  icon?: {
     url: string
   }
   title: string

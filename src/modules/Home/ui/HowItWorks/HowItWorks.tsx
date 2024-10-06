@@ -63,11 +63,13 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
                     className={styles['slider__slide_image']}
                   />
                   <div className={styles['slider__slide_titleIcon']}>
-                    <BackgroundImage
-                      src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.icon.url}`}
-                      alt={'icon'}
-                      className={styles['icon']}
-                    />
+                    {slide.icon && (
+                      <BackgroundImage
+                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.icon.url}`}
+                        alt={'icon'}
+                        className={styles['icon']}
+                      />
+                    )}
                     <h4 className={classNames('h4', styles['title'])}>
                       {slide.title}
                     </h4>
