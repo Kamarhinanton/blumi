@@ -1,0 +1,82 @@
+@import '@/app/styles/variables/breakpoints';
+
+.latestListing {
+  margin: 120rem 0;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    &_top {
+      display: flex;
+
+      .heading {
+        flex: 1 0;
+      }
+
+      .cityList {
+        display: flex;
+        gap: 4rem;
+        align-items: flex-end;
+
+        &__item {
+          padding: 0 12rem;
+          font-size: var(--font-s);
+          letter-spacing: 0.56rem;
+        }
+      }
+    }
+
+    &_bottom{
+      position: relative;
+      margin: 78rem 0;
+
+      .slider {
+        position: relative;
+
+        &__slide {
+          width: 416rem;
+
+          &_image {
+            height: 416rem;
+            overflow: hidden;
+            border-radius: 24rem;
+          }
+
+          &_title{
+            margin: 16rem 0 0;
+          }
+
+          &_description {
+            display: -webkit-box;
+            margin: 12rem 0 0;
+            overflow: hidden;
+            font: var(--font-s);
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+          }
+        }
+      }
+
+      .arrow {
+        position: absolute;
+        top: 208rem;
+        left: -32rem;
+        z-index: 2;
+        transform: translateY(-50%);
+
+        &.next {
+          right: -32rem;
+          left: initial;
+          transform: translateY(-50%) rotate(180deg);
+
+        }
+      }
+
+    }
+
+    .button {
+      align-self: center;
+    }
+  }
+}

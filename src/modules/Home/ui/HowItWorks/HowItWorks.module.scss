@@ -8,28 +8,6 @@
   }
 
   &__content {
-    &_top {
-      text-align: center;
-
-      .title {
-        margin: 12rem 0 0;
-
-        @media (width<=$breakpoint-mob) {
-          margin: 22rem 0 0;
-        }
-      }
-
-      .subText {
-        max-width: 540rem;
-        margin: 32rem auto 0;
-        color: var(--secondary-text);
-
-        @media (width<=$breakpoint-mob) {
-          margin: 20rem auto 0;
-        }
-      }
-    }
-
     &_bottom {
       position: relative;
       margin: 78rem 0 0;
@@ -146,51 +124,14 @@
         top: 50%;
         left: -32rem;
         z-index: 2;
-        width: 56rem;
-        height: 56rem;
-        background-color: var(--pink-secondary);
-        border-radius: 16rem;
         transform: translateY(-50%);
-        cursor: pointer;
-        transition: var(--duration-hover) var(--ease);
-
-        @media (width>$breakpoint-mob) {
-          &:hover {
-            background-color: var(--pink-primary);
-
-            svg {
-              color: var(--white);
-            }
-
-          }
-        }
-
-        svg {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 24rem;
-          height: 24rem;
-          color: var(--pink-primary);
-          transform: translateY(-50%) translateX(-50%);
-          transition: var(--duration-hover) var(--ease) var(--hover-delay);
-          content: '';
-        }
 
         @media (width<=$breakpoint-mob) {
           top: initial;
           right: 50%;
           bottom: 0;
           left: initial;
-          width: 40rem;
-          height: 40rem;
-          border-radius: 8rem;
           transform: translateX(-4rem);
-
-          svg {
-            width: 17rem;
-            height: 17rem;
-          }
         }
 
         &.next {
@@ -204,7 +145,6 @@
           }
         }
       }
-
     }
   }
 }

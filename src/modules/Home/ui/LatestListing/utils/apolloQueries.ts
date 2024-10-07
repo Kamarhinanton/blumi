@@ -23,6 +23,7 @@ export const LatestListingFragment = gql`
       link
     }
     listSlider {
+      id
       title
       description
       image {

@@ -1,0 +1,48 @@
+@import '@/app/styles/variables/breakpoints';
+
+.arrow {
+  position: relative;
+  width: 56rem;
+  height: 56rem;
+  background-color: var(--pink-secondary);
+  border-radius: 16rem;
+  cursor: pointer;
+  transition: var(--duration-hover) var(--ease);
+
+  @media (width>$breakpoint-mob) {
+    &:hover {
+      background-color: var(--pink-primary);
+
+      svg {
+        color: var(--white);
+      }
+    }
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24rem;
+    height: 24rem;
+    color: var(--pink-primary);
+    transform: translateY(-50%) translateX(-50%);
+    transition: var(--duration-hover) var(--ease) var(--hover-delay);
+    content: '';
+  }
+
+  @media (width<=$breakpoint-mob) {
+    width: 40rem;
+    height: 40rem;
+    border-radius: 8rem;
+
+    svg {
+      width: 17rem;
+      height: 17rem;
+    }
+  }
+
+  &.next {
+    transform: rotate(180deg);
+  }
+}

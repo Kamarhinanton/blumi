@@ -1,0 +1,37 @@
+@import '@/app/styles/variables/breakpoints';
+
+.heading {
+  &.centred{
+    text-align: center;
+
+    .heading{
+      &__subText{
+        margin: 32rem auto 0;
+
+        @media (width<=$breakpoint-mob) {
+          margin: 20rem auto 0;
+        }
+      }
+    }
+  }
+
+  &__title {
+    margin: 12rem 0 0;
+
+    @media (width<=$breakpoint-mob) {
+      margin: 22rem 0 0;
+    }
+  }
+
+  &__subText {
+    max-width: 540rem;
+    margin: 32rem 0 0;
+    color: var(--secondary-text);
+    font: (var(--font-s));
+
+    @media (width<=$breakpoint-mob) {
+      margin: 20rem 0 0;
+      font-size: 16rem;
+    }
+  }
+}

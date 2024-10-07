@@ -30,6 +30,7 @@ export type LatestListingCity = {
 }
 
 export type LatestListingSliderItem = {
+  id: string
   title: string
   description: string
   image: {

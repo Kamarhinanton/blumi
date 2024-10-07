@@ -2,10 +2,11 @@ import React from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHowItWorksData } from '@/modules/Home/ui/HowItWorks/types'
 import classNames from 'classnames'
-import IconDescription from '@/components/IconDescription/IconDescription'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation } from 'swiper/modules'
+import Heading from '@/components/Heading/Heading'
+import ArrowSlider from '@/ui/ArrowSlider/ArrowSlider'
 
 import Icon from '../../../../../public/icons/light.svg'
 import IconArrow from '../../../../../public/icons/arrow-pink.svg'
@@ -25,8 +26,8 @@ const swiperProps: SwiperProps = {
   loop: true,
   modules: [Autoplay, Navigation],
   navigation: {
-    prevEl: '.swiper-partner-prev',
-    nextEl: '.swiper-partner-next',
+    prevEl: '.howItWorks-prev',
+    nextEl: '.howItWorks-next',
   },
 }
 
@@ -41,15 +42,14 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
     <section className={styles['howItWorks']}>
       <Container>
         <div className={styles['howItWorks__content']}>
-          <div className={styles['howItWorks__content_top']}>
-            <IconDescription description={description}>
-              <Icon />
-            </IconDescription>
-            <h2 className={classNames('h1', styles['title'], 'variant')}>
-              {title}
-            </h2>
-            <p className={styles['subText']}>{subText}</p>
-          </div>
+          <Heading
+            centred
+            title={title}
+            description={description}
+            subText={subText}
+          >
+            <Icon />
+          </Heading>
           <div className={styles['howItWorks__content_bottom']}>
             <Swiper {...swiperProps} className={styles['slider']}>
               {listSlider.map((slide, index) => (
@@ -80,18 +80,20 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className={classNames(styles['arrow'], 'swiper-partner-prev')}>
-              <IconArrow />
-            </div>
-            <div
-              className={classNames(
-                styles['arrow'],
-                styles['next'],
-                'swiper-partner-next',
-              )}
+            <ArrowSlider
+              className={styles['arrow']}
+              name={'howItWorks-prev'}
+              direction={'prev'}
             >
               <IconArrow />
-            </div>
+            </ArrowSlider>
+            <ArrowSlider
+              className={classNames(styles['arrow'], styles['next'])}
+              name={'howItWorks-next'}
+              direction={'next'}
+            >
+              <IconArrow />
+            </ArrowSlider>
           </div>
         </div>
       </Container>
