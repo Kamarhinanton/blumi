@@ -4,7 +4,7 @@
   margin: 120rem 0;
 
   @media (width<=$breakpoint-mob) {
-    margin: 80rem 0;
+    margin: 95rem 0;
   }
 
   &__content {
@@ -52,6 +52,10 @@
           font-size: var(--font-s);
           letter-spacing: 0.56rem;
 
+          @media (width<=$breakpoint-mob) {
+            font-size: 16rem;
+          }
+
           &_link {
             color: var(--secondary-text);
           }
@@ -63,8 +67,8 @@
       position: relative;
       margin: 78rem 0;
 
-      @media (width<=$breakpoint-mob){
-        margin: 32rem 0 34rem;
+      @media (width<=$breakpoint-mob) {
+        margin: 32rem 0 40rem;
       }
 
       .slider {
@@ -91,7 +95,7 @@
           width: 416rem;
 
           @media (width<=$breakpoint-mob) {
-            width: 247rem;
+            width: 255rem;
           }
 
           &_image {
@@ -100,8 +104,8 @@
             border-radius: 24rem;
 
             @media (width<=$breakpoint-mob) {
-              height: 247rem;
-              border-radius: 14rem;
+              height: 255rem;
+              border-radius: 15rem;
             }
           }
 
@@ -116,6 +120,10 @@
             font: var(--font-s);
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
+
+            @media (width<=$breakpoint-mob) {
+              font-size: 10rem;
+            }
           }
         }
       }

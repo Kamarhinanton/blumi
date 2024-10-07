@@ -13,6 +13,7 @@ import IconArrow from '../../../../../public/icons/arrow-pink.svg'
 
 import styles from './HowItWorks.module.scss'
 import 'swiper/css'
+import { breakpointMob } from '@/utils/variables'
 
 type HowItWorksType = {
   howItWorksData: QueryResultHowItWorksData['howItWorks']
@@ -22,12 +23,17 @@ const swiperProps: SwiperProps = {
   slidesPerView: 'auto',
   speed: 1000,
   autoplay: true,
-  spaceBetween: 24,
   loop: true,
+  spaceBetween: 10,
   modules: [Autoplay, Navigation],
   navigation: {
     prevEl: '.howItWorks-prev',
     nextEl: '.howItWorks-next',
+  },
+  breakpoints: {
+    [breakpointMob + 1]: {
+      spaceBetween: 24,
+    },
   },
 }
 
