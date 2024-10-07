@@ -20,12 +20,12 @@
     &:hover {
       span {
         &::before {
-          transform: translateX(calc(-50% + 20rem)) translateY(-50%);
+          transform: translateX(50rem) translateY(-50%);
           opacity: 0;
         }
 
         &::after {
-          transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-12rem) translateY(-50%);
           opacity: 1;
         }
       }
@@ -69,13 +69,21 @@
     }
 
     &::before {
-      transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-12rem) translateY(-50%);
       opacity: 1;
+
+      @media (width<=$breakpoint-mob) {
+        transform: translateX(-50%) translateY(-50%);
+      }
     }
 
     &::after {
-      transform: translateX(calc(-50% - 20rem)) translateY(-50%);
+      transform: translateX(-50rem) translateY(-50%);
       opacity: 0;
+
+      @media (width<=$breakpoint-mob) {
+        display: none;
+      }
     }
   }
 }
