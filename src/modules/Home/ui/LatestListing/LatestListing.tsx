@@ -10,6 +10,7 @@ import { SwiperProps } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import classNames from 'classnames'
 import ArrowSlider from '@/ui/ArrowSlider/ArrowSlider'
+import { breakpointMob } from '@/utils/variables'
 
 import Icon from '../../../../../public/icons/light.svg'
 import IconArrow from '../../../../../public/icons/arrow-pink.svg'
@@ -21,13 +22,21 @@ type LatestListingDataType = {
 }
 
 const swiperProps: SwiperProps = {
-  slidesPerView: 3,
-  spaceBetween: 24,
-  loop: true,
   modules: [Navigation],
-  navigation: {
-    prevEl: '.latestListing-prev',
-    nextEl: '.latestListing-next',
+  slidesPerView: 'auto',
+  spaceBetween: 14,
+  loop: true,
+  centeredSlides: true,
+  breakpoints: {
+    [breakpointMob + 1]: {
+      slidesPerView: 3,
+      spaceBetween: 24,
+      loop: true,
+      navigation: {
+        prevEl: '.latestListing-prev',
+        nextEl: '.latestListing-next',
+      },
+    },
   },
 }
 
@@ -54,7 +63,12 @@ const LatestListing = ({ latestListingData }: LatestListingDataType) => {
             <ul className={styles['cityList']}>
               {listCities.map((city) => (
                 <li className={styles['cityList__item']} key={city.id}>
-                  <Link href={city.link}>{city.title}</Link>
+                  <Link
+                    className={styles['cityList__item_link']}
+                    href={city.link}
+                  >
+                    {city.title}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -3,6 +3,10 @@
 .latestListing {
   margin: 120rem 0;
 
+  @media (width<=$breakpoint-mob) {
+    margin: 80rem 0;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -10,8 +14,16 @@
     &_top {
       display: flex;
 
+      @media (width<=$breakpoint-mob) {
+        display: block;
+      }
+
       .heading {
         flex: 1 0;
+
+        @media (width<=$breakpoint-mob) {
+          flex: initial;
+        }
       }
 
       .cityList {
@@ -19,31 +31,81 @@
         gap: 4rem;
         align-items: flex-end;
 
+        @media (width<=$breakpoint-mob) {
+          align-items: initial;
+          margin: 32rem -16rem 0 0;
+          overflow: auto;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+
+          // hide scroll
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          // hide scroll
+        }
+
         &__item {
           padding: 0 12rem;
           font-size: var(--font-s);
           letter-spacing: 0.56rem;
+
+          &_link {
+            color: var(--secondary-text);
+          }
         }
       }
     }
 
-    &_bottom{
+    &_bottom {
       position: relative;
       margin: 78rem 0;
+
+      @media (width<=$breakpoint-mob){
+        margin: 32rem 0 34rem;
+      }
 
       .slider {
         position: relative;
 
+        &::before {
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          z-index: 2;
+          height: 100%;
+          background: linear-gradient(90deg, var(--white) 0%, rgb(255 255 255 / 0%) 10%, rgb(255 255 255 / 0%) 80%, var(--white) 100%);
+          background-size: cover;
+          content: '';
+          pointer-events: none;
+        }
+
+        @media (width<=$breakpoint-mob) {
+          margin: 0 -16rem;
+        }
+
         &__slide {
           width: 416rem;
+
+          @media (width<=$breakpoint-mob) {
+            width: 247rem;
+          }
 
           &_image {
             height: 416rem;
             overflow: hidden;
             border-radius: 24rem;
+
+            @media (width<=$breakpoint-mob) {
+              height: 247rem;
+              border-radius: 14rem;
+            }
           }
 
-          &_title{
+          &_title {
             margin: 16rem 0 0;
           }
 
@@ -65,11 +127,14 @@
         z-index: 2;
         transform: translateY(-50%);
 
+        @media (width<=$breakpoint-mob) {
+          display: none;
+        }
+
         &.next {
           right: -32rem;
           left: initial;
           transform: translateY(-50%) rotate(180deg);
-
         }
       }
 
