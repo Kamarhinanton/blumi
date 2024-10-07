@@ -1,13 +1,24 @@
 export type QueryResultHeroHomeData = {
   hero: {
     cta: HeroCTA
-    description: string
     list: HeroListItem[]
     listIcons: HeroListIcon[]
     picture: HeroPicture
-    title: string
+    heading: {
+      description?: string
+      subText?: string
+      titleWithIcons?: TitleIconList[]
+    }
   }
 }
+type TitleIconList = {
+  id?: string
+  text?: string
+  icon: {
+    url?: string
+  }
+}
+
 type HeroListItem = {
   item: string
   id: string

@@ -1,0 +1,19 @@
+@import '@/app/styles/variables/breakpoints';
+
+.title {
+  position: relative;
+
+  span{
+    position: relative;
+    display: inline-block;
+    width: 80rem;
+    height: 80rem;
+    margin: 0 10rem;
+
+    @media (width<=$breakpoint-mob){
+      width: 36rem;
+      height: 36rem;
+      vertical-align: middle;
+    }
+  }
+}

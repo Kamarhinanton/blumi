@@ -1,16 +1,30 @@
 @import '@/app/styles/variables/breakpoints';
 
 .heading {
-  &.centred{
+  &.small{
+    .heading{
+      &__title{
+        @media (width<=$breakpoint-mob) {
+          font-size: 28rem;
+        }
+      }
+    }
+  }
+
+  &.centred {
     text-align: center;
 
-    .heading{
-      &__subText{
+    .heading {
+      &__subText {
         margin: 32rem auto 0;
 
         @media (width<=$breakpoint-mob) {
           margin: 20rem auto 0;
         }
+      }
+
+      &__title {
+        justify-content: center;
       }
     }
   }

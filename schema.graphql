@@ -26,16 +26,13 @@ type ComponentBaseTitleComponent {
     description: String
     id: ID!
     subText: String
-    titleIcon: ComponentBaseTitleWithIcons!
+    titleWithIcons(filters: ComponentBaseTitleWithIconsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseTitleWithIcons]
 }
 
 type ComponentBaseTitleWithIcons {
-    icon1: UploadFile
-    icon2: UploadFile
+    icon: UploadFile
     id: ID!
-    text1: String
-    text2: String
-    text3: String
+    text: String
 }
 
 type ComponentFooterInnerCopyright {
@@ -52,28 +49,24 @@ type ComponentFooterInnerFooterColumn {
 
 type ComponentHomeExploreTreatment {
     buttonText: String
-    description: String!
+    heading: ComponentBaseTitleComponent!
     id: ID!
     listImages(filters: ComponentHomeListImagesFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListImages]
-    title: String!
 }
 
 type ComponentHomeHero {
     cta: ComponentBaseCta!
-    description: String!
+    heading: ComponentBaseTitleComponent!
     id: ID!
     list(filters: ComponentHomeListMarkedFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListMarked]!
     listIcons(filters: ComponentHomeListIconsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListIcons]!
     picture: UploadFile!
-    title: String!
 }
 
 type ComponentHomeHowItWorks {
-    description: String!
+    heading: ComponentBaseTitleComponent!
     id: ID!
     listSlider(filters: ComponentHomeListSliderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListSlider]!
-    subText: String!
-    title: String!
 }
 
 type ComponentHomeLatestListing {
@@ -514,16 +507,20 @@ input ComponentBaseTitleComponentInput {
     description: String
     id: ID
     subText: String
-    titleIcon: ComponentBaseTitleWithIconsInput
+    titleWithIcons: [ComponentBaseTitleWithIconsInput]
+}
+
+input ComponentBaseTitleWithIconsFiltersInput {
+    and: [ComponentBaseTitleWithIconsFiltersInput]
+    not: ComponentBaseTitleWithIconsFiltersInput
+    or: [ComponentBaseTitleWithIconsFiltersInput]
+    text: StringFilterInput
 }
 
 input ComponentBaseTitleWithIconsInput {
-    icon1: ID
-    icon2: ID
+    icon: ID
     id: ID
-    text1: String
-    text2: String
-    text3: String
+    text: String
 }
 
 input ComponentFooterInnerCopyrightInput {
@@ -548,28 +545,24 @@ input ComponentFooterInnerFooterColumnInput {
 
 input ComponentHomeExploreTreatmentInput {
     buttonText: String
-    description: String
+    heading: ComponentBaseTitleComponentInput
     id: ID
     listImages: [ComponentHomeListImagesInput]
-    title: String
 }
 
 input ComponentHomeHeroInput {
     cta: ComponentBaseCtaInput
-    description: String
+    heading: ComponentBaseTitleComponentInput
     id: ID
     list: [ComponentHomeListMarkedInput]
     listIcons: [ComponentHomeListIconsInput]
     picture: ID
-    title: String
 }
 
 input ComponentHomeHowItWorksInput {
-    description: String
+    heading: ComponentBaseTitleComponentInput
     id: ID
     listSlider: [ComponentHomeListSliderInput]
-    subText: String
-    title: String
 }
 
 input ComponentHomeLatestListingInput {

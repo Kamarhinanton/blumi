@@ -7,13 +7,13 @@ import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation } from 'swiper/modules'
 import Heading from '@/components/Heading/Heading'
 import ArrowSlider from '@/ui/ArrowSlider/ArrowSlider'
+import { breakpointMob } from '@/utils/variables'
 
 import Icon from '../../../../../public/icons/light.svg'
 import IconArrow from '../../../../../public/icons/arrow-pink.svg'
 
 import styles from './HowItWorks.module.scss'
 import 'swiper/css'
-import { breakpointMob } from '@/utils/variables'
 
 type HowItWorksType = {
   howItWorksData: QueryResultHowItWorksData['howItWorks']
@@ -42,7 +42,7 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
     return null
   }
 
-  const { description, title, subText, listSlider } = howItWorksData
+  const { heading, listSlider } = howItWorksData
 
   return (
     <section className={styles['howItWorks']}>
@@ -50,9 +50,11 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
         <div className={styles['howItWorks__content']}>
           <Heading
             centred
-            title={title}
-            description={description}
-            subText={subText}
+            titleIcon={heading.titleWithIcons}
+            description={heading.description}
+            subText={heading.subText}
+            tag={'h2'}
+            small
           >
             <Icon />
           </Heading>

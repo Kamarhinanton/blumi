@@ -2,8 +2,17 @@ import { gql } from '@apollo/client'
 
 export const ExploreTreatmentFragment = gql`
   fragment ExploreTreatmentFields on ComponentHomeExploreTreatment {
-    description
-    title
+    heading {
+      description
+      subText
+      titleWithIcons {
+        id
+        text
+        icon {
+          url
+        }
+      }
+    }
     listImages {
       description
       id

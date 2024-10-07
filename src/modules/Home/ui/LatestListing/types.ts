@@ -2,7 +2,7 @@ export type QueryResultLatestListing = {
   latestListing: {
     title: {
       description: string
-      titleIcon: LatestListingTitleIcon
+      titleWithIcons: LatestListingTitleIcon[]
       subText: string
     }
     listCities: LatestListingCity[]
@@ -12,15 +12,11 @@ export type QueryResultLatestListing = {
 }
 
 export type LatestListingTitleIcon = {
-  icon1?: {
-    url: string
+  id?: string
+  text?: string
+  icon: {
+    url?: string
   }
-  icon2?: {
-    url: string
-  }
-  text1?: string
-  text2?: string
-  text3?: string
 }
 
 export type LatestListingCity = {

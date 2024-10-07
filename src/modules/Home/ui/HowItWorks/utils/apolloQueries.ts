@@ -2,9 +2,17 @@ import { gql } from '@apollo/client'
 
 export const HowItWorksFragment = gql`
   fragment HowItWorksFields on ComponentHomeHowItWorks {
-    description
-    title
-    subText
+    heading {
+      description
+      subText
+      titleWithIcons {
+        id
+        icon {
+          url
+        }
+        text
+      }
+    }
     listSlider {
       image {
         url

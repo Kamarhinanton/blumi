@@ -10,6 +10,7 @@ import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { breakpointMob } from '@/utils/variables'
 
 import styles from './ExploreTreatment.module.scss'
+import Heading from '@/components/Heading/Heading'
 
 type ExploreTreatmentContentType = {
   exploreTreatmentData: QueryResultExploreTreatmentData['exploreTreatment']
@@ -18,7 +19,7 @@ type ExploreTreatmentContentType = {
 const ExploreTreatment = ({
   exploreTreatmentData,
 }: ExploreTreatmentContentType) => {
-  const { description, title, buttonText, listImages } = exploreTreatmentData
+  const { heading, buttonText, listImages } = exploreTreatmentData
   const [activeIndex, setActiveIndex] = useState<string>(listImages[0].id)
   const { width } = useWindowDimensions()
 
@@ -39,13 +40,15 @@ const ExploreTreatment = ({
       <Container>
         <div className={styles['exploreTreatment__content']}>
           <div className={styles['title']}>
-            <IconDescription
-              className={styles['title__description']}
-              description={description}
-            >
-              <Icon />
-            </IconDescription>
-            <h2 className={classNames('h1', 'variant')}>{title}</h2>
+            {heading.description && (
+              <IconDescription
+                className={styles['title__description']}
+                description={heading.description}
+              >
+                <Icon />
+              </IconDescription>
+            )}
+            <Heading tag={'h2'} small titleIcon={heading.titleWithIcons} />
           </div>
           <ul className={styles['list']}>
             {listImages.map((item) => (

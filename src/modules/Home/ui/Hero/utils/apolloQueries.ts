@@ -2,11 +2,21 @@ import { gql } from '@apollo/client'
 
 export const HeroFragment = gql`
   fragment HeroFields on ComponentHomeHero {
+    heading {
+      description
+      subText
+      titleWithIcons {
+        id
+        text
+        icon {
+          url
+        }
+      }
+    }
     cta {
       buttonText
       placeholderText
     }
-    description
     list {
       item
       id
@@ -21,6 +31,5 @@ export const HeroFragment = gql`
     picture {
       url
     }
-    title
   }
 `

@@ -52,12 +52,25 @@
           font-size: var(--font-s);
           letter-spacing: 0.56rem;
 
+          @media (width>$breakpoint-mob) {
+            &:hover{
+              .cityList {
+                &__item {
+                  &_link {
+                    color: var(--pink-primary);
+                  }
+                }
+              }
+            }
+          }
+
           @media (width<=$breakpoint-mob) {
             font-size: 16rem;
           }
 
           &_link {
             color: var(--secondary-text);
+            transition: var(--duration-hover) var(--ease);
           }
         }
       }

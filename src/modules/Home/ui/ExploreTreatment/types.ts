@@ -1,9 +1,20 @@
 export type QueryResultExploreTreatmentData = {
   exploreTreatment: {
-    description: string
-    title: string
+    heading: {
+      description?: string
+      subText?: string
+      titleWithIcons?: TitleIconList[]
+    }
     listImages: ImageList[]
     buttonText: string
+  }
+}
+
+type TitleIconList = {
+  id?: string
+  text?: string
+  icon: {
+    url?: string
   }
 }
 

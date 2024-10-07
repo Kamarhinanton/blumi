@@ -1,9 +1,20 @@
 export type QueryResultHowItWorksData = {
   howItWorks: {
-    description: string
-    title: string
-    subText: string
+    heading: {
+      description?: string
+      subText?: string
+      titleWithIcons?: TitleIconList[]
+    }
+    titleWithIcons?: TitleIconList[]
     listSlider: HowItWorksSliderItem[]
+  }
+}
+
+type TitleIconList = {
+  id?: string
+  text?: string
+  icon: {
+    url?: string
   }
 }
 

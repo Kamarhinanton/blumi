@@ -54,9 +54,11 @@ const LatestListing = ({ latestListingData }: LatestListingDataType) => {
           <div className={styles['latestListing__content_top']}>
             <Heading
               description={title.description}
-              title={title.titleIcon.text1}
+              titleIcon={title.titleWithIcons}
               subText={title.subText}
               className={styles['heading']}
+              small
+              tag={'h2'}
             >
               <Icon />
             </Heading>

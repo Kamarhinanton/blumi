@@ -1,13 +1,12 @@
 import React from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHeroHomeData } from '@/modules/Home/ui/Hero/types'
-import classNames from 'classnames'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import SmallForm from '@/components/SmallForm/SmallForm'
 import Icon from '../../../../../public/icons/bulb.svg'
+import Heading from '@/components/Heading/Heading'
 
 import styles from './Hero.module.scss'
-import IconDescription from '@/components/IconDescription/IconDescription'
 
 type HeroContentType = {
   heroData: QueryResultHeroHomeData['hero']
@@ -18,17 +17,20 @@ const Hero = ({ heroData }: HeroContentType) => {
     return null
   }
 
-  const { description, title, list, picture, listIcons, cta } = heroData
+  const { list, picture, listIcons, cta, heading } = heroData
 
   return (
     <section className={styles['hero']}>
       <Container size={'small'}>
         <div className={styles['hero__content']}>
           <div className={styles['hero__content_smallColumn']}>
-            <IconDescription description={description}>
+            <Heading
+              description={heading.description}
+              titleIcon={heading.titleWithIcons}
+              tag={'h1'}
+            >
               <Icon />
-            </IconDescription>
-            <h1 className={classNames('h1', styles['title'])}>{title}</h1>
+            </Heading>
             <ul className={styles['list']}>
               {list.map((link) => (
                 <li className={styles['list__link']} key={link.id}>
