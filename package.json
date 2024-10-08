@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "codegen:watch": "graphql-codegen --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",

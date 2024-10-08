@@ -32,21 +32,24 @@ const Footer: FC<AppLayoutProps> = ({ footerData }) => {
               />
             </div>
             <div className={styles['columns']}>
-              {columns.map((column) => (
-                <div key={column.id} className={styles['columns__column']}>
+              {columns?.map((column) => (
+                <div key={column?.id} className={styles['columns__column']}>
                   <p className={styles['columns__column_title']}>
-                    <strong>{column.title}</strong>
+                    <strong>{column?.title}</strong>
                   </p>
                   <nav className={styles['columns__column_nav']}>
-                    {column.description.map((item) => (
-                      <Link
-                        className={styles['link']}
-                        href={item.link}
-                        key={item.id}
-                      >
-                        {item.description}
-                      </Link>
-                    ))}
+                    {column?.description?.map(
+                      (item) =>
+                        item?.link && (
+                          <Link
+                            className={styles['link']}
+                            href={item.link}
+                            key={item?.id}
+                          >
+                            {item?.description}
+                          </Link>
+                        ),
+                    )}
                   </nav>
                 </div>
               ))}

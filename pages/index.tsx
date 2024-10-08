@@ -4,7 +4,7 @@ import { FooterData } from '@/components/Footer/utils/apolloQueries'
 import { QueryResultFooterData } from '@/components/Footer/types'
 import { HomeContent } from '@/modules/Home'
 import { HomeData } from '@/modules/Home/utils/apolloQueries'
-import { QueryResultHomeData } from '@/modules/Home/ui/types'
+import { QueryResultHomeData } from '@/modules/Home/utils/types'
 
 export type HomeContentType = {
   homeData: QueryResultHomeData

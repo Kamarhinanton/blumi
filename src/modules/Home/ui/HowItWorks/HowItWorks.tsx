@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from '@/app/layouts/layouts/Container'
-import { QueryResultHowItWorksData } from '@/modules/Home/ui/HowItWorks/types'
+import { QueryResultHowItWorksData } from '@/modules/Home/ui/HowItWorks/utils/types'
 import classNames from 'classnames'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react'
@@ -8,6 +8,7 @@ import { Autoplay, Navigation } from 'swiper/modules'
 import Heading from '@/components/Heading/Heading'
 import ArrowSlider from '@/ui/ArrowSlider/ArrowSlider'
 import { breakpointMob } from '@/utils/variables'
+import { cleanedTitleWithIcons } from '@/utils/global'
 
 import Icon from '../../../../../public/icons/light.svg'
 import IconArrow from '../../../../../public/icons/arrow-pink.svg'
@@ -43,6 +44,8 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
   }
 
   const { heading, listSlider } = howItWorksData
+  const { titleWithIcons, description, subText } = heading
+  const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
 
   return (
     <section className={styles['howItWorks']}>
@@ -50,9 +53,9 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
         <div className={styles['howItWorks__content']}>
           <Heading
             centred
-            titleIcon={heading.titleWithIcons}
-            description={heading.description}
-            subText={heading.subText}
+            titleIcon={cleanedData}
+            description={description || ''}
+            subText={subText || ''}
             tag={'h2'}
             small
           >
@@ -60,33 +63,39 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
           </Heading>
           <div className={styles['howItWorks__content_bottom']}>
             <Swiper {...swiperProps} className={styles['slider']}>
-              {listSlider.map((slide, index) => (
-                <SwiperSlide key={slide.id} className={styles['slider__slide']}>
-                  <span className={styles['slider__slide_step']}>
-                    {`Step ${index + 1}`}
-                  </span>
-                  <BackgroundImage
-                    src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.image.url}`}
-                    alt={'picture'}
-                    className={styles['slider__slide_image']}
-                  />
-                  <div className={styles['slider__slide_titleIcon']}>
-                    {slide.icon && (
+              {listSlider.map(
+                (slide, index) =>
+                  slide && (
+                    <SwiperSlide
+                      key={slide.id}
+                      className={styles['slider__slide']}
+                    >
+                      <span className={styles['slider__slide_step']}>
+                        {`Step ${index + 1}`}
+                      </span>
                       <BackgroundImage
-                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.icon.url}`}
-                        alt={'icon'}
-                        className={styles['icon']}
+                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.image.url}`}
+                        alt={'picture'}
+                        className={styles['slider__slide_image']}
                       />
-                    )}
-                    <h4 className={classNames('h4', styles['title'])}>
-                      {slide.title}
-                    </h4>
-                  </div>
-                  <p className={styles['slider__slide_description']}>
-                    {slide.description}
-                  </p>
-                </SwiperSlide>
-              ))}
+                      <div className={styles['slider__slide_titleIcon']}>
+                        {slide.icon && (
+                          <BackgroundImage
+                            src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.icon.url}`}
+                            alt={'icon'}
+                            className={styles['icon']}
+                          />
+                        )}
+                        <h4 className={classNames('h4', styles['title'])}>
+                          {slide.title}
+                        </h4>
+                      </div>
+                      <p className={styles['slider__slide_description']}>
+                        {slide.description}
+                      </p>
+                    </SwiperSlide>
+                  ),
+              )}
             </Swiper>
             <ArrowSlider
               className={styles['arrow']}

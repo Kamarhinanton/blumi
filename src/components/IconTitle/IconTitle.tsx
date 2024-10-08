@@ -1,12 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
-import { TitleIconList } from '@/components/Heading/Heading'
 import classNames from 'classnames'
+import { ComponentBaseTitleWithIcons } from '@/gql/graphql'
 
 import styles from './iconTitle.module.scss'
 
 type IconTitleType = {
-  list: TitleIconList[]
+  list: ComponentBaseTitleWithIcons[]
   className?: string
   tag?: 'h1' | 'h2'
 }

@@ -84,35 +84,41 @@ export type ComponentBaseTitleComponent = {
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   subText?: Maybe<Scalars['String']['output']>;
-  titleIcon: ComponentBaseTitleWithIcons;
+  titleWithIcons?: Maybe<Array<Maybe<ComponentBaseTitleWithIcons>>>;
+};
+
+
+export type ComponentBaseTitleComponentTitleWithIconsArgs = {
+  filters?: InputMaybe<ComponentBaseTitleWithIconsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type ComponentBaseTitleComponentInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   subText?: InputMaybe<Scalars['String']['input']>;
-  titleIcon?: InputMaybe<ComponentBaseTitleWithIconsInput>;
+  titleWithIcons?: InputMaybe<Array<InputMaybe<ComponentBaseTitleWithIconsInput>>>;
 };
 
 export type ComponentBaseTitleWithIcons = {
   __typename?: 'ComponentBaseTitleWithIcons';
-  icon1?: Maybe<UploadFile>;
-  icon2?: Maybe<UploadFile>;
+  icon?: Maybe<UploadFile>;
   id: Scalars['ID']['output'];
-  test?: Maybe<Scalars['String']['output']>;
-  text1?: Maybe<Scalars['String']['output']>;
-  text2?: Maybe<Scalars['String']['output']>;
-  text3?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentBaseTitleWithIconsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBaseTitleWithIconsFiltersInput>>>;
+  not?: InputMaybe<ComponentBaseTitleWithIconsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBaseTitleWithIconsFiltersInput>>>;
+  text?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentBaseTitleWithIconsInput = {
-  icon1?: InputMaybe<Scalars['ID']['input']>;
-  icon2?: InputMaybe<Scalars['ID']['input']>;
+  icon?: InputMaybe<Scalars['ID']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  test?: InputMaybe<Scalars['String']['input']>;
-  text1?: InputMaybe<Scalars['String']['input']>;
-  text2?: InputMaybe<Scalars['String']['input']>;
-  text3?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentFooterInnerCopyright = {
@@ -159,10 +165,9 @@ export type ComponentFooterInnerFooterColumnInput = {
 export type ComponentHomeExploreTreatment = {
   __typename?: 'ComponentHomeExploreTreatment';
   buttonText?: Maybe<Scalars['String']['output']>;
-  description: Scalars['String']['output'];
+  heading: ComponentBaseTitleComponent;
   id: Scalars['ID']['output'];
   listImages?: Maybe<Array<Maybe<ComponentHomeListImages>>>;
-  title: Scalars['String']['output'];
 };
 
 
@@ -174,21 +179,19 @@ export type ComponentHomeExploreTreatmentListImagesArgs = {
 
 export type ComponentHomeExploreTreatmentInput = {
   buttonText?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<ComponentBaseTitleComponentInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   listImages?: InputMaybe<Array<InputMaybe<ComponentHomeListImagesInput>>>;
-  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentHomeHero = {
   __typename?: 'ComponentHomeHero';
   cta: ComponentBaseCta;
-  description: Scalars['String']['output'];
+  heading: ComponentBaseTitleComponent;
   id: Scalars['ID']['output'];
   list: Array<Maybe<ComponentHomeListMarked>>;
   listIcons: Array<Maybe<ComponentHomeListIcons>>;
   picture: UploadFile;
-  title: Scalars['String']['output'];
 };
 
 
@@ -207,21 +210,18 @@ export type ComponentHomeHeroListIconsArgs = {
 
 export type ComponentHomeHeroInput = {
   cta?: InputMaybe<ComponentBaseCtaInput>;
-  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<ComponentBaseTitleComponentInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   list?: InputMaybe<Array<InputMaybe<ComponentHomeListMarkedInput>>>;
   listIcons?: InputMaybe<Array<InputMaybe<ComponentHomeListIconsInput>>>;
   picture?: InputMaybe<Scalars['ID']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentHomeHowItWorks = {
   __typename?: 'ComponentHomeHowItWorks';
-  description: Scalars['String']['output'];
+  heading: ComponentBaseTitleComponent;
   id: Scalars['ID']['output'];
   listSlider: Array<Maybe<ComponentHomeListSlider>>;
-  subText: Scalars['String']['output'];
-  title: Scalars['String']['output'];
 };
 
 
@@ -232,11 +232,9 @@ export type ComponentHomeHowItWorksListSliderArgs = {
 };
 
 export type ComponentHomeHowItWorksInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<ComponentBaseTitleComponentInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   listSlider?: InputMaybe<Array<InputMaybe<ComponentHomeListSliderInput>>>;
-  subText?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentHomeLatestListing = {
@@ -1550,15 +1548,15 @@ export type UsersPermissionsUserRelationResponseCollection = {
   nodes: Array<UsersPermissionsUser>;
 };
 
-export type ExploreTreatmentFieldsFragment = { __typename?: 'ComponentHomeExploreTreatment', description: string, title: string, buttonText?: string | null, listImages?: Array<{ __typename?: 'ComponentHomeListImages', description: string, id: string, title: string, image: { __typename?: 'UploadFile', url: string } } | null> | null } & { ' $fragmentName'?: 'ExploreTreatmentFieldsFragment' };
+export type ExploreTreatmentFieldsFragment = { __typename?: 'ComponentHomeExploreTreatment', buttonText?: string | null, heading: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', id: string, text?: string | null, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null }, listImages?: Array<{ __typename?: 'ComponentHomeListImages', description: string, id: string, title: string, image: { __typename?: 'UploadFile', url: string } } | null> | null } & { ' $fragmentName'?: 'ExploreTreatmentFieldsFragment' };
 
-export type HeroFieldsFragment = { __typename?: 'ComponentHomeHero', description: string, title: string, cta: { __typename?: 'ComponentBaseCta', buttonText: string, placeholderText: string }, list: Array<{ __typename?: 'ComponentHomeListMarked', item: string, id: string } | null>, listIcons: Array<{ __typename?: 'ComponentHomeListIcons', id: string, text: string, icon: { __typename?: 'UploadFile', url: string } } | null>, picture: { __typename?: 'UploadFile', url: string } } & { ' $fragmentName'?: 'HeroFieldsFragment' };
+export type HeroFieldsFragment = { __typename?: 'ComponentHomeHero', heading: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', id: string, text?: string | null, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null }, cta: { __typename?: 'ComponentBaseCta', buttonText: string, placeholderText: string }, list: Array<{ __typename?: 'ComponentHomeListMarked', item: string, id: string } | null>, listIcons: Array<{ __typename?: 'ComponentHomeListIcons', id: string, text: string, icon: { __typename?: 'UploadFile', url: string } } | null>, picture: { __typename?: 'UploadFile', url: string } } & { ' $fragmentName'?: 'HeroFieldsFragment' };
 
-export type HowItWorksFieldsFragment = { __typename?: 'ComponentHomeHowItWorks', description: string, title: string, subText: string, listSlider: Array<{ __typename?: 'ComponentHomeListSlider', title: string, description: string, id: string, image: { __typename?: 'UploadFile', url: string }, icon?: { __typename?: 'UploadFile', url: string } | null } | null> } & { ' $fragmentName'?: 'HowItWorksFieldsFragment' };
+export type HowItWorksFieldsFragment = { __typename?: 'ComponentHomeHowItWorks', heading: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', id: string, text?: string | null, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null }, listSlider: Array<{ __typename?: 'ComponentHomeListSlider', title: string, description: string, id: string, image: { __typename?: 'UploadFile', url: string }, icon?: { __typename?: 'UploadFile', url: string } | null } | null> } & { ' $fragmentName'?: 'HowItWorksFieldsFragment' };
 
-export type LatestListingFieldsFragment = { __typename?: 'ComponentHomeLatestListing', buttonText: string, title: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleIcon: { __typename?: 'ComponentBaseTitleWithIcons', text1?: string | null, text2?: string | null, text3?: string | null, icon1?: { __typename?: 'UploadFile', url: string } | null, icon2?: { __typename?: 'UploadFile', url: string } | null } }, listCities: Array<{ __typename?: 'ComponentHomeListCities', id: string, title: string, link: string } | null>, listSlider: Array<{ __typename?: 'ComponentHomeListSlider', id: string, title: string, description: string, image: { __typename?: 'UploadFile', url: string } } | null> } & { ' $fragmentName'?: 'LatestListingFieldsFragment' };
+export type LatestListingFieldsFragment = { __typename?: 'ComponentHomeLatestListing', buttonText: string, title: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', id: string, text?: string | null, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null }, listCities: Array<{ __typename?: 'ComponentHomeListCities', id: string, title: string, link: string } | null>, listSlider: Array<{ __typename?: 'ComponentHomeListSlider', id: string, title: string, description: string, image: { __typename?: 'UploadFile', url: string } } | null> } & { ' $fragmentName'?: 'LatestListingFieldsFragment' };
 
-export const ExploreTreatmentFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ExploreTreatmentFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeExploreTreatment"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"listImages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"buttonText"}}]}}]} as unknown as DocumentNode<ExploreTreatmentFieldsFragment, unknown>;
-export const HeroFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeHero"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"buttonText"}},{"kind":"Field","name":{"kind":"Name","value":"placeholderText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"list"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"item"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"listIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"picture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]} as unknown as DocumentNode<HeroFieldsFragment, unknown>;
-export const HowItWorksFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HowItWorksFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeHowItWorks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"listSlider"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<HowItWorksFieldsFragment, unknown>;
-export const LatestListingFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LatestListingFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeLatestListing"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"titleIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"icon2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"text1"}},{"kind":"Field","name":{"kind":"Name","value":"text2"}},{"kind":"Field","name":{"kind":"Name","value":"text3"}}]}},{"kind":"Field","name":{"kind":"Name","value":"subText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"listCities"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}},{"kind":"Field","name":{"kind":"Name","value":"listSlider"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"buttonText"}}]}}]} as unknown as DocumentNode<LatestListingFieldsFragment, unknown>;
+export const ExploreTreatmentFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ExploreTreatmentFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeExploreTreatment"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"listImages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"buttonText"}}]}}]} as unknown as DocumentNode<ExploreTreatmentFieldsFragment, unknown>;
+export const HeroFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeHero"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"buttonText"}},{"kind":"Field","name":{"kind":"Name","value":"placeholderText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"list"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"item"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"listIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"picture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]} as unknown as DocumentNode<HeroFieldsFragment, unknown>;
+export const HowItWorksFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HowItWorksFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeHowItWorks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"listSlider"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<HowItWorksFieldsFragment, unknown>;
+export const LatestListingFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LatestListingFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeLatestListing"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"listCities"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}},{"kind":"Field","name":{"kind":"Name","value":"listSlider"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"buttonText"}}]}}]} as unknown as DocumentNode<LatestListingFieldsFragment, unknown>;

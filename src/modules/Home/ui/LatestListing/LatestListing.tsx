@@ -1,5 +1,5 @@
 import React from 'react'
-import { QueryResultLatestListing } from '@/modules/Home/ui/LatestListing/types'
+import { QueryResultLatestListing } from '@/modules/Home/ui/LatestListing/utils/types'
 import Container from '@/app/layouts/layouts/Container'
 import Heading from '@/components/Heading/Heading'
 import Link from 'next/link'
@@ -11,6 +11,7 @@ import { Navigation } from 'swiper/modules'
 import classNames from 'classnames'
 import ArrowSlider from '@/ui/ArrowSlider/ArrowSlider'
 import { breakpointMob } from '@/utils/variables'
+import { cleanedTitleWithIcons } from '@/utils/global'
 
 import Icon from '../../../../../public/icons/light.svg'
 import IconArrow from '../../../../../public/icons/arrow-pink.svg'
@@ -46,6 +47,9 @@ const LatestListing = ({ latestListingData }: LatestListingDataType) => {
   }
 
   const { title, listCities, listSlider, buttonText } = latestListingData
+  const { description, titleWithIcons, subText } = title
+
+  const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
 
   return (
     <section className={styles['latestListing']}>
@@ -53,9 +57,9 @@ const LatestListing = ({ latestListingData }: LatestListingDataType) => {
         <div className={styles['latestListing__content']}>
           <div className={styles['latestListing__content_top']}>
             <Heading
-              description={title.description}
-              titleIcon={title.titleWithIcons}
-              subText={title.subText}
+              description={description || ''}
+              titleIcon={cleanedData}
+              subText={subText || ''}
               className={styles['heading']}
               small
               tag={'h2'}
@@ -63,38 +67,50 @@ const LatestListing = ({ latestListingData }: LatestListingDataType) => {
               <Icon />
             </Heading>
             <ul className={styles['cityList']}>
-              {listCities.map((city) => (
-                <li className={styles['cityList__item']} key={city.id}>
-                  <Link
-                    className={styles['cityList__item_link']}
-                    href={city.link}
-                  >
-                    {city.title}
-                  </Link>
-                </li>
-              ))}
+              {listCities.map(
+                (city) =>
+                  city && (
+                    <li className={styles['cityList__item']} key={city.id}>
+                      <Link
+                        className={styles['cityList__item_link']}
+                        href={city.link}
+                      >
+                        {city.title}
+                      </Link>
+                    </li>
+                  ),
+              )}
             </ul>
           </div>
           <div className={styles['latestListing__content_bottom']}>
             <Swiper {...swiperProps} className={styles['slider']}>
-              {listSlider.map((slide) => (
-                <SwiperSlide key={slide.id} className={styles['slider__slide']}>
-                  <BackgroundImage
-                    className={styles['slider__slide_image']}
-                    src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.image.url}`}
-                    alt={'picture'}
-                    position={'cover'}
-                  />
-                  <h4
-                    className={classNames('h4', styles['slider__slide_title'])}
-                  >
-                    {slide.title}
-                  </h4>
-                  <p className={styles['slider__slide_description']}>
-                    {slide.description}
-                  </p>
-                </SwiperSlide>
-              ))}
+              {listSlider.map(
+                (slide) =>
+                  slide && (
+                    <SwiperSlide
+                      key={slide.id}
+                      className={styles['slider__slide']}
+                    >
+                      <BackgroundImage
+                        className={styles['slider__slide_image']}
+                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.image.url}`}
+                        alt={'picture'}
+                        position={'cover'}
+                      />
+                      <h4
+                        className={classNames(
+                          'h4',
+                          styles['slider__slide_title'],
+                        )}
+                      >
+                        {slide.title}
+                      </h4>
+                      <p className={styles['slider__slide_description']}>
+                        {slide.description}
+                      </p>
+                    </SwiperSlide>
+                  ),
+              )}
             </Swiper>
             <ArrowSlider
               className={styles['arrow']}

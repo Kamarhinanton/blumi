@@ -1,10 +1,11 @@
 import React from 'react'
 import Container from '@/app/layouts/layouts/Container'
-import { QueryResultHeroHomeData } from '@/modules/Home/ui/Hero/types'
+import { QueryResultHeroHomeData } from '@/modules/Home/ui/Hero/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import SmallForm from '@/components/SmallForm/SmallForm'
 import Icon from '../../../../../public/icons/bulb.svg'
 import Heading from '@/components/Heading/Heading'
+import { cleanedTitleWithIcons } from '@/utils/global'
 
 import styles from './Hero.module.scss'
 
@@ -18,6 +19,9 @@ const Hero = ({ heroData }: HeroContentType) => {
   }
 
   const { list, picture, listIcons, cta, heading } = heroData
+  const { description, titleWithIcons } = heading
+
+  const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
 
   return (
     <section className={styles['hero']}>
@@ -25,18 +29,21 @@ const Hero = ({ heroData }: HeroContentType) => {
         <div className={styles['hero__content']}>
           <div className={styles['hero__content_smallColumn']}>
             <Heading
-              description={heading.description}
-              titleIcon={heading.titleWithIcons}
+              description={description || ''}
+              titleIcon={cleanedData}
               tag={'h1'}
             >
               <Icon />
             </Heading>
             <ul className={styles['list']}>
-              {list.map((link) => (
-                <li className={styles['list__link']} key={link.id}>
-                  {link.item}
-                </li>
-              ))}
+              {list.map(
+                (link) =>
+                  link && (
+                    <li className={styles['list__link']} key={link.id}>
+                      {link.item}
+                    </li>
+                  ),
+              )}
             </ul>
           </div>
           <div className={styles['hero__content_largeColumn']}>
@@ -47,16 +54,19 @@ const Hero = ({ heroData }: HeroContentType) => {
               position={'cover'}
             />
             <ul className={styles['list']}>
-              {listIcons.map((link) => (
-                <li className={styles['list__link']} key={link.id}>
-                  <BackgroundImage
-                    src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${link.icon.url}`}
-                    alt={'icon'}
-                    className={styles['list__link_icon']}
-                  />
-                  {link.text}
-                </li>
-              ))}
+              {listIcons.map(
+                (link) =>
+                  link && (
+                    <li className={styles['list__link']} key={link.id}>
+                      <BackgroundImage
+                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${link.icon.url}`}
+                        alt={'icon'}
+                        className={styles['list__link_icon']}
+                      />
+                      {link.text}
+                    </li>
+                  ),
+              )}
             </ul>
             <SmallForm
               placeholderText={cta.placeholderText}

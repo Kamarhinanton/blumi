@@ -2,26 +2,19 @@ import React, { ReactNode } from 'react'
 import IconDescription from '@/components/IconDescription/IconDescription'
 import classNames from 'classnames'
 import IconTitle from '@/components/IconTitle/IconTitle'
+import { ComponentBaseTitleWithIcons } from '@/gql/graphql'
 
 import styles from './Heading.module.scss'
 
 type HeadingType = {
   description?: string
-  titleIcon?: TitleIconList[]
+  titleIcon?: ComponentBaseTitleWithIcons[]
   subText?: string
   children?: ReactNode
   centred?: boolean
   className?: string
   small?: boolean
   tag?: 'h1' | 'h2'
-}
-
-export type TitleIconList = {
-  id?: string
-  text?: string
-  icon: {
-    url?: string
-  }
 }
 
 const Heading = ({
