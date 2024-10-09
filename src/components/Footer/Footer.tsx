@@ -1,17 +1,17 @@
 import React, { FC } from 'react'
 import Container from '@/app/layouts/layouts/Container'
-import { QueryResultFooterData } from '@/components/Footer/types'
+import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Link from 'next/link'
 import SmallForm from '@/components/SmallForm/SmallForm'
 
 import styles from './Footer.module.scss'
 
-type AppLayoutProps = {
+type FooterDataProps = {
   footerData?: QueryResultFooterData
 }
 
-const Footer: FC<AppLayoutProps> = ({ footerData }) => {
+const Footer: FC<FooterDataProps> = ({ footerData }) => {
   const footer = footerData?.footer
 
   if (!footer) {

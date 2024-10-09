@@ -162,6 +162,34 @@ export type ComponentFooterInnerFooterColumnInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ComponentHeaderTitleColumn = {
+  __typename?: 'ComponentHeaderTitleColumn';
+  id: Scalars['ID']['output'];
+  list?: Maybe<Array<Maybe<ComponentBaseList>>>;
+  title: Scalars['String']['output'];
+};
+
+
+export type ComponentHeaderTitleColumnListArgs = {
+  filters?: InputMaybe<ComponentBaseListFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentHeaderTitleColumnFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHeaderTitleColumnFiltersInput>>>;
+  list?: InputMaybe<ComponentBaseListFiltersInput>;
+  not?: InputMaybe<ComponentHeaderTitleColumnFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHeaderTitleColumnFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentHeaderTitleColumnInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  list?: InputMaybe<Array<InputMaybe<ComponentBaseListInput>>>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentHomeExploreTreatment = {
   __typename?: 'ComponentHomeExploreTreatment';
   buttonText?: Maybe<Scalars['String']['output']>;
@@ -474,7 +502,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | Footer | Global | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -503,8 +531,52 @@ export type GlobalRelationResponseCollection = {
   nodes: Array<Global>;
 };
 
+export type Header = {
+  __typename?: 'Header';
+  buttonText: Scalars['String']['output'];
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  link?: Maybe<Array<Maybe<ComponentBaseList>>>;
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<Header>>;
+  localizations_connection?: Maybe<HeaderRelationResponseCollection>;
+  logo: UploadFile;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  submenu?: Maybe<Array<Maybe<ComponentHeaderTitleColumn>>>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type HeaderLinkArgs = {
+  filters?: InputMaybe<ComponentBaseListFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type HeaderSubmenuArgs = {
+  filters?: InputMaybe<ComponentHeaderTitleColumnFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HeaderInput = {
+  buttonText?: InputMaybe<Scalars['String']['input']>;
+  link?: InputMaybe<Array<InputMaybe<ComponentBaseListInput>>>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  logo?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  submenu?: InputMaybe<Array<InputMaybe<ComponentHeaderTitleColumnInput>>>;
+};
+
+export type HeaderRelationResponseCollection = {
+  __typename?: 'HeaderRelationResponseCollection';
+  nodes: Array<Header>;
+};
+
 export type Home = {
   __typename?: 'Home';
+  PageName: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
   exploreTreatment?: Maybe<ComponentHomeExploreTreatment>;
@@ -519,6 +591,7 @@ export type Home = {
 };
 
 export type HomeInput = {
+  PageName?: InputMaybe<Scalars['String']['input']>;
   exploreTreatment?: InputMaybe<ComponentHomeExploreTreatmentInput>;
   hero?: InputMaybe<ComponentHomeHeroInput>;
   howItWorks?: InputMaybe<ComponentHomeHowItWorksInput>;
@@ -671,6 +744,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteFooter?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
+  deleteHeader?: Maybe<DeleteMutationResponse>;
   deleteHome?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
@@ -690,6 +764,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateFooter?: Maybe<Footer>;
   updateGlobal?: Maybe<Global>;
+  updateHeader?: Maybe<Header>;
   updateHome?: Maybe<Home>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
@@ -794,6 +869,12 @@ export type MutationUpdateGlobalArgs = {
 };
 
 
+export type MutationUpdateHeaderArgs = {
+  data: HeaderInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateHomeArgs = {
   data: HomeInput;
   status?: InputMaybe<PublicationStatus>;
@@ -855,6 +936,7 @@ export type Query = {
   __typename?: 'Query';
   footer?: Maybe<Footer>;
   global?: Maybe<Global>;
+  header?: Maybe<Header>;
   home?: Maybe<Home>;
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<Maybe<I18NLocale>>;
@@ -884,6 +966,11 @@ export type QueryFooterArgs = {
 
 
 export type QueryGlobalArgs = {
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryHeaderArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 

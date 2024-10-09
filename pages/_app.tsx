@@ -4,36 +4,10 @@ import Head from 'next/head'
 import AppLayout from '@/app/layouts/layouts/AppLayout'
 import { Provider } from 'react-redux'
 import store from '@/store/store'
-import { QueryResultFooterData } from '@/components/Footer/types'
+import { QueryResultFooterData } from '@/components/Footer/utils/types'
+import { QueryResultHeaderData } from '@/components/Header/utils/types'
 
 import '@/app/styles/index.scss'
-
-// const generalSans = localFont({
-//   src: [
-//     {
-//       path: '../public/fonts/GeneralSans-Regular.woff',
-//       weight: '400',
-//       style: 'normal',
-//     },
-//     {
-//       path: '../public/fonts/GeneralSans-Regular.woff2',
-//       weight: '400',
-//       style: 'normal',
-//     },
-//     {
-//       path: '../public/fonts/GeneralSans-Medium.woff',
-//       weight: '500',
-//       style: 'normal',
-//     },
-//     {
-//       path: '../public/fonts/GeneralSans-Medium.woff2',
-//       weight: '500',
-//       style: 'normal',
-//     },
-//   ],
-//   preload: true,
-//   display: 'swap',
-// })
 
 const inter = localFont({
   src: [
@@ -79,8 +53,16 @@ const nacelle = localFont({
   display: 'swap',
 })
 
-export default function App({ Component, pageProps }: AppProps) {
-  const { footerData }: { footerData?: QueryResultFooterData } = pageProps
+type AppPagePropsType = {
+  footerData?: QueryResultFooterData
+  headerData?: QueryResultHeaderData
+}
+
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<AppPagePropsType>) {
+  const { footerData, headerData } = pageProps
 
   return (
     <>
@@ -97,7 +79,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Provider store={store}>
-        <AppLayout footerData={footerData}>
+        <AppLayout footerData={footerData} headerData={headerData}>
           <Component {...pageProps} />
         </AppLayout>
       </Provider>

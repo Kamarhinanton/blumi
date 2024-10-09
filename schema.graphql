@@ -8,7 +8,7 @@ schema {
 "Indicates exactly one field must be supplied and this field must not be `null`."
 directive @oneOf on INPUT_OBJECT
 
-union GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | Footer | Global | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type ComponentBaseCta {
     buttonText: String!
@@ -44,6 +44,12 @@ type ComponentFooterInnerCopyright {
 type ComponentFooterInnerFooterColumn {
     description(filters: ComponentBaseListFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseList]
     id: ID!
+    title: String!
+}
+
+type ComponentHeaderTitleColumn {
+    id: ID!
+    list(filters: ComponentBaseListFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseList]
     title: String!
 }
 
@@ -149,7 +155,26 @@ type GlobalRelationResponseCollection {
     nodes: [Global!]!
 }
 
+type Header {
+    buttonText: String!
+    createdAt: DateTime
+    documentId: ID!
+    link(filters: ComponentBaseListFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseList]
+    locale: String
+    localizations: [Header]!
+    localizations_connection: HeaderRelationResponseCollection
+    logo: UploadFile!
+    publishedAt: DateTime
+    submenu(filters: ComponentHeaderTitleColumnFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHeaderTitleColumn]
+    updatedAt: DateTime
+}
+
+type HeaderRelationResponseCollection {
+    nodes: [Header!]!
+}
+
 type Home {
+    PageName: String!
     createdAt: DateTime
     documentId: ID!
     exploreTreatment: ComponentHomeExploreTreatment
@@ -199,6 +224,7 @@ type Mutation {
     createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
     deleteFooter: DeleteMutationResponse
     deleteGlobal: DeleteMutationResponse
+    deleteHeader: DeleteMutationResponse
     deleteHome: DeleteMutationResponse
     deleteReviewWorkflowsWorkflow(documentId: ID!): DeleteMutationResponse
     deleteReviewWorkflowsWorkflowStage(documentId: ID!): DeleteMutationResponse
@@ -218,6 +244,7 @@ type Mutation {
     resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
     updateFooter(data: FooterInput!, status: PublicationStatus = PUBLISHED): Footer
     updateGlobal(data: GlobalInput!, status: PublicationStatus = PUBLISHED): Global
+    updateHeader(data: HeaderInput!, status: PublicationStatus = PUBLISHED): Header
     updateHome(data: HomeInput!, status: PublicationStatus = PUBLISHED): Home
     updateReviewWorkflowsWorkflow(data: ReviewWorkflowsWorkflowInput!, documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflow
     updateReviewWorkflowsWorkflowStage(data: ReviewWorkflowsWorkflowStageInput!, documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowStage
@@ -238,6 +265,7 @@ type Pagination {
 type Query {
     footer(status: PublicationStatus = PUBLISHED): Footer
     global(status: PublicationStatus = PUBLISHED): Global
+    header(status: PublicationStatus = PUBLISHED): Header
     home(status: PublicationStatus = PUBLISHED): Home
     i18NLocale(documentId: ID!, status: PublicationStatus = PUBLISHED): I18NLocale
     i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [I18NLocale]!
@@ -543,6 +571,20 @@ input ComponentFooterInnerFooterColumnInput {
     title: String
 }
 
+input ComponentHeaderTitleColumnFiltersInput {
+    and: [ComponentHeaderTitleColumnFiltersInput]
+    list: ComponentBaseListFiltersInput
+    not: ComponentHeaderTitleColumnFiltersInput
+    or: [ComponentHeaderTitleColumnFiltersInput]
+    title: StringFilterInput
+}
+
+input ComponentHeaderTitleColumnInput {
+    id: ID
+    list: [ComponentBaseListInput]
+    title: String
+}
+
 input ComponentHomeExploreTreatmentInput {
     buttonText: String
     heading: ComponentBaseTitleComponentInput
@@ -717,7 +759,17 @@ input GlobalInput {
     siteName: String
 }
 
+input HeaderInput {
+    buttonText: String
+    link: [ComponentBaseListInput]
+    locale: String
+    logo: ID
+    publishedAt: DateTime
+    submenu: [ComponentHeaderTitleColumnInput]
+}
+
 input HomeInput {
+    PageName: String
     exploreTreatment: ComponentHomeExploreTreatmentInput
     hero: ComponentHomeHeroInput
     howItWorks: ComponentHomeHowItWorksInput
