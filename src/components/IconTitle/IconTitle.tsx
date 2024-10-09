@@ -21,7 +21,7 @@ const IconTitle = ({ list, className, tag = 'h1' }: IconTitleType) => {
           {item.icon?.url && (
             <span>
               <Image
-                src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${item.icon.url}`}
+                src={item.icon.url}
                 alt={'icon'}
                 fill={true}
                 sizes={'100%'}

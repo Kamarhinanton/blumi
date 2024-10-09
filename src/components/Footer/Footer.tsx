@@ -26,10 +26,7 @@ const Footer: FC<AppLayoutProps> = ({ footerData }) => {
         <div className={styles['footer__content']}>
           <div className={styles['footer__content_top']}>
             <div className={styles['logo']}>
-              <BackgroundImage
-                src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${logo.url}`}
-                alt={'logo'}
-              />
+              <BackgroundImage src={logo.url} alt={'logo'} />
             </div>
             <div className={styles['columns']}>
               {columns?.map((column) => (

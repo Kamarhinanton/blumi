@@ -49,7 +49,7 @@ const Hero = ({ heroData }: HeroContentType) => {
           <div className={styles['hero__content_largeColumn']}>
             <BackgroundImage
               className={styles['image']}
-              src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${picture.url}`}
+              src={picture.url}
               alt={'picture'}
               position={'cover'}
             />
@@ -59,7 +59,7 @@ const Hero = ({ heroData }: HeroContentType) => {
                   link && (
                     <li className={styles['list__link']} key={link.id}>
                       <BackgroundImage
-                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${link.icon.url}`}
+                        src={link.icon.url}
                         alt={'icon'}
                         className={styles['list__link_icon']}
                       />

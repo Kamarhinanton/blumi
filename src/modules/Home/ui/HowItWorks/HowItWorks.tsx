@@ -74,14 +74,14 @@ const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
                         {`Step ${index + 1}`}
                       </span>
                       <BackgroundImage
-                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.image.url}`}
+                        src={slide.image.url}
                         alt={'picture'}
                         className={styles['slider__slide_image']}
                       />
                       <div className={styles['slider__slide_titleIcon']}>
                         {slide.icon && (
                           <BackgroundImage
-                            src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.icon.url}`}
+                            src={slide.icon.url}
                             alt={'icon'}
                             className={styles['icon']}
                           />

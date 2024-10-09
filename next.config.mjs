@@ -13,7 +13,27 @@ export default bundleAnalyzer({
         hostname: 'localhost',
         port: '1337',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blumi-phi.vercel.app',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blumi-git-main-kamarhinantons-projects.vercel.app',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blumi-avv3ggrlq-kamarhinantons-projects.vercel.app',
+        pathname: '/**',
+      },
     ],
   },
   webpack(config) {

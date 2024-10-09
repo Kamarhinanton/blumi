@@ -93,7 +93,7 @@ const LatestListing = ({ latestListingData }: LatestListingDataType) => {
                     >
                       <BackgroundImage
                         className={styles['slider__slide_image']}
-                        src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${slide.image.url}`}
+                        src={slide.image.url}
                         alt={'picture'}
                         position={'cover'}
                       />

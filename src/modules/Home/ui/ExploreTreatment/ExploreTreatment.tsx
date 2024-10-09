@@ -69,7 +69,7 @@ const ExploreTreatment = ({
                   >
                     <BackgroundImage
                       className={styles['image']}
-                      src={`${process.env.NEXT_PUBLIC_URL_STRAPI}${item.image.url}`}
+                      src={item.image.url}
                       alt={'picture'}
                       position={'cover'}
                     />
