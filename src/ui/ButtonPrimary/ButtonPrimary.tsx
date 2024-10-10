@@ -45,11 +45,12 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
         <button
           className={classNames(styles['buttonPrimary'], className, mods)}
           {...buttonProps}
+          onClick={toggleBurger}
         >
           {children}
           {icon === 'arrow' && <div className={styles['icon-wrapper']} />}
           {icon === 'burger' && (
-            <div onClick={toggleBurger} className={styles['icon-wrapper']}>
+            <div className={styles['icon-wrapper']}>
               <Cross active={activeBurger} />
             </div>
           )}
@@ -62,11 +63,6 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
         >
           {children}
           {icon === 'arrow' && <div className={styles['icon-wrapper']} />}
-          {icon === 'burger' && (
-            <div className={styles['icon-wrapper']}>
-              <Cross active={activeBurger} />
-            </div>
-          )}
         </Link>
       )}
     </>

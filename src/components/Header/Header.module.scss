@@ -9,7 +9,7 @@
   transition: background-color var(--duration) var(--ease) ;
 
   &.scrolled{
-    background-color: rgb(255 255 255 / 70%);
+    background-color: rgb(255 255 255 / 90%);
   }
 
   .container {
@@ -42,10 +42,6 @@
           }
         }
       }
-    }
-
-    .button{
-      cursor: initial;
     }
   }
 }

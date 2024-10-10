@@ -1,3 +1,5 @@
+@import '@/app/styles/variables/breakpoints';
+
 .submenu{
   position: fixed;
   top: 0;
@@ -72,13 +74,24 @@
       }
 
       .list-inner {
-        &__link {
+        &__item {
           margin: 0 0 8rem;
-          color: var(--pink-primary);
           font-size: 16rem;
 
           &:last-child {
             margin: 0;
+          }
+
+          &_link{
+            color: var(--pink-primary);
+            opacity: 1;
+            transition: opacity var(--duration-hover) var(--ease);
+
+            @media (width>$breakpoint-mob){
+              &:hover{
+                opacity: 0.6;
+              }
+            }
           }
         }
       }

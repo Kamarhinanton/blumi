@@ -31,10 +31,15 @@ const HeaderSubmenu: FC<SubmenuType> = ({ submenu, active, className }) => {
                         (item) =>
                           item && (
                             <li
-                              className={styles['list-inner__link']}
+                              className={styles['list-inner__item']}
                               key={item.id}
                             >
-                              <Link href={item.link}>{item.description}</Link>
+                              <Link
+                                className={styles['list-inner__item_link']}
+                                href={item.link}
+                              >
+                                {item.description}
+                              </Link>
                             </li>
                           ),
                       )}
