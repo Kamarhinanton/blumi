@@ -1,3 +1,5 @@
+@import '@/app/styles/variables/breakpoints';
+
 .cross {
   position: absolute;
   top: 50%;
@@ -6,10 +8,12 @@
   height: 10rem;
   transform: translateX(-50%) translateY(-50%);
 
-  &.active{
-    .cross{
+  &.active {
+    .cross {
       &__line {
-        background-color: var(--pink-primary);
+        @media (width>$breakpoint-mob) {
+          background-color: var(--pink-primary);
+        }
 
         &:nth-child(1) {
           top: 50%;

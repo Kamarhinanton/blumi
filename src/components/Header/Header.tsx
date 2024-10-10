@@ -6,6 +6,10 @@ import Link from 'next/link'
 import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 import classNames from 'classnames'
 import HeaderSubmenu from '@/components/HeaderSubmenu/HeaderSubmenu'
+import { setIsMenuActive } from '@/store/reducers/callMenuSlice'
+import Cross from '@/ui/Cross/Cross'
+import { AppDispatch, RootState } from '@/store/store'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './Header.module.scss'
 
@@ -15,11 +19,14 @@ type HeaderDataProps = {
 
 const Header: FC<HeaderDataProps> = ({ headerData }) => {
   const [scrolled, setScrolled] = useState(false)
-  const [activeBurger, setActiveBurger] = useState(false)
+  const dispatch: AppDispatch = useDispatch()
+  const isMenuActive = useSelector(
+    (state: RootState) => state.callMenu.isMenuActive,
+  ) as boolean
+  const toggleMenu = () => {
+    dispatch(setIsMenuActive(!isMenuActive))
+  }
 
-  const toggleMenu = useCallback(() => {
-    setActiveBurger((prev) => !prev)
-  }, [])
   const handleScroll = useCallback(() => {
     if (window.scrollY > 10) {
       setScrolled(true)
@@ -70,19 +77,25 @@ const Header: FC<HeaderDataProps> = ({ headerData }) => {
             </nav>
             <ButtonPrimary
               toggleBurger={toggleMenu}
-              activeBurger={activeBurger}
+              activeBurger={isMenuActive}
               icon={'burger'}
               className={styles['button']}
             >
               {buttonText}
             </ButtonPrimary>
+            <Cross
+              toggleBurger={toggleMenu}
+              className={styles['mobile-cross']}
+            />
           </div>
         </Container>
       </header>
       <HeaderSubmenu
-        active={activeBurger}
+        active={isMenuActive}
         className={styles['submenu__inner']}
         submenu={submenu}
+        toggleBurger={toggleMenu}
+        link={link}
       />
     </>
   )

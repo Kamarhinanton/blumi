@@ -5,21 +5,53 @@ import classNames from 'classnames'
 import Container from '@/app/layouts/layouts/Container'
 
 import styles from './headerSubmenu.module.scss'
+import Cross from '@/ui/Cross/Cross'
 
 type SubmenuType = {
   submenu: Header['submenu']
+  link: Header['link']
   className: string
   active?: boolean
+  toggleBurger?: () => void
 }
 
-const HeaderSubmenu: FC<SubmenuType> = ({ submenu, active, className }) => {
+const HeaderSubmenu: FC<SubmenuType> = ({
+  submenu,
+  link,
+  active,
+  className,
+  toggleBurger,
+}) => {
   return (
     <div
       className={classNames(styles['submenu'], { [styles['active']]: active })}
     >
       <Container className={styles['container']}>
         <div className={classNames(styles['menu'], className)}>
+          <Cross
+            toggleBurger={toggleBurger}
+            className={styles['submenu-cross']}
+            active={true}
+          />
           <p className={styles['menu__title']}>Menu</p>
+          <div className={classNames(styles['list'], 'mobile-view')}>
+            <ul className={styles['list-inner']}>
+              {link?.map(
+                (item) =>
+                  item && (
+                    <li className={styles['list-inner__item']} key={item.id}>
+                      <Link
+                        className={styles['list-inner__item_link']}
+                        key={item.id}
+                        href={item.link}
+                      >
+                        {item.description}
+                      </Link>
+                    </li>
+                  ),
+              )}
+            </ul>
+          </div>
           {submenu?.map(
             (menu) =>
               menu && (

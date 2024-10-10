@@ -6,7 +6,11 @@
   z-index: 10;
   width: 100%;
   padding: 47rem 0 16rem;
-  transition: background-color var(--duration) var(--ease) ;
+  transition: background-color var(--duration) var(--ease);
+
+  @media (width<=$breakpoint-mob){
+    padding: 20rem 0;
+  }
 
   &.scrolled{
     background-color: rgb(255 255 255 / 90%);
@@ -14,6 +18,10 @@
 
   .container {
     padding: 0 40rem;
+
+    @media (width<=$breakpoint-mob){
+      padding: 0 16rem;
+    }
   }
 
   &__content {
@@ -21,9 +29,18 @@
     display: flex;
     align-items: center;
 
+    @media (width<=$breakpoint-mob){
+      justify-content: space-between;
+    }
+
     &_logo {
       flex: 0 0 103rem;
       height: 40rem;
+
+      @media (width<=$breakpoint-mob){
+        flex: 0 0 93rem;
+        height: 36rem;
+      }
     }
 
     .navigation {
@@ -31,6 +48,10 @@
       flex: 1 0;
       gap: 20rem;
       margin: 0 0 0 113rem;
+
+      @media (width<=$breakpoint-mob){
+        display: none;
+      }
 
       &__link {
         color: var(--primary-text);
@@ -41,6 +62,24 @@
             color: var(--pink-primary);
           }
         }
+      }
+    }
+
+    .button{
+      @media (width<=$breakpoint-mob){
+        display: none;
+      }
+    }
+
+    .mobile-cross{
+      display: none;
+
+      @media (width<=$breakpoint-mob){
+        position: relative;
+        top: initial;
+        left: initial;
+        display: block;
+        transform: initial;
       }
     }
   }
