@@ -11,28 +11,7 @@
   background-color: var(--pink-primary);
   border-radius: 16rem;
 
-  @media (width<=$breakpoint-mob) {
-    padding: 6rem 6rem 6rem 14rem;
-    border-radius: 10rem;
-  }
-
-  @media (width>$breakpoint-mob) {
-    &:hover {
-      span {
-        &::before {
-          transform: translateX(50rem) translateY(-50%);
-          opacity: 0;
-        }
-
-        &::after {
-          transform: translateX(-12rem) translateY(-50%);
-          opacity: 1;
-        }
-      }
-    }
-  }
-
-  span {
+  .icon-wrapper{
     position: relative;
     width: 40rem;
     height: 40rem;
@@ -48,42 +27,67 @@
       margin: 0 0 0 8rem;
       border-radius: 8rem;
     }
+  }
 
-    &::before, &::after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 24rem;
-      height: 24rem;
-      background-image: url("/icons/arrow.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      transition: var(--duration-hover) var(--ease) var(--hover-delay);
-      content: '';
+  &.arrow {
+    .icon-wrapper {
+      &::before, &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24rem;
+        height: 24rem;
+        background-image: url("/icons/arrow.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        transition: var(--duration-hover) var(--ease) var(--hover-delay);
+        content: '';
 
-      @media (width<=$breakpoint-mob) {
-        width: 16rem;
-        height: 16rem;
+        @media (width<=$breakpoint-mob) {
+          width: 16rem;
+          height: 16rem;
+        }
+      }
+
+      &::before {
+        transform: translateX(-12rem) translateY(-50%);
+        opacity: 1;
+
+        @media (width<=$breakpoint-mob) {
+          transform: translateX(-50%) translateY(-50%);
+        }
+      }
+
+      &::after {
+        transform: translateX(-50rem) translateY(-50%);
+        opacity: 0;
+
+        @media (width<=$breakpoint-mob) {
+          display: none;
+        }
       }
     }
 
-    &::before {
-      transform: translateX(-12rem) translateY(-50%);
-      opacity: 1;
+    @media (width>$breakpoint-mob) {
+      &:hover {
+        .icon-wrapper {
+          &::before {
+            transform: translateX(50rem) translateY(-50%);
+            opacity: 0;
+          }
 
-      @media (width<=$breakpoint-mob) {
-        transform: translateX(-50%) translateY(-50%);
+          &::after {
+            transform: translateX(-12rem) translateY(-50%);
+            opacity: 1;
+          }
+        }
       }
     }
+  }
 
-    &::after {
-      transform: translateX(-50rem) translateY(-50%);
-      opacity: 0;
-
-      @media (width<=$breakpoint-mob) {
-        display: none;
-      }
-    }
+  @media (width<=$breakpoint-mob) {
+    padding: 6rem 6rem 6rem 14rem;
+    border-radius: 10rem;
   }
 }

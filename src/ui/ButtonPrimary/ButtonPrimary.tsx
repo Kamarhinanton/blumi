@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames'
+import Cross from '@/ui/Cross/Cross'
 
 import styles from './ButtonPrimary.module.scss'
 
@@ -12,6 +13,9 @@ type ButtonPrimaryProps = {
   className?: string
   variant?: ButtonPrimaryVariants
   target?: string
+  icon?: 'arrow' | 'burger'
+  activeBurger?: boolean
+  toggleBurger?: () => void
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -24,10 +28,14 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
   children,
   variant = 'pink',
   target,
+  icon = 'arrow',
+  activeBurger,
+  toggleBurger,
   ...buttonProps
 }) => {
   const mods = {
     [styles[variant]]: true,
+    [styles[icon]]: true,
     [styles['__loading']]: isLoading,
   }
 
@@ -39,7 +47,12 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
           {...buttonProps}
         >
           {children}
-          <span />
+          {icon === 'arrow' && <div className={styles['icon-wrapper']} />}
+          {icon === 'burger' && (
+            <div onClick={toggleBurger} className={styles['icon-wrapper']}>
+              <Cross active={activeBurger} />
+            </div>
+          )}
         </button>
       ) : (
         <Link
@@ -48,7 +61,12 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
           target={target}
         >
           {children}
-          <span />
+          {icon === 'arrow' && <div className={styles['icon-wrapper']} />}
+          {icon === 'burger' && (
+            <div className={styles['icon-wrapper']}>
+              <Cross active={activeBurger} />
+            </div>
+          )}
         </Link>
       )}
     </>

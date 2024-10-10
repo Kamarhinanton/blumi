@@ -1,3 +1,51 @@
-.header{
+@import '@/app/styles/variables/breakpoints';
 
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  padding: 47rem 0 16rem;
+  transition: background-color var(--duration) var(--ease) ;
+
+  &.scrolled{
+    background-color: rgb(255 255 255 / 70%);
+  }
+
+  .container {
+    padding: 0 40rem;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &_logo {
+      flex: 0 0 103rem;
+      height: 40rem;
+    }
+
+    .navigation {
+      display: flex;
+      flex: 1 0;
+      gap: 20rem;
+      margin: 0 0 0 113rem;
+
+      &__link {
+        color: var(--primary-text);
+        transition: color var(--duration-hover) var(--ease);
+
+        @media (width>$breakpoint-mob) {
+          &:hover {
+            color: var(--pink-primary);
+          }
+        }
+      }
+    }
+
+    .button{
+      cursor: initial;
+    }
+  }
 }
