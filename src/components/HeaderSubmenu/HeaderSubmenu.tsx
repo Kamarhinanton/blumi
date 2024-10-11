@@ -3,9 +3,9 @@ import { Header } from '@/gql/graphql'
 import Link from 'next/link'
 import classNames from 'classnames'
 import Container from '@/app/layouts/layouts/Container'
+import Cross from '@/ui/Cross/Cross'
 
 import styles from './headerSubmenu.module.scss'
-import Cross from '@/ui/Cross/Cross'
 
 type SubmenuType = {
   submenu: Header['submenu']
@@ -42,7 +42,6 @@ const HeaderSubmenu: FC<SubmenuType> = ({
                     <li className={styles['list-inner__item']} key={item.id}>
                       <Link
                         className={styles['list-inner__item_link']}
-                        key={item.id}
                         href={item.link}
                       >
                         {item.description}

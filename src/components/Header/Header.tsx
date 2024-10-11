@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHeaderData } from '@/components/Header/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
@@ -10,6 +10,7 @@ import { setIsMenuActive } from '@/store/reducers/callMenuSlice'
 import Cross from '@/ui/Cross/Cross'
 import { AppDispatch, RootState } from '@/store/store'
 import { useDispatch, useSelector } from 'react-redux'
+import usePageScroll from '@/hooks/usePageScroll'
 
 import styles from './Header.module.scss'
 
@@ -18,7 +19,7 @@ type HeaderDataProps = {
 }
 
 const Header: FC<HeaderDataProps> = ({ headerData }) => {
-  const [scrolled, setScrolled] = useState(false)
+  const scrolled = usePageScroll()
   const dispatch: AppDispatch = useDispatch()
   const isMenuActive = useSelector(
     (state: RootState) => state.callMenu.isMenuActive,
@@ -26,21 +27,6 @@ const Header: FC<HeaderDataProps> = ({ headerData }) => {
   const toggleMenu = () => {
     dispatch(setIsMenuActive(!isMenuActive))
   }
-
-  const handleScroll = useCallback(() => {
-    if (window.scrollY > 10) {
-      setScrolled(true)
-    } else {
-      setScrolled(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [handleScroll])
 
   const mods = {
     [styles['scrolled']]: scrolled,
