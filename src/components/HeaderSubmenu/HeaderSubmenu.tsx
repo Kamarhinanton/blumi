@@ -39,7 +39,10 @@ const HeaderSubmenu: FC<SubmenuType> = ({
               {link?.map(
                 (item) =>
                   item && (
-                    <li className={styles['list-inner__item']} key={item.id}>
+                    <li
+                      className={styles['list-inner__item']}
+                      key={`link-${item.id}`}
+                    >
                       <Link
                         className={styles['list-inner__item_link']}
                         href={item.link}
@@ -52,18 +55,21 @@ const HeaderSubmenu: FC<SubmenuType> = ({
             </ul>
           </div>
           {submenu?.map(
-            (menu) =>
+            (menu, index) =>
               menu && (
-                <div className={styles['list']} key={menu.id}>
+                <div
+                  className={styles['list']}
+                  key={`menu-${menu.id || index}`}
+                >
                   <p className={styles['list__title']}>{menu.title}</p>
                   <ul className={styles['list-inner']}>
                     {menu.list &&
                       menu.list.map(
-                        (item) =>
+                        (item, itemIndex) =>
                           item && (
                             <li
                               className={styles['list-inner__item']}
-                              key={item.id}
+                              key={`inner-${item.id || itemIndex}`}
                             >
                               <Link
                                 className={styles['list-inner__item_link']}
