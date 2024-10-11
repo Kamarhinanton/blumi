@@ -10,6 +10,8 @@ import Icon from '../../../../../public/icons/light.svg'
 import SmallArrow from '../../../../../public/icons/small-arrow.svg'
 
 import styles from './BookBlumi.module.scss'
+import useWindowDimensions from '@/hooks/useWindowDimensions'
+import { breakpointMob } from '@/utils/variables'
 
 type BookBlumiType = {
   bookBlumi: QueryResultBookBlumiData['bookBlumi']
@@ -21,6 +23,8 @@ const BookBlumi: FC<BookBlumiType> = ({ bookBlumi }) => {
   const [activeIndex, setActiveIndex] = useState<string | null>(
     listImages?.[0]?.id || null,
   )
+  const paragraphId = 'paragraph-id'
+  const { width } = useWindowDimensions()
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
   if (!bookBlumi) {
     return null
@@ -29,6 +33,13 @@ const BookBlumi: FC<BookBlumiType> = ({ bookBlumi }) => {
   const handleClick = (index: string) => {
     if (index !== activeIndex) {
       setActiveIndex(index)
+    }
+    if (width <= breakpointMob) {
+      const paragraphElement = document.getElementById(paragraphId)
+
+      if (paragraphElement) {
+        paragraphElement.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 
@@ -40,6 +51,7 @@ const BookBlumi: FC<BookBlumiType> = ({ bookBlumi }) => {
           titleIcon={cleanedData}
           subText={subText || ''}
           tag={'h2'}
+          small
           centred
         >
           <Icon />
@@ -64,7 +76,7 @@ const BookBlumi: FC<BookBlumiType> = ({ bookBlumi }) => {
                 ),
             )}
           </ul>
-          <ul className={styles['list-images']}>
+          <ul id={paragraphId} className={styles['list-images']}>
             {listImages?.map(
               (item) =>
                 item && (

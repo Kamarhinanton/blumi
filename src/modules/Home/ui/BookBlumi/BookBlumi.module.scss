@@ -1,19 +1,40 @@
+@import '@/app/styles/variables/breakpoints';
+
 .bookBlumi {
   margin: 120rem 0;
+
+  @media (width<=$breakpoint-mob){
+    margin: 40rem 0;
+  }
 
   &__content {
     display: flex;
     margin: 78rem 0 0;
 
+    @media (width<=$breakpoint-mob){
+      flex-direction: column;
+      margin: 32rem 0 0;
+    }
+
     .list {
       flex: 1 0;
       margin: 0 190rem 0 0;
+
+      @media (width<=$breakpoint-mob){
+        flex: initial;
+        margin: 0;
+      }
 
       &__item {
         position: relative;
         padding: 36rem 76rem 36rem 20rem;
         border-radius: 24rem;
         cursor: pointer;
+
+        @media (width<=$breakpoint-mob){
+          padding: 20rem 52rem 20rem 12rem;
+          border-radius: 12rem;
+        }
 
         &.active {
           background-color: var(--pink-secondary);
@@ -44,6 +65,12 @@
           border-radius: 16rem;
           transform: translateY(-50%);
 
+          @media (width<=$breakpoint-mob){
+            width: 40rem;
+            height: 40rem;
+            border-radius: 12rem;
+          }
+
           .icon {
             width: 20rem;
             height: 20rem;
@@ -58,6 +85,12 @@
       flex: 0 0 553rem;
       height: 657rem;
 
+      @media (width<=$breakpoint-mob){
+        flex: initial;
+        height: 546rem;
+        padding: 76rem 0 0;
+      }
+
       &__item {
         position: absolute;
         top: 0;
@@ -65,6 +98,10 @@
         transform: translateY(30rem);
         opacity: 0;
         transition: var(--duration) var(--ease);
+
+        @media (width<=$breakpoint-mob){
+          top: 76rem;
+        }
 
         &.active {
           z-index: 2;
@@ -78,6 +115,11 @@
           height: 553rem;
           overflow: hidden;
           border-radius: 24rem;
+
+          @media (width<=$breakpoint-mob){
+            width: 100%;
+            height: 380rem;
+          }
         }
 
         .description {
@@ -90,6 +132,12 @@
           text-align: right;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 3;
+
+          @media (width<=$breakpoint-mob){
+            margin: 12rem 0 0;
+            text-align: center;
+            -webkit-line-clamp: 4;
+          }
         }
       }
     }
