@@ -52,3 +52,26 @@ main {
     display: block;
   }
 }
+
+.bg-pink {
+  @media (width<=$breakpoint-mob) {
+    background-color: var(--pink-secondary);
+  }
+
+  &__wrapper {
+    background-color: var(--pink-secondary);
+    border-radius: 20rem;
+    padding: 47rem 0 105rem;
+    @media (width<=$breakpoint-mob) {
+      padding: 40rem 0;
+      border-radius: initial;
+      background-color: initial;
+    }
+  }
+}
+
+.slider-review {
+  &.swiper-free-mode > .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+}

@@ -6,6 +6,7 @@ import HowItWorks from '@/modules/Home/ui/HowItWorks/HowItWorks'
 import LatestListing from '@/modules/Home/ui/LatestListing/LatestListing'
 import BookBlumi from '@/modules/Home/ui/BookBlumi/BookBlumi'
 import WhatTheySay from '@/modules/Home/ui/WhatTheySay/WhatTheySay'
+import Container from '@/app/layouts/layouts/Container'
 
 const HomeContent = ({ homeData }: HomeContentType) => {
   const {
@@ -24,9 +25,17 @@ const HomeContent = ({ homeData }: HomeContentType) => {
       <HowItWorks howItWorksData={howItWorks} />
       <LatestListing latestListingData={latestListing} />
       <BookBlumi bookBlumiData={bookBlumi} />
-      {whatTheySay.map((section) => (
-        <WhatTheySay key={section.id} whatTheySayData={section} />
-      ))}
+      <Container size={'small'} className={'bg-pink'}>
+        <div className={'bg-pink__wrapper'}>
+          {whatTheySay.map((section, index) => (
+            <WhatTheySay
+              reverseDirection={index % 2 === 0}
+              key={section.id}
+              whatTheySayData={section}
+            />
+          ))}
+        </div>
+      </Container>
     </main>
   )
 }

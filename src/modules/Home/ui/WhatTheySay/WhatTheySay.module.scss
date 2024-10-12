@@ -1,3 +1,136 @@
-.whatTheySay{
+@import '@/app/styles/variables/breakpoints';
 
+.whatTheySay{
+  .slider{
+    position: relative;
+    margin: 56rem 0 0;
+    pointer-events: none;
+
+    @media (width<=$breakpoint-mob){
+      margin: 40rem 0 0;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 2;
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink-secondary) 0%, rgb(255 255 255 / 0%) 10%, rgb(255 255 255 / 0%) 80%, var(--pink-secondary) 100%);
+      background-size: cover;
+      content: '';
+      pointer-events: none;
+    }
+
+    &__slide{
+      display: flex;
+      gap: 24rem;
+      width: 520rem;
+      margin: 0 24rem 0 0;
+
+      @media (width<=$breakpoint-mob){
+        gap: 8rem;
+        width: 278rem;
+        margin: 0 8rem 0 0;
+      }
+
+      &.reverse{
+        align-items: flex-end;
+      }
+
+      &_icon{
+        flex: 0 0 80rem;
+        height: 80rem;
+
+        @media (width<=$breakpoint-mob){
+          flex: 0 0 36rem;
+          height: 36rem;
+        }
+      }
+
+      &_card{
+        width: 100%;
+        padding: 24rem;
+        background-color: var(--white);
+        border-radius: 32rem;
+
+        @media (width<=$breakpoint-mob){
+          padding: 13rem;
+          border-radius: 18rem;
+        }
+
+        .description{
+          display: -webkit-box;
+          margin: 12rem 0 0;
+          overflow: hidden;
+          color: var(--secondary-text);
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 4;
+
+          @media (width<=$breakpoint-mob){
+            margin: 6rem 0 0;
+            font-size: 9rem;
+          }
+        }
+
+        .image-list{
+          display: flex;
+          gap: 8rem;
+          margin: 12rem 0 0;
+          padding: 0 0 24rem;
+          border-bottom: 1rem solid var(--grey-primary);
+
+          @media (width<=$breakpoint-mob){
+            gap: 5rem;
+            margin: 6rem 0 0;
+            padding: 0 0 12rem;
+          }
+
+          &__item{
+            width: calc((100% - (8rem*3))/4);
+            height: 86rem;
+            overflow: hidden;
+            border-radius: 12rem;
+
+            @media (width<=$breakpoint-mob){
+              width: calc((100% - (5rem*3))/4);
+              height: 46rem;
+
+            }
+          }
+        }
+
+        .author{
+          display: flex;
+          align-items: center;
+          padding: 24rem 0 0;
+
+          @media (width<=$breakpoint-mob){
+            padding: 13rem 0 0;
+          }
+
+          &__image{
+            width: 51rem;
+            height: 51rem;
+            margin: 0 12rem 0 0;
+            overflow: hidden;
+            border-radius: 50%;
+
+            @media (width<=$breakpoint-mob){
+              width: 29rem;
+              height: 29rem;
+              margin: 0 8rem 0 0;
+            }
+          }
+
+          &__description{
+            @media (width<=$breakpoint-mob){
+              font-size: 12rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
