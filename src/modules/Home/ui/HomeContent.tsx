@@ -5,10 +5,17 @@ import ExploreTreatment from '@/modules/Home/ui/ExploreTreatment/ExploreTreatmen
 import HowItWorks from '@/modules/Home/ui/HowItWorks/HowItWorks'
 import LatestListing from '@/modules/Home/ui/LatestListing/LatestListing'
 import BookBlumi from '@/modules/Home/ui/BookBlumi/BookBlumi'
+import WhatTheySay from '@/modules/Home/ui/WhatTheySay/WhatTheySay'
 
 const HomeContent = ({ homeData }: HomeContentType) => {
-  const { hero, exploreTreatment, howItWorks, latestListing, bookBlumi } =
-    homeData.home
+  const {
+    hero,
+    exploreTreatment,
+    howItWorks,
+    latestListing,
+    bookBlumi,
+    whatTheySay,
+  } = homeData.home
 
   return (
     <main>
@@ -16,7 +23,10 @@ const HomeContent = ({ homeData }: HomeContentType) => {
       <ExploreTreatment exploreTreatmentData={exploreTreatment} />
       <HowItWorks howItWorksData={howItWorks} />
       <LatestListing latestListingData={latestListing} />
-      <BookBlumi bookBlumi={bookBlumi} />
+      <BookBlumi bookBlumiData={bookBlumi} />
+      {whatTheySay.map((section) => (
+        <WhatTheySay key={section.id} whatTheySayData={section} />
+      ))}
     </main>
   )
 }

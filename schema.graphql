@@ -8,7 +8,7 @@ schema {
 "Indicates exactly one field must be supplied and this field must not be `null`."
 directive @oneOf on INPUT_OBJECT
 
-union GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type ComponentBaseCta {
     buttonText: String!
@@ -121,6 +121,23 @@ type ComponentHomeListSlider {
     title: String!
 }
 
+type ComponentHomeListSliderReviews {
+    author: UploadFile
+    authorName: String
+    description: String!
+    icon: UploadFile!
+    id: ID!
+    images(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UploadFile]!
+    images_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
+    title: String!
+}
+
+type ComponentHomeWhatTheySay {
+    id: ID!
+    reviews(filters: ComponentHomeListSliderReviewsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListSliderReviews]!
+    title: ComponentBaseTitleComponent
+}
+
 type DeleteMutationResponse {
     documentId: ID!
 }
@@ -180,7 +197,6 @@ type HeaderRelationResponseCollection {
 }
 
 type Home {
-    PageName: String!
     bookBlumi: ComponentHomeBookBlumi!
     createdAt: DateTime
     documentId: ID!
@@ -191,8 +207,10 @@ type Home {
     locale: String
     localizations: [Home]!
     localizations_connection: HomeRelationResponseCollection
+    pageName: String!
     publishedAt: DateTime
     updatedAt: DateTime
+    whatTheySay(filters: ComponentHomeWhatTheySayFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeWhatTheySay]!
 }
 
 type HomeRelationResponseCollection {
@@ -538,6 +556,15 @@ input ComponentBaseListInput {
     link: String
 }
 
+input ComponentBaseTitleComponentFiltersInput {
+    and: [ComponentBaseTitleComponentFiltersInput]
+    description: StringFilterInput
+    not: ComponentBaseTitleComponentFiltersInput
+    or: [ComponentBaseTitleComponentFiltersInput]
+    subText: StringFilterInput
+    titleWithIcons: ComponentBaseTitleWithIconsFiltersInput
+}
+
 input ComponentBaseTitleComponentInput {
     description: String
     id: ID
@@ -698,6 +725,39 @@ input ComponentHomeListSliderInput {
     title: String
 }
 
+input ComponentHomeListSliderReviewsFiltersInput {
+    and: [ComponentHomeListSliderReviewsFiltersInput]
+    authorName: StringFilterInput
+    description: StringFilterInput
+    not: ComponentHomeListSliderReviewsFiltersInput
+    or: [ComponentHomeListSliderReviewsFiltersInput]
+    title: StringFilterInput
+}
+
+input ComponentHomeListSliderReviewsInput {
+    author: ID
+    authorName: String
+    description: String
+    icon: ID
+    id: ID
+    images: [ID]
+    title: String
+}
+
+input ComponentHomeWhatTheySayFiltersInput {
+    and: [ComponentHomeWhatTheySayFiltersInput]
+    not: ComponentHomeWhatTheySayFiltersInput
+    or: [ComponentHomeWhatTheySayFiltersInput]
+    reviews: ComponentHomeListSliderReviewsFiltersInput
+    title: ComponentBaseTitleComponentFiltersInput
+}
+
+input ComponentHomeWhatTheySayInput {
+    id: ID
+    reviews: [ComponentHomeListSliderReviewsInput]
+    title: ComponentBaseTitleComponentInput
+}
+
 input DateTimeFilterInput {
     and: [DateTime]
     between: [DateTime]
@@ -782,14 +842,15 @@ input HeaderInput {
 }
 
 input HomeInput {
-    PageName: String
     bookBlumi: ComponentHomeBookBlumiInput
     exploreTreatment: ComponentHomeExploreTreatmentInput
     hero: ComponentHomeHeroInput
     howItWorks: ComponentHomeHowItWorksInput
     latestListing: ComponentHomeLatestListingInput
     locale: String
+    pageName: String
     publishedAt: DateTime
+    whatTheySay: [ComponentHomeWhatTheySayInput]
 }
 
 input I18NLocaleFiltersInput {

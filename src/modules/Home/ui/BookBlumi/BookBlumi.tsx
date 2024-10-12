@@ -14,11 +14,11 @@ import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { breakpointMob } from '@/utils/variables'
 
 type BookBlumiType = {
-  bookBlumi: QueryResultBookBlumiData['bookBlumi']
+  bookBlumiData: QueryResultBookBlumiData['bookBlumi']
 }
 
-const BookBlumi: FC<BookBlumiType> = ({ bookBlumi }) => {
-  const { title, listImages } = bookBlumi
+const BookBlumi: FC<BookBlumiType> = ({ bookBlumiData }) => {
+  const { title, listImages } = bookBlumiData
   const { description, titleWithIcons, subText } = title
   const [activeIndex, setActiveIndex] = useState<string | null>(
     listImages?.[0]?.id || null,
@@ -26,7 +26,7 @@ const BookBlumi: FC<BookBlumiType> = ({ bookBlumi }) => {
   const paragraphId = 'paragraph-id'
   const { width } = useWindowDimensions()
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
-  if (!bookBlumi) {
+  if (!bookBlumiData) {
     return null
   }
 

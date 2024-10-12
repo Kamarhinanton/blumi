@@ -4,6 +4,7 @@ import { ExploreTreatmentFragment } from '@/modules/Home/ui/ExploreTreatment/uti
 import { HowItWorksFragment } from '@/modules/Home/ui/HowItWorks/utils/apolloQueries'
 import { LatestListingFragment } from '@/modules/Home/ui/LatestListing/utils/apolloQueries'
 import { BookBlumiFragment } from '@/modules/Home/ui/BookBlumi/utils/apolloQueries'
+import { WhatTheySayFragment } from '@/modules/Home/ui/WhatTheySay/utils/apolloQueries'
 
 export const HomeData = gql`
   ${HeroFragment}
@@ -11,6 +12,7 @@ export const HomeData = gql`
   ${HowItWorksFragment}
   ${LatestListingFragment}
   ${BookBlumiFragment}
+  ${WhatTheySayFragment}
   query {
     home {
       hero {
@@ -27,6 +29,9 @@ export const HomeData = gql`
       }
       bookBlumi {
         ...BookBlumiFields
+      }
+      whatTheySay {
+        ...WhatTheySayFields
       }
     }
   }
