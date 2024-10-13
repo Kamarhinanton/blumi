@@ -17,9 +17,9 @@ const AppLayout: FC<AppLayoutProps> = ({
 }) => {
   return (
     <>
-      <Header headerData={headerData} />
+      {headerData && <Header headerData={headerData} />}
       {children}
-      <Footer footerData={footerData} />
+      {footerData && <Footer footerData={footerData} />}
     </>
   )
 }

@@ -42,10 +42,6 @@ const swiperProps: SwiperProps = {
 }
 
 const LatestListing = ({ latestListingData }: LatestListingDataType) => {
-  if (!latestListingData) {
-    return null
-  }
-
   const { title, listCities, listSlider, buttonText } = latestListingData
   const { description, titleWithIcons, subText } = title
 

@@ -14,10 +14,6 @@ type HeroContentType = {
 }
 
 const Hero = ({ heroData }: HeroContentType) => {
-  if (!heroData) {
-    return null
-  }
-
   const { list, picture, listIcons, cta, heading } = heroData
   const { description, titleWithIcons } = heading
 

@@ -15,7 +15,7 @@ import usePageScroll from '@/hooks/usePageScroll'
 import styles from './Header.module.scss'
 
 type HeaderDataProps = {
-  headerData?: QueryResultHeaderData
+  headerData: QueryResultHeaderData
 }
 
 const Header: FC<HeaderDataProps> = ({ headerData }) => {
@@ -30,10 +30,6 @@ const Header: FC<HeaderDataProps> = ({ headerData }) => {
 
   const mods = {
     [styles['scrolled']]: scrolled,
-  }
-
-  if (!headerData) {
-    return null
   }
 
   const { logo, link, buttonText, submenu } = headerData?.header

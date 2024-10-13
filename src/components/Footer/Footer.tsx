@@ -8,15 +8,11 @@ import SmallForm from '@/components/SmallForm/SmallForm'
 import styles from './Footer.module.scss'
 
 type FooterDataProps = {
-  footerData?: QueryResultFooterData
+  footerData: QueryResultFooterData
 }
 
 const Footer: FC<FooterDataProps> = ({ footerData }) => {
   const footer = footerData?.footer
-
-  if (!footer) {
-    return null
-  }
 
   const { logo, cta, columns, copyright, label } = footer
 

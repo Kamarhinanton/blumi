@@ -39,10 +39,6 @@ const swiperProps: SwiperProps = {
 }
 
 const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
-  if (!howItWorksData) {
-    return null
-  }
-
   const { heading, listSlider } = howItWorksData
   const { titleWithIcons, description, subText } = heading
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])

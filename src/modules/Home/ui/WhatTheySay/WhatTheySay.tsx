@@ -33,10 +33,6 @@ const WhatTheySay: FC<WhatTheyType> = ({
   const { title, reviews } = whatTheySayData
   const cleanedData = cleanedTitleWithIcons(title?.titleWithIcons || [])
 
-  if (!whatTheySayData) {
-    return null
-  }
-
   return (
     <section className={styles['whatTheySay']}>
       {title && (

@@ -20,22 +20,26 @@ const HomeContent = ({ homeData }: HomeContentType) => {
 
   return (
     <main>
-      <Hero heroData={hero} />
-      <ExploreTreatment exploreTreatmentData={exploreTreatment} />
-      <HowItWorks howItWorksData={howItWorks} />
-      <LatestListing latestListingData={latestListing} />
-      <BookBlumi bookBlumiData={bookBlumi} />
-      <Container size={'small'} className={'bg-pink'}>
-        <div className={'bg-pink__wrapper'}>
-          {whatTheySay.map((section, index) => (
-            <WhatTheySay
-              reverseDirection={index % 2 === 0}
-              key={section.id}
-              whatTheySayData={section}
-            />
-          ))}
-        </div>
-      </Container>
+      {hero && <Hero heroData={hero} />}
+      {exploreTreatment && (
+        <ExploreTreatment exploreTreatmentData={exploreTreatment} />
+      )}
+      {howItWorks && <HowItWorks howItWorksData={howItWorks} />}
+      {latestListing && <LatestListing latestListingData={latestListing} />}
+      {bookBlumi && <BookBlumi bookBlumiData={bookBlumi} />}
+      {whatTheySay && (
+        <Container size={'small'} className={'bg-pink'}>
+          <div className={'bg-pink__wrapper'}>
+            {whatTheySay.map((section, index) => (
+              <WhatTheySay
+                reverseDirection={index % 2 === 0}
+                key={section.id}
+                whatTheySayData={section}
+              />
+            ))}
+          </div>
+        </Container>
+      )}
     </main>
   )
 }

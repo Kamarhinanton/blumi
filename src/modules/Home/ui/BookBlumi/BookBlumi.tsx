@@ -26,10 +26,6 @@ const BookBlumi: FC<BookBlumiType> = ({ bookBlumiData }) => {
   const paragraphId = 'paragraph-id'
   const { width } = useWindowDimensions()
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
-  if (!bookBlumiData) {
-    return null
-  }
-
   const handleClick = (index: string) => {
     if (index !== activeIndex) {
       setActiveIndex(index)

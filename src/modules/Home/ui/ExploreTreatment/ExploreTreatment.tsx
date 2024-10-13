@@ -27,10 +27,6 @@ const ExploreTreatment = ({
   )
   const { width } = useWindowDimensions()
 
-  if (!exploreTreatmentData) {
-    return null
-  }
-
   const handleClick = (index: string) => {
     if (width <= breakpointMob) {
       if (index !== activeIndex) {
