@@ -5,6 +5,7 @@ import { QueryResultLatestListing } from '@/modules/Home/ui/LatestListing/utils/
 import { QueryResultBookBlumiData } from '@/modules/Home/ui/BookBlumi/utils/types'
 import { QueryResultWhatTheySayData } from '@/modules/Home/ui/WhatTheySay/utils/types'
 import { QueryResultThingsWonderingData } from '@/modules/Home/ui/ThingsWondering/utils/types'
+import { QueryResultDontMissOutData } from '@/components/DontMissOut/utils/types'
 
 export type QueryResultHomeData = {
   home: QueryResultHeroHomeData &
@@ -13,5 +14,6 @@ export type QueryResultHomeData = {
     QueryResultLatestListing &
     QueryResultBookBlumiData &
     QueryResultWhatTheySayData &
-    QueryResultThingsWonderingData
+    QueryResultThingsWonderingData &
+    QueryResultDontMissOutData
 }

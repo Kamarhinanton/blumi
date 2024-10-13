@@ -8,6 +8,7 @@ import BookBlumi from '@/modules/Home/ui/BookBlumi/BookBlumi'
 import WhatTheySay from '@/modules/Home/ui/WhatTheySay/WhatTheySay'
 import Container from '@/app/layouts/layouts/Container'
 import ThingsWondering from '@/modules/Home/ui/ThingsWondering/ThingsWondering'
+import DontMissOut from '@/components/DontMissOut/DontMissOut'
 
 const HomeContent = ({ homeData }: HomeContentType) => {
   const {
@@ -18,6 +19,7 @@ const HomeContent = ({ homeData }: HomeContentType) => {
     bookBlumi,
     whatTheySay,
     thingsWondering,
+    dontMissOut,
   } = homeData.home
 
   return (
@@ -43,6 +45,7 @@ const HomeContent = ({ homeData }: HomeContentType) => {
         </Container>
       )}
       {thingsWondering && <ThingsWondering thingsWondering={thingsWondering} />}
+      {dontMissOut && <DontMissOut dontMissOut={dontMissOut} />}
     </main>
   )
 }

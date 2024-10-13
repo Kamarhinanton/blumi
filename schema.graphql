@@ -8,12 +8,18 @@ schema {
 "Indicates exactly one field must be supplied and this field must not be `null`."
 directive @oneOf on INPUT_OBJECT
 
-union GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = ComponentBaseCta | ComponentBaseDontMissOut | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type ComponentBaseCta {
     buttonText: String!
     id: ID!
     placeholderText: String!
+}
+
+type ComponentBaseDontMissOut {
+    buttonText: String!
+    id: ID!
+    title: ComponentBaseTitleComponent!
 }
 
 type ComponentBaseList {
@@ -211,6 +217,7 @@ type Home {
     bookBlumi: ComponentHomeBookBlumi
     createdAt: DateTime
     documentId: ID!
+    dontMissOut: ComponentBaseDontMissOut
     exploreTreatment: ComponentHomeExploreTreatment
     hero: ComponentHomeHero
     howItWorks: ComponentHomeHowItWorks
@@ -554,6 +561,12 @@ input ComponentBaseCtaInput {
     placeholderText: String
 }
 
+input ComponentBaseDontMissOutInput {
+    buttonText: String
+    id: ID
+    title: ComponentBaseTitleComponentInput
+}
+
 input ComponentBaseListFiltersInput {
     and: [ComponentBaseListFiltersInput]
     description: StringFilterInput
@@ -866,6 +879,7 @@ input HeaderInput {
 
 input HomeInput {
     bookBlumi: ComponentHomeBookBlumiInput
+    dontMissOut: ComponentBaseDontMissOutInput
     exploreTreatment: ComponentHomeExploreTreatmentInput
     hero: ComponentHomeHeroInput
     howItWorks: ComponentHomeHowItWorksInput
