@@ -9,7 +9,7 @@ type IconTitleType = {
   list: ComponentBaseTitleWithIcons[]
   className?: string
   tag?: 'h1' | 'h2' | 'h3' | 'h4'
-  titleSize?: 'h1' | 'h2' | 'h3' | 'h4'
+  titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant'
 }
 
 const IconTitle: FC<IconTitleType> = ({
@@ -27,7 +27,7 @@ const IconTitle: FC<IconTitleType> = ({
           {item.icon?.url && (
             <span
               className={classNames(styles['title__icon'], {
-                [styles['small']]: titleSize === 'h4',
+                [styles['small']]: titleSize === 'h4 variant',
               })}
             >
               <Image

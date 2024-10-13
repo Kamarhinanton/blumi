@@ -10,6 +10,10 @@
     border-radius: 12rem;
     cursor: pointer;
 
+    @media (width<=$breakpoint-mob){
+      padding: 18rem 76rem 18rem 18rem;
+    }
+
     &.active {
       background-color: var(--black-faq);
 
@@ -30,6 +34,10 @@
       transform: translateY(-50%) rotateZ(-90deg);
       transition: var(--duration) var(--ease);
       content: '';
+
+      @media (width<=$breakpoint-mob){
+        right: 12rem;
+      }
     }
 
   }
@@ -40,6 +48,11 @@
         max-width: 502rem;
         padding: 0 0 32rem 24rem;
         color: var(--secondary-text);
+
+        @media (width<=$breakpoint-mob){
+          padding: 0 0 18rem 18rem;
+
+        }
       }
     }
   }

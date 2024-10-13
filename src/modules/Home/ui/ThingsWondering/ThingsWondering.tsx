@@ -29,15 +29,15 @@ const ThingsWondering: FC<ThingsWonderingType> = ({ thingsWondering }) => {
               description={description || ''}
               titleIcon={cleanedDataBigTitle}
               tag={'h2'}
-              small
             >
               <Icon />
             </Heading>
+            <FAQSection className={styles['mobile-view']} data={list} />
             <Heading
               subText={subText || ''}
               titleIcon={cleanedDataSmallTitle}
               tag={'h4'}
-              titleSize={'h4'}
+              titleSize={'h4 variant'}
               className={styles['smallHeading']}
             />
             <Link className={styles['link']} href={`mailto:${email}`}>
@@ -45,7 +45,7 @@ const ThingsWondering: FC<ThingsWonderingType> = ({ thingsWondering }) => {
             </Link>
           </div>
           <div className={styles['thingsWondering__content_list']}>
-            <FAQSection data={list} />
+            <FAQSection className={styles['desk-view']} data={list} />
           </div>
         </div>
       </Container>

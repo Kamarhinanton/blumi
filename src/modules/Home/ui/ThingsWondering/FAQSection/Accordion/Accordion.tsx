@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
 import { motion, AnimatePresence } from 'framer-motion'
+import ArrowIcon from '@/ui/ArrowIcon/ArrowIcon'
 
 import styles from './Accordion.module.scss'
-import ArrowIcon from '@/ui/ArrowIcon/ArrowIcon'
 
 type AccordionType = {
   i: string

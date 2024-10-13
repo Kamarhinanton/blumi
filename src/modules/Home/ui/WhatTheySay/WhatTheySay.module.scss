@@ -74,6 +74,12 @@
           }
         }
 
+        .title-card{
+          @media (width<=$breakpoint-mob){
+            font-size: 16rem;
+          }
+        }
+
         .image-list{
           display: flex;
           gap: 8rem;

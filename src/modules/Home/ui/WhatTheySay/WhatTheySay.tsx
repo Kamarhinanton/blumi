@@ -66,7 +66,9 @@ const WhatTheySay: FC<WhatTheyType> = ({
                   alt={'picture'}
                 />
                 <div className={styles['slider__slide_card']}>
-                  <h4>{review.title}</h4>
+                  <h4 className={classNames('h4', styles['title-card'])}>
+                    {review.title}
+                  </h4>
                   <p className={styles['description']}>
                     <small>{review.description}</small>
                   </p>

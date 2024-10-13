@@ -3,9 +3,17 @@
 .thingsWondering{
   margin: 120rem 0;
 
+  @media (width<=$breakpoint-mob){
+    margin: 80rem 0;
+  }
+
     &__content{
       display: flex;
       gap: 40rem;
+
+      @media (width<=$breakpoint-mob){
+        flex-direction: column;
+      }
 
       &_text{
         display: flex;
@@ -15,6 +23,10 @@
         .smallHeading{
           max-width: 344rem;
           margin: 84rem 0 0;
+
+          @media (width<=$breakpoint-mob){
+            margin: 10rem 0 0;
+          }
         }
 
         .link{
@@ -28,6 +40,10 @@
             &:hover {
               color: var(--pink-primary);
             }
+          }
+
+          @media (width<=$breakpoint-mob){
+            margin: 28rem 0 0;
           }
 
             &::before{
@@ -50,4 +66,19 @@
         flex: 0 1 50%;
       }
     }
+}
+
+.desk-view {
+  @media (width<=$breakpoint-mob) {
+    display: none;
+  }
+}
+
+.mobile-view {
+  display: none;
+
+  @media (width<= $breakpoint-mob) {
+    display: block;
+    margin: 36rem 0 0;
+  }
 }

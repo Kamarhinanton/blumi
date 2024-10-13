@@ -15,7 +15,7 @@ type HeadingType = {
   className?: string
   small?: boolean
   tag?: 'h1' | 'h2' | 'h3' | 'h4'
-  titleSize?: 'h1' | 'h2' | 'h3' | 'h4'
+  titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant'
 }
 
 const Heading: FC<HeadingType> = ({
@@ -50,7 +50,7 @@ const Heading: FC<HeadingType> = ({
       {subText && (
         <p
           className={classNames(styles['heading__subText'], {
-            [styles['smallMargin']]: titleSize === 'h4',
+            [styles['smallMargin']]: titleSize === 'h4 variant',
           })}
         >
           {subText}
