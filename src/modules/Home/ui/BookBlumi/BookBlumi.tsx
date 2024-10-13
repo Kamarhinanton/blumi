@@ -5,13 +5,13 @@ import { cleanedTitleWithIcons } from '@/utils/global'
 import Heading from '@/components/Heading/Heading'
 import classNames from 'classnames'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
-
-import Icon from '../../../../../public/icons/light.svg'
-import SmallArrow from '../../../../../public/icons/small-arrow.svg'
-
-import styles from './BookBlumi.module.scss'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { breakpointMob } from '@/utils/variables'
+import ArrowIcon from '@/ui/ArrowIcon/ArrowIcon'
+
+import Icon from '../../../../../public/icons/light.svg'
+
+import styles from './BookBlumi.module.scss'
 
 type BookBlumiType = {
   bookBlumiData: QueryResultBookBlumiData['bookBlumi']
@@ -65,9 +65,10 @@ const BookBlumi: FC<BookBlumiType> = ({ bookBlumiData }) => {
                     onClick={() => handleClick(item.id)}
                   >
                     <h4 className={'h4'}> {item.title}</h4>
-                    <span className={styles['list__item_icon']}>
-                      <SmallArrow className={styles['icon']} />
-                    </span>
+                    <ArrowIcon
+                      className={styles['list__item_icon']}
+                      active={item.id === activeIndex}
+                    />
                   </li>
                 ),
             )}

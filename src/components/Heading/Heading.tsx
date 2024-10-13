@@ -14,7 +14,8 @@ type HeadingType = {
   centred?: boolean
   className?: string
   small?: boolean
-  tag?: 'h1' | 'h2'
+  tag?: 'h1' | 'h2' | 'h3' | 'h4'
+  titleSize?: 'h1' | 'h2' | 'h3' | 'h4'
 }
 
 const Heading: FC<HeadingType> = ({
@@ -26,6 +27,7 @@ const Heading: FC<HeadingType> = ({
   className,
   small = false,
   tag = 'h1',
+  titleSize = 'h1',
 }) => {
   const mods = {
     [styles['centred']]: centred,
@@ -41,10 +43,19 @@ const Heading: FC<HeadingType> = ({
           tag={tag}
           className={styles['heading__title']}
           list={titleIcon}
+          titleSize={titleSize}
         />
       )}
 
-      {subText && <p className={styles['heading__subText']}>{subText}</p>}
+      {subText && (
+        <p
+          className={classNames(styles['heading__subText'], {
+            [styles['smallMargin']]: titleSize === 'h4',
+          })}
+        >
+          {subText}
+        </p>
+      )}
     </div>
   )
 }

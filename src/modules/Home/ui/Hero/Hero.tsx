@@ -3,9 +3,10 @@ import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHeroHomeData } from '@/modules/Home/ui/Hero/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import SmallForm from '@/components/SmallForm/SmallForm'
-import Icon from '../../../../../public/icons/bulb.svg'
 import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
+
+import Icon from '../../../../../public/icons/bulb.svg'
 
 import styles from './Hero.module.scss'
 

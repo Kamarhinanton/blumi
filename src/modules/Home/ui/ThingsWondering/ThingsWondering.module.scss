@@ -1,3 +1,53 @@
-.thingsWondering{
+@import '@/app/styles/variables/breakpoints';
 
+.thingsWondering{
+  margin: 120rem 0;
+
+    &__content{
+      display: flex;
+      gap: 40rem;
+
+      &_text{
+        display: flex;
+        flex: 0 1 50%;
+        flex-direction: column;
+
+        .smallHeading{
+          max-width: 344rem;
+          margin: 84rem 0 0;
+        }
+
+        .link{
+          position: relative;
+          margin: 40rem 0 0;
+          padding: 0 0 0 36rem;
+          color: var(--primary-text);
+          transition: color var(--duration-hover) var(--ease);
+
+          @media (width>$breakpoint-mob) {
+            &:hover {
+              color: var(--pink-primary);
+            }
+          }
+
+            &::before{
+              position: absolute;
+              top: 50%;
+              left: 0;
+              width: 24rem;
+              height: 24rem;
+              background-image: url("/icons/chat.svg");
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain;
+              transform: translateY(-50%);
+              content: '';
+            }
+        }
+      }
+
+      &_list{
+        flex: 0 1 50%;
+      }
+    }
 }

@@ -43,6 +43,10 @@
     color: var(--secondary-text);
     font: (var(--font-s));
 
+    &.smallMargin{
+      margin: 12rem 0 0;
+    }
+
     @media (width<=$breakpoint-mob) {
       margin: 20rem 0 0;
       font-size: 16rem;

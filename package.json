@@ -20,6 +20,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "@strapi/blocks-react-renderer": "^1.0.1",
     "classnames": "^2.5.1",
+    "framer-motion": "^11.11.8",
     "graphql": "^16.9.0",
     "graphql-config": "^5.1.2",
     "next": "14.2.13",

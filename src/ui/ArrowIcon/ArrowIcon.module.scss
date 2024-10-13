@@ -1,0 +1,32 @@
+@import '@/app/styles/variables/breakpoints';
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56rem;
+  height: 56rem;
+  background-color: var(--grey-primary);
+  border-radius: 16rem;
+  transform: translateY(-50%);
+
+  &.active{
+    .icon{
+      &__img{
+        color: var(--white);
+      }
+    }
+  }
+
+  @media (width<=$breakpoint-mob){
+    width: 40rem;
+    height: 40rem;
+    border-radius: 12rem;
+  }
+
+  &__img {
+    width: 20rem;
+    height: 20rem;
+    color: var(--primary-text);
+  }
+}

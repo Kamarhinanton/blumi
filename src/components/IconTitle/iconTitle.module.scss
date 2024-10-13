@@ -3,12 +3,23 @@
 .title {
   position: relative;
 
-  span{
+  &__icon{
     position: relative;
     display: inline-block;
     width: 80rem;
     height: 80rem;
     margin: 0 10rem;
+
+    &.small{
+      width: 40rem;
+      height: 40rem;
+
+      @media (width<=$breakpoint-mob){
+        width: 32rem;
+        height: 32rem;
+        vertical-align: middle;
+      }
+    }
 
     @media (width<=$breakpoint-mob){
       width: 36rem;

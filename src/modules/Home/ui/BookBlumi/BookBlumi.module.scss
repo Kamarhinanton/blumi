@@ -43,10 +43,6 @@
             &__item {
               &_icon {
                 background-color: var(--pink-primary);
-
-                .icon {
-                  color: var(--white);
-                }
               }
             }
           }
@@ -56,26 +52,6 @@
           position: absolute;
           top: 50%;
           right: 16rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 56rem;
-          height: 56rem;
-          background-color: var(--grey-primary);
-          border-radius: 16rem;
-          transform: translateY(-50%);
-
-          @media (width<=$breakpoint-mob){
-            width: 40rem;
-            height: 40rem;
-            border-radius: 12rem;
-          }
-
-          .icon {
-            width: 20rem;
-            height: 20rem;
-            color: var(--primary-text);
-          }
         }
       }
     }

@@ -8,18 +8,28 @@ import styles from './iconTitle.module.scss'
 type IconTitleType = {
   list: ComponentBaseTitleWithIcons[]
   className?: string
-  tag?: 'h1' | 'h2'
+  tag?: 'h1' | 'h2' | 'h3' | 'h4'
+  titleSize?: 'h1' | 'h2' | 'h3' | 'h4'
 }
 
-const IconTitle: FC<IconTitleType> = ({ list, className, tag = 'h1' }) => {
+const IconTitle: FC<IconTitleType> = ({
+  list,
+  className,
+  tag = 'h1',
+  titleSize = 'h1',
+}) => {
   const Tag = tag
   return (
-    <Tag className={classNames('h1', styles['title'], className)}>
+    <Tag className={classNames(`${titleSize}`, styles['title'], className)}>
       {list.map((item) => (
         <React.Fragment key={item.id}>
           {item.text}
           {item.icon?.url && (
-            <span>
+            <span
+              className={classNames(styles['title__icon'], {
+                [styles['small']]: titleSize === 'h4',
+              })}
+            >
               <Image
                 src={item.icon.url}
                 alt={'icon'}

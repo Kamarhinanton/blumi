@@ -1,0 +1,46 @@
+@import '@/app/styles/variables/breakpoints';
+
+.item {
+  border-bottom: 1rem solid var(--grey-primary);
+
+  &__title {
+    position: relative;
+    padding: 24rem 100rem 24rem 24rem;
+    color: var(--primary-text);
+    border-radius: 12rem;
+    cursor: pointer;
+
+    &.active {
+      background-color: var(--black-faq);
+
+      .item{
+        &__title{
+          &_arrow{
+            background-color: var(--pink-primary);
+            transform: translateY(-50%) rotateZ(90deg);
+          }
+        }
+      }
+    }
+
+    &_arrow{
+      position: absolute;
+      top: 50%;
+      right: 24rem;
+      transform: translateY(-50%) rotateZ(-90deg);
+      transition: var(--duration) var(--ease);
+      content: '';
+    }
+
+  }
+
+  &__dropdownMenu {
+    &_description {
+      .text {
+        max-width: 502rem;
+        padding: 0 0 32rem 24rem;
+        color: var(--secondary-text);
+      }
+    }
+  }
+}
