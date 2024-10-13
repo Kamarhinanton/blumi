@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultExploreTreatmentData } from '@/modules/Home/ui/ExploreTreatment/utils/types'
 import classNames from 'classnames'
@@ -17,9 +17,9 @@ type ExploreTreatmentContentType = {
   exploreTreatmentData: QueryResultExploreTreatmentData['exploreTreatment']
 }
 
-const ExploreTreatment = ({
+const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
   exploreTreatmentData,
-}: ExploreTreatmentContentType) => {
+}) => {
   const { heading, buttonText, listImages } = exploreTreatmentData
   const { titleWithIcons, description } = heading
   const [activeIndex, setActiveIndex] = useState<string | null>(

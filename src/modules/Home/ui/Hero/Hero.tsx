@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHeroHomeData } from '@/modules/Home/ui/Hero/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
@@ -13,7 +13,7 @@ type HeroContentType = {
   heroData: QueryResultHeroHomeData['hero']
 }
 
-const Hero = ({ heroData }: HeroContentType) => {
+const Hero: FC<HeroContentType> = ({ heroData }) => {
   const { list, picture, listIcons, cta, heading } = heroData
   const { description, titleWithIcons } = heading
 

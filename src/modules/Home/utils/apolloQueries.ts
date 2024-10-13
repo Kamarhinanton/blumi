@@ -5,6 +5,7 @@ import { HowItWorksFragment } from '@/modules/Home/ui/HowItWorks/utils/apolloQue
 import { LatestListingFragment } from '@/modules/Home/ui/LatestListing/utils/apolloQueries'
 import { BookBlumiFragment } from '@/modules/Home/ui/BookBlumi/utils/apolloQueries'
 import { WhatTheySayFragment } from '@/modules/Home/ui/WhatTheySay/utils/apolloQueries'
+import { ThingsWonderingFragment } from '@/modules/Home/ui/ThingsWondering/utils/apolloQueries'
 
 export const HomeData = gql`
   ${HeroFragment}
@@ -13,6 +14,7 @@ export const HomeData = gql`
   ${LatestListingFragment}
   ${BookBlumiFragment}
   ${WhatTheySayFragment}
+  ${ThingsWonderingFragment}
   query {
     home {
       hero {
@@ -32,6 +34,9 @@ export const HomeData = gql`
       }
       whatTheySay {
         ...WhatTheySayFields
+      }
+      thingsWondering {
+        ...ThingsWonderingFields
       }
     }
   }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 import classNames from 'classnames'
 
@@ -11,11 +11,11 @@ type SmallFormType = {
   size?: 'small'
 }
 
-const SmallForm = ({
+const SmallForm: FC<SmallFormType> = ({
   placeholderText,
   buttonText,
   className,
-}: SmallFormType) => {
+}) => {
   return (
     <form action={'#'} className={classNames(styles['form'], className)}>
       <label htmlFor="name" className={styles['form__label']}>

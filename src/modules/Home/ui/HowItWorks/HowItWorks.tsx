@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHowItWorksData } from '@/modules/Home/ui/HowItWorks/utils/types'
 import classNames from 'classnames'
@@ -38,7 +38,7 @@ const swiperProps: SwiperProps = {
   },
 }
 
-const HowItWorks = ({ howItWorksData }: HowItWorksType) => {
+const HowItWorks: FC<HowItWorksType> = ({ howItWorksData }) => {
   const { heading, listSlider } = howItWorksData
   const { titleWithIcons, description, subText } = heading
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])

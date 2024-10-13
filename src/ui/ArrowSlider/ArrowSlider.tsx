@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
 type ArrowSliderType = {
@@ -10,12 +10,12 @@ type ArrowSliderType = {
 
 import styles from './ArrowSlider.module.scss'
 
-const ArrowSlider = ({
+const ArrowSlider: FC<ArrowSliderType> = ({
   children,
   direction,
   className,
   name,
-}: ArrowSliderType) => {
+}) => {
   const mods = {
     [styles['next']]: direction === 'next',
   }

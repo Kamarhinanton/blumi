@@ -7,6 +7,7 @@ import LatestListing from '@/modules/Home/ui/LatestListing/LatestListing'
 import BookBlumi from '@/modules/Home/ui/BookBlumi/BookBlumi'
 import WhatTheySay from '@/modules/Home/ui/WhatTheySay/WhatTheySay'
 import Container from '@/app/layouts/layouts/Container'
+import ThingsWondering from '@/modules/Home/ui/ThingsWondering/ThingsWondering'
 
 const HomeContent = ({ homeData }: HomeContentType) => {
   const {
@@ -16,6 +17,7 @@ const HomeContent = ({ homeData }: HomeContentType) => {
     latestListing,
     bookBlumi,
     whatTheySay,
+    thingsWondering,
   } = homeData.home
 
   return (
@@ -40,6 +42,7 @@ const HomeContent = ({ homeData }: HomeContentType) => {
           </div>
         </Container>
       )}
+      {thingsWondering && <ThingsWondering thingsWondering={thingsWondering} />}
     </main>
   )
 }

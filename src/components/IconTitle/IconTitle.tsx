@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Image from 'next/image'
 import classNames from 'classnames'
 import { ComponentBaseTitleWithIcons } from '@/gql/graphql'
@@ -11,7 +11,7 @@ type IconTitleType = {
   tag?: 'h1' | 'h2'
 }
 
-const IconTitle = ({ list, className, tag = 'h1' }: IconTitleType) => {
+const IconTitle: FC<IconTitleType> = ({ list, className, tag = 'h1' }) => {
   const Tag = tag
   return (
     <Tag className={classNames('h1', styles['title'], className)}>

@@ -8,7 +8,7 @@ schema {
 "Indicates exactly one field must be supplied and this field must not be `null`."
 directive @oneOf on INPUT_OBJECT
 
-union GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type ComponentBaseCta {
     buttonText: String!
@@ -132,6 +132,17 @@ type ComponentHomeListSliderReviews {
     title: String!
 }
 
+type ComponentHomeThingsWondering {
+    bigTitle(filters: ComponentBaseTitleWithIconsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseTitleWithIcons]!
+    buttonText: String!
+    description: String!
+    email: String!
+    id: ID!
+    list(filters: ComponentBaseListFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseList]!
+    smallTitle(filters: ComponentBaseTitleWithIconsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseTitleWithIcons]!
+    subText: String!
+}
+
 type ComponentHomeWhatTheySay {
     id: ID!
     reviews(filters: ComponentHomeListSliderReviewsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListSliderReviews]!
@@ -197,20 +208,21 @@ type HeaderRelationResponseCollection {
 }
 
 type Home {
-    bookBlumi: ComponentHomeBookBlumi!
+    bookBlumi: ComponentHomeBookBlumi
     createdAt: DateTime
     documentId: ID!
-    exploreTreatment: ComponentHomeExploreTreatment!
-    hero: ComponentHomeHero!
-    howItWorks: ComponentHomeHowItWorks!
-    latestListing: ComponentHomeLatestListing!
+    exploreTreatment: ComponentHomeExploreTreatment
+    hero: ComponentHomeHero
+    howItWorks: ComponentHomeHowItWorks
+    latestListing: ComponentHomeLatestListing
     locale: String
     localizations: [Home]!
     localizations_connection: HomeRelationResponseCollection
     pageName: String!
     publishedAt: DateTime
+    thingsWondering: ComponentHomeThingsWondering
     updatedAt: DateTime
-    whatTheySay(filters: ComponentHomeWhatTheySayFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeWhatTheySay]!
+    whatTheySay(filters: ComponentHomeWhatTheySayFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeWhatTheySay]
 }
 
 type HomeRelationResponseCollection {
@@ -744,6 +756,17 @@ input ComponentHomeListSliderReviewsInput {
     title: String
 }
 
+input ComponentHomeThingsWonderingInput {
+    bigTitle: [ComponentBaseTitleWithIconsInput]
+    buttonText: String
+    description: String
+    email: String
+    id: ID
+    list: [ComponentBaseListInput]
+    smallTitle: [ComponentBaseTitleWithIconsInput]
+    subText: String
+}
+
 input ComponentHomeWhatTheySayFiltersInput {
     and: [ComponentHomeWhatTheySayFiltersInput]
     not: ComponentHomeWhatTheySayFiltersInput
@@ -850,6 +873,7 @@ input HomeInput {
     locale: String
     pageName: String
     publishedAt: DateTime
+    thingsWondering: ComponentHomeThingsWonderingInput
     whatTheySay: [ComponentHomeWhatTheySayInput]
 }
 

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import IconDescription from '@/components/IconDescription/IconDescription'
 import classNames from 'classnames'
 import IconTitle from '@/components/IconTitle/IconTitle'
@@ -17,7 +17,7 @@ type HeadingType = {
   tag?: 'h1' | 'h2'
 }
 
-const Heading = ({
+const Heading: FC<HeadingType> = ({
   description,
   titleIcon,
   subText,
@@ -26,7 +26,7 @@ const Heading = ({
   className,
   small = false,
   tag = 'h1',
-}: HeadingType) => {
+}) => {
   const mods = {
     [styles['centred']]: centred,
     [styles['small']]: small,

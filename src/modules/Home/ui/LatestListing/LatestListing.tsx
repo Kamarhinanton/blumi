@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { QueryResultLatestListing } from '@/modules/Home/ui/LatestListing/utils/types'
 import Container from '@/app/layouts/layouts/Container'
 import Heading from '@/components/Heading/Heading'
@@ -41,7 +41,7 @@ const swiperProps: SwiperProps = {
   },
 }
 
-const LatestListing = ({ latestListingData }: LatestListingDataType) => {
+const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
   const { title, listCities, listSlider, buttonText } = latestListingData
   const { description, titleWithIcons, subText } = title
 

@@ -477,6 +477,50 @@ export type ComponentHomeListSliderReviewsInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ComponentHomeThingsWondering = {
+  __typename?: 'ComponentHomeThingsWondering';
+  bigTitle: Array<Maybe<ComponentBaseTitleWithIcons>>;
+  buttonText: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  list: Array<Maybe<ComponentBaseList>>;
+  smallTitle: Array<Maybe<ComponentBaseTitleWithIcons>>;
+  subText: Scalars['String']['output'];
+};
+
+
+export type ComponentHomeThingsWonderingBigTitleArgs = {
+  filters?: InputMaybe<ComponentBaseTitleWithIconsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ComponentHomeThingsWonderingListArgs = {
+  filters?: InputMaybe<ComponentBaseListFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ComponentHomeThingsWonderingSmallTitleArgs = {
+  filters?: InputMaybe<ComponentBaseTitleWithIconsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentHomeThingsWonderingInput = {
+  bigTitle?: InputMaybe<Array<InputMaybe<ComponentBaseTitleWithIconsInput>>>;
+  buttonText?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  list?: InputMaybe<Array<InputMaybe<ComponentBaseListInput>>>;
+  smallTitle?: InputMaybe<Array<InputMaybe<ComponentBaseTitleWithIconsInput>>>;
+  subText?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentHomeWhatTheySay = {
   __typename?: 'ComponentHomeWhatTheySay';
   id: Scalars['ID']['output'];
@@ -604,7 +648,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentBaseCta | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -678,20 +722,21 @@ export type HeaderRelationResponseCollection = {
 
 export type Home = {
   __typename?: 'Home';
-  bookBlumi: ComponentHomeBookBlumi;
+  bookBlumi?: Maybe<ComponentHomeBookBlumi>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
-  exploreTreatment: ComponentHomeExploreTreatment;
-  hero: ComponentHomeHero;
-  howItWorks: ComponentHomeHowItWorks;
-  latestListing: ComponentHomeLatestListing;
+  exploreTreatment?: Maybe<ComponentHomeExploreTreatment>;
+  hero?: Maybe<ComponentHomeHero>;
+  howItWorks?: Maybe<ComponentHomeHowItWorks>;
+  latestListing?: Maybe<ComponentHomeLatestListing>;
   locale?: Maybe<Scalars['String']['output']>;
   localizations: Array<Maybe<Home>>;
   localizations_connection?: Maybe<HomeRelationResponseCollection>;
   pageName: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  thingsWondering?: Maybe<ComponentHomeThingsWondering>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  whatTheySay: Array<Maybe<ComponentHomeWhatTheySay>>;
+  whatTheySay?: Maybe<Array<Maybe<ComponentHomeWhatTheySay>>>;
 };
 
 
@@ -710,6 +755,7 @@ export type HomeInput = {
   locale?: InputMaybe<Scalars['String']['input']>;
   pageName?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  thingsWondering?: InputMaybe<ComponentHomeThingsWonderingInput>;
   whatTheySay?: InputMaybe<Array<InputMaybe<ComponentHomeWhatTheySayInput>>>;
 };
 

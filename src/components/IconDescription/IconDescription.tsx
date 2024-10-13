@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
 import styles from './IconDescription.module.scss'
@@ -9,11 +9,11 @@ type IconDescriptionType = {
   className?: string
 }
 
-const IconDescription = ({
+const IconDescription: FC<IconDescriptionType> = ({
   description,
   children,
   className,
-}: IconDescriptionType) => {
+}) => {
   return (
     <div className={classNames(styles['iconDescription'], className)}>
       <div className={styles['iconDescription__icon']}>{children}</div>
