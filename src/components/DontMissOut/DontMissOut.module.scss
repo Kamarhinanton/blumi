@@ -1,3 +1,27 @@
-.dontMissOut{
+@import '@/app/styles/variables/breakpoints';
 
+.dontMissOut{
+  margin: 120rem 0 0;
+
+  @media (width<=$breakpoint-mob){
+    margin: 80rem 0 0;
+  }
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 187rem 0;
+    background-color: var(--grey-primary);
+    border-radius: 20rem;
+
+    @media (width<=$breakpoint-mob){
+      padding: 59rem 35rem;
+    }
+
+    .button{
+      align-self: center;
+      margin: 40rem 0 0;
+    }
+  }
 }
