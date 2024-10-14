@@ -27,6 +27,7 @@ const HeaderSubmenu: FC<SubmenuType> = ({
       className={classNames(styles['submenu'], { [styles['active']]: active })}
     >
       <Container className={styles['container']}>
+        <div onClick={toggleBurger} className={styles['clickArea']} />
         <div className={classNames(styles['menu'], className)}>
           <Cross
             toggleBurger={toggleBurger}

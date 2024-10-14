@@ -13,8 +13,8 @@
     z-index: 11;
   }
 
-  &::before {
-    position: absolute;
+  .clickArea {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -27,7 +27,7 @@
   &.active {
     pointer-events: initial;
 
-    &::before {
+    .clickArea {
       background-color: rgb(0 0 0 / 30%);
     }
 
@@ -42,8 +42,6 @@
   }
 
   .container {
-    position: relative;
-    z-index: 2;
     display: flex;
     justify-content: flex-end;
     padding: 0 40rem;
@@ -55,6 +53,8 @@
   }
 
   .menu {
+    position: relative;
+    z-index: 2;
     width: 279rem;
     margin: 119rem 0 0;
     padding: 24rem;
