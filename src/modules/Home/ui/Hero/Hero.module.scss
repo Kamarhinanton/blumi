@@ -1,10 +1,16 @@
 @import '@/app/styles/variables/breakpoints';
 
 .hero {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 100svh;
   margin: 0 0 140rem;
-  padding: 24rem 0 0;
+  padding: 24rem 0;
 
   @media (width<=$breakpoint-mob) {
+    display: block;
+    min-height: initial;
     margin: 0 0 40rem;
     padding: 87rem 0 0;
   }
@@ -87,11 +93,13 @@
     &_largeColumn {
       position: relative;
       flex: 0 0 803rem;
-      height: 890rem;
+      height: calc(100svh - 48rem);
+      min-height: 800rem;
 
       @media (width<=$breakpoint-mob) {
         flex: initial;
         height: 395rem;
+        min-height: initial;
         overflow: hidden;
       }
 
