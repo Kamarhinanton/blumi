@@ -63,7 +63,8 @@
 
       @media (width<=$breakpoint-mob){
         flex: initial;
-        height: 546rem;
+        box-sizing: content-box;
+        height: 500rem;
         padding: 76rem 0 0;
       }
 
@@ -71,19 +72,18 @@
         position: absolute;
         top: 0;
         left: 0;
-        transform: translateY(30rem);
         opacity: 0;
         transition: var(--duration) var(--ease);
 
         @media (width<=$breakpoint-mob){
           top: 76rem;
+          width: 100%;
         }
 
         &.active {
           z-index: 2;
-          transform: translateY(0);
           opacity: 1;
-          transition-delay: 600ms;
+          transition-delay: var(--hover-delay);
         }
 
         .image {

@@ -21,7 +21,7 @@
         &__title{
           &_arrow{
             background-color: var(--pink-primary);
-            transform: translateY(-50%) rotateZ(90deg);
+            transform: translate3d(0, -50%, 0) rotateZ(90deg);
           }
         }
       }
@@ -31,7 +31,7 @@
       position: absolute;
       top: 50%;
       right: 24rem;
-      transform: translateY(-50%) rotateZ(-90deg);
+      transform: translate3d(0, -50%, 0) rotateZ(-90deg);
       transition: var(--duration) var(--ease);
       content: '';
 
