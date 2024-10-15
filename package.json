@@ -18,6 +18,7 @@
     "@graphql-codegen/typescript-operations": "^4.2.3",
     "@graphql-codegen/typescript-resolvers": "^4.2.1",
     "@reduxjs/toolkit": "^2.2.7",
+    "@smakss/react-scroll-direction": "^4.2.0",
     "@strapi/blocks-react-renderer": "^1.0.1",
     "classnames": "^2.5.1",
     "framer-motion": "^11.11.8",

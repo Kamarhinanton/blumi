@@ -6,10 +6,14 @@
   z-index: 10;
   width: 100%;
   padding: 47rem 0 16rem;
-  transition: background-color var(--duration) var(--ease);
+  transition: var(--duration) var(--ease);
 
   @media (width<=$breakpoint-mob){
     padding: 20rem 0;
+  }
+
+  &.hidden{
+    transform: translateY(-100%);
   }
 
   &.scrolled{

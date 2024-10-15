@@ -11,6 +11,7 @@ import Cross from '@/ui/Cross/Cross'
 import { AppDispatch, RootState } from '@/store/store'
 import { useDispatch, useSelector } from 'react-redux'
 import usePageScroll from '@/hooks/usePageScroll'
+import useDetectScroll from '@smakss/react-scroll-direction'
 
 import styles from './Header.module.scss'
 
@@ -19,6 +20,8 @@ type HeaderDataProps = {
 }
 
 const Header: FC<HeaderDataProps> = ({ headerData }) => {
+  const { scrollDir, scrollPosition } = useDetectScroll({ thr: 100 })
+
   const scrolled = usePageScroll()
   const dispatch: AppDispatch = useDispatch()
   const isMenuActive = useSelector(
@@ -30,6 +33,7 @@ const Header: FC<HeaderDataProps> = ({ headerData }) => {
 
   const mods = {
     [styles['scrolled']]: scrolled,
+    [styles['hidden']]: scrollDir === 'down' || scrollPosition.bottom < 100,
   }
 
   const { logo, link, buttonText, submenu } = headerData?.header
