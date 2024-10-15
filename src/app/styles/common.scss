@@ -1,7 +1,7 @@
 @import '@/app/styles/variables/breakpoints';
 
 html {
-  font-size: calc(100vw / 1440);
+  font-size: calc(100vw / 1680);
 
   @media (width <= $breakpoint-mob) {
     font-size: calc(100vw / 390);
