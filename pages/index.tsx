@@ -37,6 +37,7 @@ export const getStaticProps = async () => {
     })
     return {
       props: { footerData, homeData, headerData },
+      revalidate: 10,
     }
   } catch (error) {
     console.error(error)
