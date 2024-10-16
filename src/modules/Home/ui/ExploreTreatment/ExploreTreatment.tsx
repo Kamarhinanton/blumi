@@ -63,13 +63,7 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
                     })}
                     key={item.id}
                   >
-                    <BackgroundImage
-                      className={styles['image']}
-                      src={item.image.url}
-                      alt={'picture'}
-                      position={'cover'}
-                    />
-                    <div className={styles['description']}>
+                    <Link href={'/'} className={styles['description']}>
                       <h4
                         className={classNames(
                           'h4',
@@ -82,14 +76,17 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
                         <p className={styles['description__bottom_text']}>
                           {item.description}
                         </p>
-                        <Link
-                          className={styles['description__bottom_link']}
-                          href={'/'}
-                        >
-                          See more
-                        </Link>
+                        <p className={styles['description__bottom_link']}>
+                          See Treatments
+                        </p>
                       </div>
-                    </div>
+                    </Link>
+                    <BackgroundImage
+                      className={styles['image']}
+                      src={item.image.url}
+                      alt={'picture'}
+                      position={'cover'}
+                    />
                   </li>
                 ),
             )}
