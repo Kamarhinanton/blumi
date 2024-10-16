@@ -34,7 +34,6 @@ const swiperProps: SwiperProps = {
     [breakpointMob + 1]: {
       spaceBetween: 24,
       centeredSlides: true,
-      slidesPerView: 2,
       allowTouchMove: false,
     },
   },
