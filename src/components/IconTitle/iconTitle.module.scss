@@ -9,22 +9,24 @@
     width: 80rem;
     height: 80rem;
     margin: 0 10rem;
-
-    &.small{
-      width: 40rem;
-      height: 40rem;
-
-      @media (width<=$breakpoint-mob){
-        width: 32rem;
-        height: 32rem;
-        vertical-align: middle;
-      }
-    }
+    vertical-align: -18rem;
 
     @media (width<=$breakpoint-mob){
       width: 36rem;
       height: 36rem;
-      vertical-align: middle;
+      vertical-align: -9rem;
+    }
+
+    &.small{
+      width: 40rem;
+      height: 40rem;
+      vertical-align: -10rem;
+
+      @media (width<=$breakpoint-mob){
+        width: 32rem;
+        height: 32rem;
+        vertical-align: -7rem;
+      }
     }
   }
 }

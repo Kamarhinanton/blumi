@@ -110,7 +110,7 @@
 
       .list {
         position: absolute;
-        bottom: 158rem;
+        bottom: 128rem;
         left: 50%;
         display: flex;
         transform: translateX(-50%);
@@ -142,7 +142,7 @@
           padding: 8rem 12rem 8rem 48rem;
           font: var(--font-s);
           white-space: nowrap;
-          background-color: var(--white);
+          background-color: var(--pink-secondary);
           background-clip: padding-box;
           border: solid $border transparent;
           border-radius: 12rem;

@@ -48,6 +48,16 @@ const nacelle = localFont({
       weight: '400',
       style: 'normal',
     },
+    {
+      path: '../public/fonts/Nacelle-Bold.woff',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Nacelle-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
   ],
   preload: true,
   display: 'swap',
