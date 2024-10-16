@@ -20,7 +20,6 @@
       background: linear-gradient(90deg, var(--pink-secondary) 0%, rgb(255 255 255 / 0%) 10%, rgb(255 255 255 / 0%) 80%, var(--pink-secondary) 100%);
       background-size: cover;
       content: '';
-      pointer-events: none;
     }
 
     &__slide{

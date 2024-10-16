@@ -27,6 +27,7 @@ const WhatTheySay: FC<WhatTheyType> = ({
     freeMode: true,
     autoplay: { delay: 0, reverseDirection: reverseDirection },
     slidesPerView: 'auto',
+    allowTouchMove: false,
     modules: [Autoplay, FreeMode],
   }
 
