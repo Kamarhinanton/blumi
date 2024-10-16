@@ -19,12 +19,11 @@
 
       .slider {
         position: relative;
-        right: -72rem;
 
         &::before {
           position: absolute;
           top: 0;
-          right: -72rem;
+          right: 0;
           left: 0;
           z-index: 2;
           height: 100%;

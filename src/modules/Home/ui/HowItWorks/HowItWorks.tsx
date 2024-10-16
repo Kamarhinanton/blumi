@@ -4,7 +4,7 @@ import { QueryResultHowItWorksData } from '@/modules/Home/ui/HowItWorks/utils/ty
 import classNames from 'classnames'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react'
-import { Autoplay, Navigation } from 'swiper/modules'
+import { Navigation } from 'swiper/modules'
 import Heading from '@/components/Heading/Heading'
 import ArrowSlider from '@/ui/ArrowSlider/ArrowSlider'
 import { breakpointMob } from '@/utils/variables'
@@ -23,10 +23,9 @@ type HowItWorksType = {
 const swiperProps: SwiperProps = {
   slidesPerView: 'auto',
   speed: 1000,
-  autoplay: true,
   loop: true,
   spaceBetween: 10,
-  modules: [Autoplay, Navigation],
+  modules: [Navigation],
   navigation: {
     prevEl: '.howItWorks-prev',
     nextEl: '.howItWorks-next',
@@ -34,6 +33,7 @@ const swiperProps: SwiperProps = {
   breakpoints: {
     [breakpointMob + 1]: {
       spaceBetween: 24,
+      centeredSlides: true,
     },
   },
 }
