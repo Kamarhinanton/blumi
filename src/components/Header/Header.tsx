@@ -37,6 +37,7 @@ const Header: FC<HeaderDataProps> = ({ headerData }) => {
   return (
     <>
       <header className={classNames(styles['header'], mods)}>
+        <div className={styles['blur']} />
         <Container className={styles['container']}>
           <div className={styles['header__content']}>
             <Link href={'/'} className={styles['header__content_logo']}>
