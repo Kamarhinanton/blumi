@@ -30,35 +30,13 @@
         }
 
         .link{
-          position: relative;
+          align-self: flex-start;
           margin: 40rem 0 0;
-          padding: 0 0 0 36rem;
-          color: var(--primary-text);
-          transition: color var(--duration-hover) var(--ease);
-
-          @media (width>$breakpoint-mob) {
-            &:hover {
-              color: var(--pink-primary);
-            }
-          }
 
           @media (width<=$breakpoint-mob){
             margin: 28rem 0 0;
           }
 
-            &::before{
-              position: absolute;
-              top: 50%;
-              left: 0;
-              width: 24rem;
-              height: 24rem;
-              background-image: url("/icons/chat.svg");
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size: contain;
-              transform: translateY(-50%);
-              content: '';
-            }
         }
       }
 
