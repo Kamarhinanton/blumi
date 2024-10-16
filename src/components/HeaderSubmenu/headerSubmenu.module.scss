@@ -78,11 +78,11 @@
     }
 
     .submenu-cross {
-      top: 32rem;
-      right: 16rem;
-      left: initial;
+      position: absolute;
+      top: 14rem;
+      right: 0;
       display: block;
-      transform: initial;
+      padding: 16rem;
 
       @media (width>$breakpoint-mob) {
         display: none;

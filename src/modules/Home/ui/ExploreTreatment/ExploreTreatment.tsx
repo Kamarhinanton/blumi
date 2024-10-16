@@ -12,6 +12,7 @@ import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
 
 import styles from './ExploreTreatment.module.scss'
+import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 
 type ExploreTreatmentContentType = {
   exploreTreatmentData: QueryResultExploreTreatmentData['exploreTreatment']
@@ -91,9 +92,9 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
                 ),
             )}
           </ul>
-          <Link className={styles['button']} href={'/'}>
+          <ButtonSecondary className={styles['button']} href={'/'}>
             {buttonText}
-          </Link>
+          </ButtonSecondary>
         </div>
       </Container>
     </section>

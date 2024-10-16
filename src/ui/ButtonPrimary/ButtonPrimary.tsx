@@ -51,7 +51,7 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
           {icon === 'arrow' && <div className={styles['icon-wrapper']} />}
           {icon === 'burger' && (
             <div className={styles['icon-wrapper']}>
-              <Cross active={activeBurger} />
+              <Cross className={styles['cross']} active={activeBurger} />
             </div>
           )}
         </button>

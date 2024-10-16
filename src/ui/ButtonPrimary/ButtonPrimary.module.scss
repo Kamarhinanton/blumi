@@ -21,6 +21,15 @@
     border-radius: 12rem;
     content: '';
 
+    .cross{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16rem;
+      height: 10rem;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
     @media (width<=$breakpoint-mob) {
       width: 28rem;
       height: 28rem;

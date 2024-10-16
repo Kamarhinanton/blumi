@@ -13,7 +13,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;transform: translate3d(0, 0, 0);
+    height: 100%;
+    transform: translate3d(0, 0, 0);
     transition: opacity var(--duration) var(--ease);
     opacity: 0;
     /* stylelint-disable */
@@ -21,10 +22,6 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     /* stylelint-enable */
-  }
-
-  @media (width<=$breakpoint-mob) {
-    padding: 20rem 0;
   }
 
   &.scrolled {
@@ -46,10 +43,6 @@
     display: flex;
     align-items: center;
 
-    @media (width<=$breakpoint-mob) {
-      justify-content: space-between;
-    }
-
     &_logo {
       flex: 0 0 103rem;
       height: 40rem;
@@ -57,6 +50,15 @@
       @media (width<=$breakpoint-mob) {
         flex: 0 0 85rem;
         height: 30rem;
+        margin: 0 auto 0 0;
+      }
+    }
+
+    .buttonSecondary {
+      display: none;
+
+      @media (width<=$breakpoint-mob) {
+        display: block;
       }
     }
 
@@ -93,11 +95,9 @@
       display: none;
 
       @media (width<=$breakpoint-mob) {
-        position: relative;
-        top: initial;
-        left: initial;
         display: block;
-        transform: initial;
+        padding: 16rem;
+        margin: 0 -16rem 0 0;
       }
     }
   }

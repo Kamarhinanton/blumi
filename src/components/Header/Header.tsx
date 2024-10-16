@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import usePageScroll from '@/hooks/usePageScroll'
 
 import styles from './Header.module.scss'
+import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 
 type HeaderDataProps = {
   headerData: QueryResultHeaderData
@@ -58,6 +59,9 @@ const Header: FC<HeaderDataProps> = ({ headerData }) => {
                     ),
                 )}
             </nav>
+            <ButtonSecondary className={styles['buttonSecondary']} href={'/'}>
+              Browse treatments
+            </ButtonSecondary>
             <ButtonPrimary
               toggleBurger={toggleMenu}
               activeBurger={isMenuActive}
