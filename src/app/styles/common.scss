@@ -10,17 +10,6 @@ html {
   @media (width >= $breakpoint-desktop-large) {
     font-size: 1px;
   }
-
-  // hide scroll
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  // hide scroll
 }
 
 body {
