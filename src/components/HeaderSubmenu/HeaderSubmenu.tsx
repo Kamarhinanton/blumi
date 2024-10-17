@@ -3,7 +3,11 @@ import { Header } from '@/gql/graphql'
 import Link from 'next/link'
 import classNames from 'classnames'
 import Container from '@/app/layouts/layouts/Container'
-import Cross from '@/ui/Cross/Cross'
+import dynamic from 'next/dynamic'
+
+const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
+  ssr: false,
+})
 
 import styles from './headerSubmenu.module.scss'
 

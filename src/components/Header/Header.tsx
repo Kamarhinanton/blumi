@@ -7,13 +7,17 @@ import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 import classNames from 'classnames'
 import HeaderSubmenu from '@/components/HeaderSubmenu/HeaderSubmenu'
 import { setIsMenuActive } from '@/store/reducers/callMenuSlice'
-import Cross from '@/ui/Cross/Cross'
 import { AppDispatch, RootState } from '@/store/store'
 import { useDispatch, useSelector } from 'react-redux'
 import usePageScroll from '@/hooks/usePageScroll'
+import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
+import dynamic from 'next/dynamic'
+
+const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
+  ssr: false,
+})
 
 import styles from './Header.module.scss'
-import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 
 type HeaderDataProps = {
   headerData: QueryResultHeaderData
