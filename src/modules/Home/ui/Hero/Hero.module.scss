@@ -95,6 +95,7 @@
       flex: 0 0 803rem;
       height: calc(100svh - 48rem);
       min-height: 800rem;
+      max-height: 1000rem;
 
       @media (width<=$breakpoint-mob) {
         flex: initial;
