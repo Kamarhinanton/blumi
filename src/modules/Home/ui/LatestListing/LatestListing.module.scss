@@ -87,19 +87,6 @@
       .slider {
         position: relative;
 
-        &::before {
-          position: absolute;
-          top: 0;
-          right: 0;
-          left: 0;
-          z-index: 2;
-          height: 100%;
-          background: linear-gradient(90deg, var(--white) 0%, rgb(255 255 255 / 0%) 10%, rgb(255 255 255 / 0%) 80%, var(--white) 100%);
-          background-size: cover;
-          content: '';
-          pointer-events: none;
-        }
-
         @media (width<=$breakpoint-mob) {
           margin: 0 -16rem;
         }

@@ -79,7 +79,10 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
             </ul>
           </div>
           <div className={styles['latestListing__content_bottom']}>
-            <Swiper {...swiperProps} className={styles['slider']}>
+            <Swiper
+              {...swiperProps}
+              className={classNames(styles['slider'], 'gradient-fade')}
+            >
               {listSlider.map(
                 (slide) =>
                   slide && (

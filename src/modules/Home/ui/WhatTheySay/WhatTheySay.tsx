@@ -50,7 +50,11 @@ const WhatTheySay: FC<WhatTheyType> = ({
       )}
       <Swiper
         {...swiperProps}
-        className={classNames(styles['slider'], 'slider-review')}
+        className={classNames(
+          styles['slider'],
+          'slider-review',
+          'gradient-fade',
+        )}
       >
         {reviews.map(
           (review) =>

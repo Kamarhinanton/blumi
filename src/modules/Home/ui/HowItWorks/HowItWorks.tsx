@@ -60,7 +60,10 @@ const HowItWorks: FC<HowItWorksType> = ({ howItWorksData }) => {
             <Icon />
           </Heading>
           <div className={styles['howItWorks__content_bottom']}>
-            <Swiper {...swiperProps} className={styles['slider']}>
+            <Swiper
+              {...swiperProps}
+              className={classNames(styles['slider'], 'gradient-fade')}
+            >
               {listSlider.map(
                 (slide, index) =>
                   slide && (
