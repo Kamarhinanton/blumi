@@ -35,6 +35,7 @@ const swiperProps: SwiperProps = {
       spaceBetween: 24,
       centeredSlides: true,
       allowTouchMove: false,
+      slidesPerView: 2,
     },
   },
 }

@@ -11,6 +11,7 @@
     &_bottom {
       position: relative;
       margin: 78rem 0 0;
+      padding: 0 100rem;
 
       @media (width<=$breakpoint-mob) {
         margin: 35rem 0 0;
