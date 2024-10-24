@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHeaderData } from '@/components/Header/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
@@ -23,7 +23,7 @@ type HeaderDataProps = {
   headerData: QueryResultHeaderData
 }
 
-const Header: FC<HeaderDataProps> = ({ headerData }) => {
+const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
   const scrolled = usePageScroll()
   const dispatch: AppDispatch = useDispatch()
   const isMenuActive = useSelector(
@@ -90,6 +90,6 @@ const Header: FC<HeaderDataProps> = ({ headerData }) => {
       />
     </>
   )
-}
+})
 
 export default Header

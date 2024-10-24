@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
@@ -11,7 +11,7 @@ type FooterDataProps = {
   footerData: QueryResultFooterData
 }
 
-const Footer: FC<FooterDataProps> = ({ footerData }) => {
+const Footer: FC<FooterDataProps> = memo(({ footerData }) => {
   const footer = footerData?.footer
 
   const { logo, cta, columns, copyright, label } = footer
@@ -63,6 +63,6 @@ const Footer: FC<FooterDataProps> = ({ footerData }) => {
       </Container>
     </footer>
   )
-}
+})
 
 export default Footer
