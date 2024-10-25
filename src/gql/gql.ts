@@ -13,6 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n  fragment DontMissOutFields on ComponentBaseDontMissOut {\n    title {\n      description\n      subText\n      titleWithIcons {\n        text\n        id\n        icon {\n          url\n        }\n      }\n    }\n    buttonText\n  }\n": types.DontMissOutFieldsFragmentDoc,
     "\n  fragment BookBlumiFields on ComponentHomeBookBlumi {\n    title {\n      description\n      subText\n      titleWithIcons {\n        text\n        id\n        icon {\n          url\n        }\n      }\n    }\n    listImages {\n      id\n      title\n      description\n      image {\n        url\n      }\n    }\n  }\n": types.BookBlumiFieldsFragmentDoc,
     "\n  fragment ExploreTreatmentFields on ComponentHomeExploreTreatment {\n    heading {\n      description\n      subText\n      titleWithIcons {\n        id\n        text\n        icon {\n          url\n        }\n      }\n    }\n    listImages {\n      description\n      id\n      title\n      image {\n        url\n      }\n    }\n    buttonText\n  }\n": types.ExploreTreatmentFieldsFragmentDoc,
     "\n  fragment HeroFields on ComponentHomeHero {\n    heading {\n      description\n      subText\n      titleWithIcons {\n        id\n        text\n        icon {\n          url\n        }\n      }\n    }\n    cta {\n      buttonText\n      placeholderText\n    }\n    list {\n      item\n      id\n    }\n    listIcons {\n      id\n      icon {\n        url\n      }\n      text\n    }\n    picture {\n      url\n    }\n  }\n": types.HeroFieldsFragmentDoc,
@@ -36,6 +37,10 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment DontMissOutFields on ComponentBaseDontMissOut {\n    title {\n      description\n      subText\n      titleWithIcons {\n        text\n        id\n        icon {\n          url\n        }\n      }\n    }\n    buttonText\n  }\n"): (typeof documents)["\n  fragment DontMissOutFields on ComponentBaseDontMissOut {\n    title {\n      description\n      subText\n      titleWithIcons {\n        text\n        id\n        icon {\n          url\n        }\n      }\n    }\n    buttonText\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

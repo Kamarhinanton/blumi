@@ -562,6 +562,55 @@ export type ComponentHomeWhatTheySayInput = {
   title?: InputMaybe<ComponentBaseTitleComponentInput>;
 };
 
+export type ComponentSignUpFaq = {
+  __typename?: 'ComponentSignUpFaq';
+  id: Scalars['ID']['output'];
+  list?: Maybe<Array<Maybe<ComponentBaseList>>>;
+  title: ComponentBaseTitleComponent;
+};
+
+
+export type ComponentSignUpFaqListArgs = {
+  filters?: InputMaybe<ComponentBaseListFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentSignUpFaqInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  list?: InputMaybe<Array<InputMaybe<ComponentBaseListInput>>>;
+  title?: InputMaybe<ComponentBaseTitleComponentInput>;
+};
+
+export type ComponentSignUpHero = {
+  __typename?: 'ComponentSignUpHero';
+  id: Scalars['ID']['output'];
+  image: UploadFile;
+  list?: Maybe<Array<Maybe<ComponentHomeListMarked>>>;
+  titleForm: Array<Maybe<ComponentBaseTitleWithIcons>>;
+};
+
+
+export type ComponentSignUpHeroListArgs = {
+  filters?: InputMaybe<ComponentHomeListMarkedFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ComponentSignUpHeroTitleFormArgs = {
+  filters?: InputMaybe<ComponentBaseTitleWithIconsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentSignUpHeroInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Scalars['ID']['input']>;
+  list?: InputMaybe<Array<InputMaybe<ComponentHomeListMarkedInput>>>;
+  titleForm?: InputMaybe<Array<InputMaybe<ComponentBaseTitleWithIconsInput>>>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
@@ -661,7 +710,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = ComponentBaseCta | ComponentBaseDontMissOut | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentBaseCta | ComponentBaseDontMissOut | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | ComponentSignUpFaq | ComponentSignUpHero | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | SignUpModel | SignUpPartner | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -922,6 +971,8 @@ export type Mutation = {
   deleteHome?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
+  deleteSignUpModel?: Maybe<DeleteMutationResponse>;
+  deleteSignUpPartner?: Maybe<DeleteMutationResponse>;
   deleteUploadFile?: Maybe<UploadFile>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
@@ -942,6 +993,8 @@ export type Mutation = {
   updateHome?: Maybe<Home>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
+  updateSignUpModel?: Maybe<SignUpModel>;
+  updateSignUpPartner?: Maybe<SignUpPartner>;
   updateUploadFile: UploadFile;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
@@ -1069,6 +1122,18 @@ export type MutationUpdateReviewWorkflowsWorkflowStageArgs = {
 };
 
 
+export type MutationUpdateSignUpModelArgs = {
+  data: SignUpModelInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateSignUpPartnerArgs = {
+  data: SignUpPartnerInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateUploadFileArgs = {
   id: Scalars['ID']['input'];
   info?: InputMaybe<FileInfoInput>;
@@ -1122,6 +1187,8 @@ export type Query = {
   reviewWorkflowsWorkflowStages_connection?: Maybe<ReviewWorkflowsWorkflowStageEntityResponseCollection>;
   reviewWorkflowsWorkflows: Array<Maybe<ReviewWorkflowsWorkflow>>;
   reviewWorkflowsWorkflows_connection?: Maybe<ReviewWorkflowsWorkflowEntityResponseCollection>;
+  signUpModel?: Maybe<SignUpModel>;
+  signUpPartner?: Maybe<SignUpPartner>;
   uploadFile?: Maybe<UploadFile>;
   uploadFiles: Array<Maybe<UploadFile>>;
   uploadFiles_connection?: Maybe<UploadFileEntityResponseCollection>;
@@ -1216,6 +1283,16 @@ export type QueryReviewWorkflowsWorkflows_ConnectionArgs = {
   filters?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QuerySignUpModelArgs = {
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QuerySignUpPartnerArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1422,6 +1499,58 @@ export type ReviewWorkflowsWorkflowStageInput = {
 export type ReviewWorkflowsWorkflowStageRelationResponseCollection = {
   __typename?: 'ReviewWorkflowsWorkflowStageRelationResponseCollection';
   nodes: Array<ReviewWorkflowsWorkflowStage>;
+};
+
+export type SignUpModel = {
+  __typename?: 'SignUpModel';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  hero: ComponentSignUpHero;
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<SignUpModel>>;
+  localizations_connection?: Maybe<SignUpModelRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type SignUpModelInput = {
+  hero?: InputMaybe<ComponentSignUpHeroInput>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SignUpModelRelationResponseCollection = {
+  __typename?: 'SignUpModelRelationResponseCollection';
+  nodes: Array<SignUpModel>;
+};
+
+export type SignUpPartner = {
+  __typename?: 'SignUpPartner';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  faq?: Maybe<ComponentSignUpFaq>;
+  hero: ComponentSignUpHero;
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<SignUpPartner>>;
+  localizations_connection?: Maybe<SignUpPartnerRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type SignUpPartnerInput = {
+  faq?: InputMaybe<ComponentSignUpFaqInput>;
+  hero?: InputMaybe<ComponentSignUpHeroInput>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SignUpPartnerRelationResponseCollection = {
+  __typename?: 'SignUpPartnerRelationResponseCollection';
+  nodes: Array<SignUpPartner>;
 };
 
 export type StringFilterInput = {
@@ -1809,6 +1938,8 @@ export type UsersPermissionsUserRelationResponseCollection = {
   nodes: Array<UsersPermissionsUser>;
 };
 
+export type DontMissOutFieldsFragment = { __typename?: 'ComponentBaseDontMissOut', buttonText: string, title: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', text?: string | null, id: string, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null } } & { ' $fragmentName'?: 'DontMissOutFieldsFragment' };
+
 export type BookBlumiFieldsFragment = { __typename?: 'ComponentHomeBookBlumi', title: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', text?: string | null, id: string, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null }, listImages?: Array<{ __typename?: 'ComponentHomeListImages', id: string, title: string, description: string, image: { __typename?: 'UploadFile', url: string } } | null> | null } & { ' $fragmentName'?: 'BookBlumiFieldsFragment' };
 
 export type ExploreTreatmentFieldsFragment = { __typename?: 'ComponentHomeExploreTreatment', buttonText?: string | null, heading: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', id: string, text?: string | null, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null }, listImages?: Array<{ __typename?: 'ComponentHomeListImages', description: string, id: string, title: string, image: { __typename?: 'UploadFile', url: string } } | null> | null } & { ' $fragmentName'?: 'ExploreTreatmentFieldsFragment' };
@@ -1823,6 +1954,7 @@ export type ThingsWonderingFieldsFragment = { __typename?: 'ComponentHomeThingsW
 
 export type WhatTheySayFieldsFragment = { __typename?: 'ComponentHomeWhatTheySay', id: string, title?: { __typename?: 'ComponentBaseTitleComponent', description?: string | null, subText?: string | null, titleWithIcons?: Array<{ __typename?: 'ComponentBaseTitleWithIcons', id: string, text?: string | null, icon?: { __typename?: 'UploadFile', url: string } | null } | null> | null } | null, reviews: Array<{ __typename?: 'ComponentHomeListSliderReviews', id: string, title: string, description: string, authorName?: string | null, images: Array<{ __typename?: 'UploadFile', url: string } | null>, icon: { __typename?: 'UploadFile', url: string }, images_connection: { __typename?: 'UploadFileRelationResponseCollection', nodes: Array<{ __typename?: 'UploadFile', url: string, documentId: string }> }, author?: { __typename?: 'UploadFile', url: string } | null } | null> } & { ' $fragmentName'?: 'WhatTheySayFieldsFragment' };
 
+export const DontMissOutFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DontMissOutFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentBaseDontMissOut"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"buttonText"}}]}}]} as unknown as DocumentNode<DontMissOutFieldsFragment, unknown>;
 export const BookBlumiFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BookBlumiFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeBookBlumi"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"listImages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]} as unknown as DocumentNode<BookBlumiFieldsFragment, unknown>;
 export const ExploreTreatmentFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ExploreTreatmentFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeExploreTreatment"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"listImages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"buttonText"}}]}}]} as unknown as DocumentNode<ExploreTreatmentFieldsFragment, unknown>;
 export const HeroFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentHomeHero"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"subText"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"buttonText"}},{"kind":"Field","name":{"kind":"Name","value":"placeholderText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"list"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"item"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"listIcons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"picture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]} as unknown as DocumentNode<HeroFieldsFragment, unknown>;

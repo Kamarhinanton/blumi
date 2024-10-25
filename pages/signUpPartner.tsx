@@ -1,30 +1,30 @@
 import React from 'react'
-import { SignUpCustomerContent } from '@/modules/SignUpCustomer'
 import createApolloClient from '@/utils/api/apolloClient'
-import { QueryResultSignUpCustomerData } from '@/modules/SignUpCustomer/utils/types'
-import { SignUpCustomerData } from '@/modules/SignUpCustomer/utils/apolloQueries'
 import Head from 'next/head'
 import { QueryResultHeaderData } from '@/components/Header/utils/types'
 import { HeaderData } from '@/components/Header/utils/apolloQueries'
 import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { FooterData } from '@/components/Footer/utils/apolloQueries'
+import SignUpPartnerContent from '@/modules/SignUpPartner/ui/SignUpPartnerContent'
+import { QueryResultSignUpPartnerData } from '@/modules/SignUpPartner/utils/types'
+import { SignUpPartnerData } from '@/modules/SignUpPartner/utils/apolloQueries'
 
-export type SignUpCustomerType = {
-  signUpCustomerData: QueryResultSignUpCustomerData
+export type SignUpPartnerType = {
+  signUpPartnerData: QueryResultSignUpPartnerData
 }
 
-const SignUpCustomer = ({ signUpCustomerData }: SignUpCustomerType) => {
+const SignUpPartner = ({ signUpPartnerData }: SignUpPartnerType) => {
   return (
     <>
       <Head>
         <title>Sign up</title>
       </Head>
-      <SignUpCustomerContent signUpCustomerData={signUpCustomerData} />
+      <SignUpPartnerContent signUpPartnerData={signUpPartnerData} />
     </>
   )
 }
 
-export default SignUpCustomer
+export default SignUpPartner
 
 export const getStaticProps = async () => {
   try {
@@ -35,12 +35,13 @@ export const getStaticProps = async () => {
     const { data: footerData } = await client.query<QueryResultFooterData>({
       query: FooterData,
     })
-    const { data: signUpCustomerData } =
-      await client.query<QueryResultSignUpCustomerData>({
-        query: SignUpCustomerData,
+    const { data: signUpPartnerData } =
+      await client.query<QueryResultSignUpPartnerData>({
+        query: SignUpPartnerData,
       })
+
     return {
-      props: { signUpCustomerData, headerData, footerData },
+      props: { signUpPartnerData, headerData, footerData },
       revalidate: 10,
     }
   } catch (error) {
