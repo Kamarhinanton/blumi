@@ -11,6 +11,7 @@ type AccordionType = {
   setExpanded: React.Dispatch<React.SetStateAction<string | false>>
   description?: string | TrustedHTML
   title?: string
+  className?: string
 }
 
 const Accordion: FC<AccordionType> = ({
@@ -19,11 +20,12 @@ const Accordion: FC<AccordionType> = ({
   setExpanded,
   title,
   description,
+  className,
 }) => {
   const isOpen = i === expanded
 
   return (
-    <li className={styles['item']}>
+    <li className={classNames(styles['item'], className)}>
       <h4
         className={classNames(styles['item__title'], {
           [styles['active']]: isOpen,

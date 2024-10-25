@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { SignUpPartnerType } from '../../../../pages/signUpPartner'
+import FAQ from '@/modules/SignUpPartner/ui/FAQ/FAQ'
 
 const SignUpPartnerContent = ({ signUpPartnerData }: SignUpPartnerType) => {
-  useEffect(() => {
-    console.log('partner', signUpPartnerData)
-  }, [])
-  return (
-    <main>
-      <h1>hello</h1>
-    </main>
-  )
+  const { faq } = signUpPartnerData.signUpPartner
+  return <main>{faq && <FAQ faqData={faq} />}</main>
 }
 
 export default SignUpPartnerContent

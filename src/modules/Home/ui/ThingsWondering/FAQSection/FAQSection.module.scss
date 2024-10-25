@@ -1,6 +1,29 @@
+@import '@/app/styles/variables/breakpoints';
+
 .list {
   display: flex;
   flex-direction: column;
   border-top: 1rem solid var(--grey-primary);
+
+  &.split {
+    flex-direction: initial;
+    flex-wrap: wrap;
+
+    @media (width<=$breakpoint-mob) {
+      flex-flow: column nowrap;
+    }
+
+    .list {
+      &__item {
+        flex: 0 0 50%;
+        align-self: flex-start;
+
+        @media (width<=$breakpoint-mob) {
+          flex: initial;
+          align-self: initial;
+        }
+      }
+    }
+  }
 }
 

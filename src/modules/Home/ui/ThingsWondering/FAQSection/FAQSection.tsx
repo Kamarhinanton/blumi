@@ -8,13 +8,17 @@ import styles from './FAQSection.module.scss'
 type FAQSectionType = {
   data: Array<Maybe<ComponentBaseList>>
   className?: string
+  split?: boolean
 }
 
-const FAQSection: FC<FAQSectionType> = ({ data, className }) => {
+const FAQSection: FC<FAQSectionType> = ({ data, className, split }) => {
+  const mods = {
+    [styles['split']]: split,
+  }
   const [expanded, setExpanded] = useState<false | string>('')
 
   return (
-    <ul className={classNames(className, styles['list'])}>
+    <ul className={classNames(className, styles['list'], mods)}>
       {data.map(
         (item) =>
           item && (
@@ -25,6 +29,7 @@ const FAQSection: FC<FAQSectionType> = ({ data, className }) => {
               title={item.link}
               expanded={expanded}
               setExpanded={setExpanded}
+              className={styles['list__item']}
             />
           ),
       )}

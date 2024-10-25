@@ -1,0 +1,17 @@
+@import '@/app/styles/variables/breakpoints';
+
+.faq {
+  margin: 100rem 0;
+
+  @media (width<=$breakpoint-mob) {
+    margin: 40rem 0;
+  }
+
+  &__accordion {
+    margin: 40rem 0 0;
+
+    @media (width<=$breakpoint-mob) {
+      margin: 32rem 0 0;
+    }
+  }
+}
