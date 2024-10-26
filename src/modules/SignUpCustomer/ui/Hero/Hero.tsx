@@ -1,8 +1,10 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import Container from '@/app/layouts/layouts/Container'
 import { QueryResultHeroSignUpCustomerData } from '@/modules/SignUpCustomer/ui/Hero/utils/types'
-
-// import Icon from '../../../../../public/icons/bulb.svg'
+import classNames from 'classnames'
+import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
+import Heading from '@/components/Heading/Heading'
+import { cleanedTitleWithIcons } from '@/utils/global'
 
 import styles from './Hero.module.scss'
 
@@ -11,16 +13,58 @@ type HeroContentType = {
 }
 
 const Hero: FC<HeroContentType> = ({ heroData }) => {
-  useEffect(() => {
-    console.log('customer', heroData)
-  }, [])
+  const { image, list, titleForm } = heroData
+  const cleanedDataSmallTitle = cleanedTitleWithIcons(titleForm || [])
 
   return (
     <section className={styles['hero']}>
       <Container size={'small'}>
         <div className={styles['hero__content']}>
-          <div className={styles['hero__content_smallColumn']}></div>
-          <div className={styles['hero__content_largeColumn']}></div>
+          <div
+            className={classNames(
+              styles['hero__content_formColumn'],
+              styles['column'],
+            )}
+          >
+            <div className={styles['form']}>
+              <Heading
+                titleIcon={cleanedDataSmallTitle}
+                tag={'h4'}
+                titleSize={'h4 variant'}
+                className={styles['form__title']}
+                centred
+              />
+            </div>
+          </div>
+          <div
+            className={classNames(
+              styles['hero__content_imageColumn'],
+              styles['column'],
+            )}
+          >
+            <div className={styles['blockImage']}>
+              <BackgroundImage
+                className={styles['blockImage__image']}
+                src={image.url}
+                alt={'picture'}
+              />
+              <ul className={styles['list']}>
+                {list?.map(
+                  (link) =>
+                    link && (
+                      <li className={styles['list__link']} key={link.id}>
+                        <BackgroundImage
+                          src={link.icon.url}
+                          alt={'icon'}
+                          className={styles['list__link_icon']}
+                        />
+                        {link.text}
+                      </li>
+                    ),
+                )}
+              </ul>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

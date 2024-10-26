@@ -6,8 +6,11 @@ export const SignUpPartnersFragment = gql`
       url
     }
     list {
+      text
       id
-      item
+      icon {
+        url
+      }
     }
     titleForm {
       icon {

@@ -164,7 +164,7 @@ type ComponentSignUpFaq {
 type ComponentSignUpHero {
     id: ID!
     image: UploadFile!
-    list(filters: ComponentHomeListMarkedFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListMarked]
+    list(filters: ComponentHomeListIconsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListIcons]
     titleForm(filters: ComponentBaseTitleWithIconsFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseTitleWithIcons]!
 }
 
@@ -855,7 +855,7 @@ input ComponentSignUpFaqInput {
 input ComponentSignUpHeroInput {
     id: ID
     image: ID
-    list: [ComponentHomeListMarkedInput]
+    list: [ComponentHomeListIconsInput]
     titleForm: [ComponentBaseTitleWithIconsInput]
 }
 
