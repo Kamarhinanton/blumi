@@ -122,7 +122,7 @@
           max-width: 100%;
           padding: 0 12rem;
           overflow: auto;
-          transform: initial;
+          transform: translateX(0);
           -ms-overflow-style: none;
           scrollbar-width: none;
 
@@ -136,7 +136,7 @@
         }
 
         &__link {
-          $border: 1rem;
+          $border: 1px;
 
           position: relative;
           margin: 0 29rem 0 0;

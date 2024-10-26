@@ -5,8 +5,10 @@ import classNames from 'classnames'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
+import useWindowDimensions from '@/hooks/useWindowDimensions'
 
 import styles from './Hero.module.scss'
+import { breakpointMob } from '@/utils/variables'
 
 type HeroContentType = {
   heroData: QueryResultHeroSignUpCustomerData['hero']
@@ -15,10 +17,11 @@ type HeroContentType = {
 const Hero: FC<HeroContentType> = ({ heroData }) => {
   const { image, list, titleForm } = heroData
   const cleanedDataSmallTitle = cleanedTitleWithIcons(titleForm || [])
+  const { width } = useWindowDimensions()
 
   return (
     <section className={styles['hero']}>
-      <Container size={'small'}>
+      <Container size={'small'} className={styles['container']}>
         <div className={styles['hero__content']}>
           <div
             className={classNames(
@@ -30,7 +33,7 @@ const Hero: FC<HeroContentType> = ({ heroData }) => {
               <Heading
                 titleIcon={cleanedDataSmallTitle}
                 tag={'h4'}
-                titleSize={'h4 variant'}
+                titleSize={width <= breakpointMob ? 'h5' : 'h4 variant'}
                 className={styles['form__title']}
                 centred
               />

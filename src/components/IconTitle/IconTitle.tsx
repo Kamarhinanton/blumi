@@ -8,8 +8,8 @@ import styles from './iconTitle.module.scss'
 type IconTitleType = {
   list: ComponentBaseTitleWithIcons[]
   className?: string
-  tag?: 'h1' | 'h2' | 'h3' | 'h4'
-  titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant'
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+  titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant' | 'h5'
 }
 
 const IconTitle: FC<IconTitleType> = ({

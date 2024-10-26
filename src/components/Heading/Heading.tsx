@@ -14,8 +14,8 @@ type HeadingType = {
   centred?: boolean
   className?: string
   small?: boolean
-  tag?: 'h1' | 'h2' | 'h3' | 'h4'
-  titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant'
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+  titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant' | 'h5'
 }
 
 const Heading: FC<HeadingType> = ({
