@@ -1,5 +1,4 @@
-// import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
-import React, { ForwardedRef, forwardRef, useState } from 'react'
+import React, { ChangeEvent, ForwardedRef, forwardRef, useState } from 'react'
 import classNames from 'classnames'
 import ErrorIcon from '../../../public/icons/danger.svg'
 import EyeIcon from '../../../public/icons/eye.svg'
@@ -13,7 +12,7 @@ type TextFieldType = {
   value?: string
   error?: string
   name: string
-  // onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   placeholder?: string
   className?: string
   password?: boolean
@@ -30,16 +29,16 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
       value,
       placeholder,
       password,
-      // onChange,
+      onChange,
       className,
     }: TextFieldType,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    // const handleChange = (
-    //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    // ) => {
-    //   onChange && onChange(e)
-    // }
+    const handleChange = (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      onChange?.(e)
+    }
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -64,7 +63,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
             value={value}
             name={name}
             placeholder={placeholder}
-            // onChange={handleChange}
+            onChange={handleChange}
           />
         ) : (
           <input
@@ -74,7 +73,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
             type={password ? (showPassword ? 'text' : 'password') : type}
             ref={ref}
             value={value}
-            // onChange={handleChange}
+            onChange={handleChange}
           />
         )}
 

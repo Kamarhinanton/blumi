@@ -3,37 +3,105 @@ import TextField from '@/ui/TextField/TextField'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import Link from 'next/link'
 import routes from '@/utils/routes'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Controller, Resolver, useForm } from 'react-hook-form'
+import { validationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
 
 import styles from './BodyForm.module.scss'
 
+const defaultValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+}
+
+type FormData = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
+
 const BodyForm = () => {
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm<FormData>({
+    values: defaultValues,
+    resolver: yupResolver(validationSchema) as Resolver<FormData>,
+  })
+
+  const onSubmit = async (data: FormData) => {
+    console.log(data)
+    reset(defaultValues)
+  }
+
   return (
-    <form className={styles['form']} onSubmit={() => console.log('hello')}>
+    <form className={styles['form']} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles['form__input-wrapper']}>
-        <TextField
-          className={styles['form__input-wrapper_input']}
-          name={'First name'}
-          placeholder={'First name'}
-          label={'Make sure it matches your government ID.'}
+        <Controller
+          control={control}
+          name={'firstName'}
+          render={({ field }) => {
+            return (
+              <TextField
+                {...field}
+                className={styles['form__input-wrapper_input']}
+                placeholder={'First name'}
+                label={'Make sure it matches your government ID.'}
+                error={errors['firstName']?.message}
+              />
+            )
+          }}
         />
-        <TextField
-          className={styles['form__input-wrapper_input']}
-          name={'Last name'}
-          placeholder={'Last name'}
+        <Controller
+          control={control}
+          name={'lastName'}
+          render={({ field }) => {
+            return (
+              <TextField
+                {...field}
+                className={styles['form__input-wrapper_input']}
+                placeholder={'Last name'}
+                error={errors['lastName']?.message}
+              />
+            )
+          }}
         />
-        <TextField
-          className={styles['form__input-wrapper_input']}
-          name={'Email'}
-          placeholder={'Email'}
-          type={'email'}
-          label={'We’ll email you confirmation and receipts.'}
+        <Controller
+          control={control}
+          name={'email'}
+          render={({ field }) => {
+            return (
+              <TextField
+                {...field}
+                className={styles['form__input-wrapper_input']}
+                placeholder={'Email'}
+                type={'email'}
+                label={'We’ll email you confirmation and receipts.'}
+                error={errors['email']?.message}
+              />
+            )
+          }}
         />
-        <TextField
-          className={styles['form__input-wrapper_input']}
-          name={'Password'}
-          placeholder={'Password'}
-          type={'password'}
-          password
+        <Controller
+          control={control}
+          name={'password'}
+          render={({ field }) => {
+            return (
+              <TextField
+                {...field}
+                className={styles['form__input-wrapper_input']}
+                placeholder={'Password'}
+                type={'password'}
+                password
+                error={errors['password']?.message}
+              />
+            )
+          }}
         />
       </div>
       <p className={styles['form__bottom-subtext']}>
@@ -55,7 +123,11 @@ const BodyForm = () => {
         </Link>
         .
       </p>
-      <ButtonSecondary className={styles['form__button']} variant={'pink'}>
+      <ButtonSecondary
+        type="submit"
+        className={styles['form__button']}
+        variant={'pink'}
+      >
         Agree and Continue
       </ButtonSecondary>
       <p className={styles['form__bottom-text']}>
