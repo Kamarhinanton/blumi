@@ -25,12 +25,15 @@ const BodyForm = () => {
           className={styles['form__input-wrapper_input']}
           name={'Email'}
           placeholder={'Email'}
+          type={'email'}
           label={'We’ll email you confirmation and receipts.'}
         />
         <TextField
           className={styles['form__input-wrapper_input']}
           name={'Password'}
           placeholder={'Password'}
+          type={'password'}
+          password
         />
       </div>
       <p className={styles['form__bottom-subtext']}>

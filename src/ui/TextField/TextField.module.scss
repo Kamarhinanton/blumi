@@ -22,14 +22,14 @@
 
   &__input {
     width: 100%;
-    padding: 20rem 32rem;
+    padding: 20rem 40rem 20rem 32rem;
     color: var(--primary-text);
     font: var(--font-s);
     border: 1rem solid var(--grey-primary);
     border-radius: 18rem;
 
     @media (width<=$breakpoint-mob) {
-      padding: 18rem 12rem;
+      padding: 18rem 40rem 18rem 12rem;
       font-size: 16rem;
       line-height: 150%;
       border-radius: 12rem;
@@ -41,6 +41,19 @@
 
     &:focus {
       border: 1rem solid var(--pink-primary);
+    }
+  }
+
+  &__passwordIcon{
+    position: absolute;
+    top: 25rem;
+    right: 20rem;
+    width: 20rem;
+    height: 20rem;
+    cursor: pointer;
+
+    @media (width<=$breakpoint-mob) {
+      top: 23rem;
     }
   }
 

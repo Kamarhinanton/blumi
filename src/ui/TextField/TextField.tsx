@@ -1,12 +1,13 @@
 // import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
-import React, { ForwardedRef, forwardRef } from 'react'
+import React, { ForwardedRef, forwardRef, useState } from 'react'
 import classNames from 'classnames'
 import ErrorIcon from '../../../public/icons/danger.svg'
+import EyeIcon from '../../../public/icons/eye.svg'
 
 import styles from './TextField.module.scss'
 
 type TextFieldType = {
-  type?: 'text' | 'email'
+  type?: 'text' | 'email' | 'password'
   element?: 'input' | 'textarea'
   label?: string
   value?: string
@@ -15,6 +16,7 @@ type TextFieldType = {
   // onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   placeholder?: string
   className?: string
+  password?: boolean
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldType>(
@@ -27,6 +29,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
       name,
       value,
       placeholder,
+      password,
       // onChange,
       className,
     }: TextFieldType,
@@ -37,6 +40,12 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
     // ) => {
     //   onChange && onChange(e)
     // }
+
+    const [showPassword, setShowPassword] = useState(false)
+
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword)
+    }
 
     return (
       <label
@@ -62,7 +71,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
             className={styles['text-field__input']}
             placeholder={placeholder}
             name={name}
-            type={type}
+            type={password ? (showPassword ? 'text' : 'password') : type}
             ref={ref}
             value={value}
             // onChange={handleChange}
@@ -74,6 +83,13 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
             <ErrorIcon />
             {error ? error : label}
           </p>
+        )}
+
+        {password && (
+          <EyeIcon
+            onClick={togglePasswordVisibility}
+            className={styles['text-field__passwordIcon']}
+          />
         )}
       </label>
     )
