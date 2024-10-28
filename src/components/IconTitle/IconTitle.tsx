@@ -5,15 +5,15 @@ import { ComponentBaseTitleWithIcons } from '@/gql/graphql'
 
 import styles from './iconTitle.module.scss'
 
-type IconTitleType = {
-  list: ComponentBaseTitleWithIcons[]
+export type IconTitleType = {
+  titleIcon: ComponentBaseTitleWithIcons[]
   className?: string
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
   titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant' | 'h5'
 }
 
 const IconTitle: FC<IconTitleType> = ({
-  list,
+  titleIcon,
   className,
   tag = 'h1',
   titleSize = 'h1',
@@ -21,7 +21,7 @@ const IconTitle: FC<IconTitleType> = ({
   const Tag = tag
   return (
     <Tag className={classNames(`${titleSize}`, styles['title'], className)}>
-      {list.map((item) => (
+      {titleIcon.map((item) => (
         <React.Fragment key={item.id}>
           {item.text}
           {item.icon?.url && (

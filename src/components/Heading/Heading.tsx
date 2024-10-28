@@ -1,21 +1,16 @@
 import React, { FC, ReactNode } from 'react'
 import IconDescription from '@/components/IconDescription/IconDescription'
 import classNames from 'classnames'
-import IconTitle from '@/components/IconTitle/IconTitle'
-import { ComponentBaseTitleWithIcons } from '@/gql/graphql'
+import IconTitle, { IconTitleType } from '@/components/IconTitle/IconTitle'
 
 import styles from './Heading.module.scss'
 
-type HeadingType = {
+type HeadingType = IconTitleType & {
   description?: string
-  titleIcon?: ComponentBaseTitleWithIcons[]
   subText?: string
   children?: ReactNode
   centred?: boolean
-  className?: string
   small?: boolean
-  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
-  titleSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h4 variant' | 'h5'
 }
 
 const Heading: FC<HeadingType> = ({
@@ -42,7 +37,7 @@ const Heading: FC<HeadingType> = ({
         <IconTitle
           tag={tag}
           className={styles['heading__title']}
-          list={titleIcon}
+          titleIcon={titleIcon}
           titleSize={titleSize}
         />
       )}
