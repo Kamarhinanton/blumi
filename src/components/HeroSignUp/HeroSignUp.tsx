@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import Container from '@/app/layouts/layouts/Container'
-import { QueryResultHeroSignUpCustomerData } from '@/components/HeroSignUp/utils/types'
 import classNames from 'classnames'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
+import { QueryResultHeroSignUpCustomerData } from '@/modules/SignUpCustomer/ui/HeroSignUp/utils/types'
 
 import styles from './HeroSignUp.module.scss'
 
