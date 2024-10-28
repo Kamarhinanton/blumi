@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import usePageScroll from '@/hooks/usePageScroll'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import dynamic from 'next/dynamic'
+import useRouteChange from '@/hooks/useRoutChange'
 
 const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
   ssr: false,
@@ -32,6 +33,8 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
   const toggleMenu = () => {
     dispatch(setIsMenuActive(!isMenuActive))
   }
+
+  useRouteChange()
 
   const mods = {
     [styles['scrolled']]: scrolled,
