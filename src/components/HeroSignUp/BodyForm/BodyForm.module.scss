@@ -1,0 +1,66 @@
+@import '@/app/styles/variables/breakpoints';
+
+.form {
+  &__input-wrapper {
+    display: grid;
+    grid-gap: 12rem 7rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    &_input {
+      &:nth-child(-n + 2) {
+        grid-column: span 1;
+
+        @media (width<=$breakpoint-mob) {
+          grid-column: 1 / -1;
+        }
+      }
+
+      &:nth-child(n + 3) {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  &__button {
+    width: 100%;
+    margin: 32rem 0 0;
+
+    @media (width<=$breakpoint-mob) {
+      margin: 12rem 0 0;
+    }
+  }
+
+  &__bottom-subtext {
+    margin: 12rem 0 0;
+    color: var(--grey-secondary);
+    font-size: 12rem;
+
+    @media (width<=$breakpoint-mob) {
+      margin: 0;
+      font-size: 10rem;
+    }
+
+    strong {
+      color: var(--primary-text);
+      font-weight: 700;
+      font-size: 12rem;
+      font-style: italic;
+
+      @media (width<=$breakpoint-mob) {
+        font-weight: 400;
+        font-size: 10rem;
+        font-style: initial;
+      }
+    }
+  }
+
+  &__bottom-text {
+    margin: 12rem 0 0;
+    font-size: 12rem;
+    text-align: center;
+
+    @media (width<=$breakpoint-mob) {
+      font-size: 14rem;
+    }
+  }
+}

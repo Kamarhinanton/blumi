@@ -81,3 +81,16 @@ main {
     pointer-events: none;
   }
 }
+
+.border-link{
+  color: var(--pink-primary);
+  font-weight: 700;
+  font-style: italic;
+  border-bottom: 1rem solid var(--pink-primary);
+
+  @media (width<=$breakpoint-mob) {
+    font-weight: 400;
+    font-style: initial;
+    border-bottom: initial;
+  }
+}

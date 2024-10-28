@@ -1,0 +1,27 @@
+@import '@/app/styles/variables/breakpoints';
+
+.text-field {
+  position: relative;
+  display: flex;
+
+  &__input {
+    width: 100%;
+    padding: 20rem 32rem;
+    color: var(--primary-text);
+    font: var(--font-s);
+    background-color: var(--pink-secondary);
+    border: 1rem solid var(--pink-light);
+    border-radius: 18rem;
+
+    @media (width<=$breakpoint-mob) {
+      padding: 12rem 32rem;
+      font-size: 16rem;
+      line-height: 150%;
+      border-radius: 12rem;
+    }
+
+    &::placeholder{
+      color: var(--secondary-text);
+    }
+  }
+}

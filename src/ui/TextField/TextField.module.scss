@@ -3,25 +3,69 @@
 .text-field {
   position: relative;
   display: flex;
+  flex-direction: column;
+  padding: 0 0 23rem;
+
+  &.__error {
+    .text-field {
+      &__input {
+        border: 1px solid var(--red);
+      }
+
+      &__label {
+        svg {
+          color: var(--red);
+        }
+      }
+    }
+  }
 
   &__input {
     width: 100%;
     padding: 20rem 32rem;
     color: var(--primary-text);
     font: var(--font-s);
-    background-color: var(--pink-secondary);
-    border: 1rem solid var(--pink-light);
+    border: 1rem solid var(--grey-primary);
     border-radius: 18rem;
 
     @media (width<=$breakpoint-mob) {
-      padding: 12rem 32rem;
+      padding: 18rem 12rem;
       font-size: 16rem;
       line-height: 150%;
       border-radius: 12rem;
     }
 
-    &::placeholder{
-      color: var(--secondary-text);
+    &::placeholder {
+      color: var(--grey-secondary);
+    }
+
+    &:focus {
+      border: 1rem solid var(--pink-primary);
+    }
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: var(--grey-secondary);
+    font-size: 12rem;
+    line-height: 100%;
+
+    @media (width<=$breakpoint-mob) {
+      font-size: 10rem;
+    }
+
+    svg {
+      width: 16rem;
+      height: 16rem;
+      margin: 0 4rem 0 0;
+      color: var(--primary-text);
+      vertical-align: -2rem;
+
+      @media (width<=$breakpoint-mob) {
+        vertical-align: -4rem;
+      }
     }
   }
 }

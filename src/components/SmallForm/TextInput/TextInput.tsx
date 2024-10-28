@@ -1,9 +1,9 @@
 // import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
 import React, { ForwardedRef, forwardRef } from 'react'
 import classNames from 'classnames'
-import ErrorIcon from '../../../public/icons/danger.svg'
+// import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
 
-import styles from './TextField.module.scss'
+import styles from './TextInput.module.scss'
 
 type TextFieldType = {
   type?: 'text' | 'email'
@@ -17,7 +17,7 @@ type TextFieldType = {
   className?: string
 }
 
-const TextField = forwardRef<HTMLInputElement, TextFieldType>(
+const TextInput = forwardRef<HTMLInputElement, TextFieldType>(
   (
     {
       type = 'text',
@@ -69,15 +69,11 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
           />
         )}
 
-        {(label || error) && (
-          <p className={styles['text-field__label']}>
-            <ErrorIcon />
-            {error ? error : label}
-          </p>
-        )}
+        {label && <p className={styles['text-field__label']}>{label}</p>}
+        {/*{error && <ErrorMessage error={error} />}*/}
       </label>
     )
   },
 )
 
-export default TextField
+export default TextInput

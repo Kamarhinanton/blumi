@@ -2,16 +2,36 @@
 
 .buttonSecondary {
   padding: 20rem 24rem;
-  border: 1rem solid var(--pink-primary);
+  font: var(--font-s);
   border-radius: 16rem;
   transition: var(--duration-hover) var(--ease) var(--hover-delay);
 
-  @media (width>$breakpoint-mob) {
-    &:hover {
-      color: var(--white);
-      background-color: var(--pink-primary);
+  &.transparent {
+    color: var(--primary-text);
+    background-color: transparent;
+    border: 1rem solid var(--pink-primary);
+
+    @media (width>$breakpoint-mob) {
+      &:hover {
+        color: var(--white);
+        background-color: var(--pink-primary);
+      }
     }
   }
+
+  &.pink {
+    color: var(--white);
+    background-color: var(--pink-primary);
+    border: 1rem solid var(--pink-primary);
+
+    @media (width>$breakpoint-mob) {
+      &:hover {
+        color: var(--primary-text);
+        background-color: var(--white);
+      }
+    }
+  }
+
 
   @media (width<=$breakpoint-mob) {
     padding: 12rem 24rem;

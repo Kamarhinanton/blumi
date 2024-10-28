@@ -7,6 +7,7 @@ import { cleanedTitleWithIcons } from '@/utils/global'
 import { QueryResultHeroSignUpCustomerData } from '@/modules/SignUpCustomer/ui/HeroSignUp/utils/types'
 
 import styles from './HeroSignUp.module.scss'
+import BodyForm from '@/components/HeroSignUp/BodyForm/BodyForm'
 
 type HeroContentType = {
   heroData: QueryResultHeroSignUpCustomerData['hero']
@@ -34,6 +35,7 @@ const HeroSignUp: FC<HeroContentType> = ({ heroData }) => {
                 className={styles['form__title']}
                 centred
               />
+              <BodyForm />
             </div>
           </div>
           <div
