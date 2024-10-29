@@ -70,7 +70,7 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
               Browse treatments
             </ButtonSecondary>
             <ButtonPrimary
-              toggleBurger={toggleMenu}
+              callback={toggleMenu}
               activeBurger={isMenuActive}
               icon={'burger'}
               className={styles['button']}

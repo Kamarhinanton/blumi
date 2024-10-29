@@ -15,7 +15,7 @@ type ButtonPrimaryProps = {
   target?: string
   icon?: 'arrow' | 'burger'
   activeBurger?: boolean
-  toggleBurger?: () => void
+  callback?: () => void
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -30,7 +30,7 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
   target,
   icon = 'arrow',
   activeBurger,
-  toggleBurger,
+  callback,
   ...buttonProps
 }) => {
   const mods = {
@@ -45,7 +45,7 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
         <button
           className={classNames(styles['buttonPrimary'], className, mods)}
           {...buttonProps}
-          onClick={toggleBurger}
+          onClick={callback}
         >
           {children}
           {icon === 'arrow' && <div className={styles['icon-wrapper']} />}

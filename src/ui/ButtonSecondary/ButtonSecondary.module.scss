@@ -32,6 +32,11 @@
     }
   }
 
+  &.__loading{
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
 
   @media (width<=$breakpoint-mob) {
     padding: 12rem 24rem;
