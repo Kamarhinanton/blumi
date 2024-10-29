@@ -8,7 +8,7 @@ const SignUpPartnerContent = ({ signUpPartnerData }: SignUpPartnerType) => {
 
   return (
     <main>
-      {hero && <HeroSignUp heroData={hero} />}
+      {hero && <HeroSignUp userType="service-provider" heroData={hero} />}
       {faq && <FAQ faqData={faq} />}
     </main>
   )

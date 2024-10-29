@@ -5,15 +5,16 @@ import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
 import { QueryResultHeroSignUpCustomerData } from '@/modules/SignUpCustomer/ui/HeroSignUp/utils/types'
+import BodyForm from '@/components/HeroSignUp/BodyForm/BodyForm'
 
 import styles from './HeroSignUp.module.scss'
-import BodyForm from '@/components/HeroSignUp/BodyForm/BodyForm'
 
 type HeroContentType = {
   heroData: QueryResultHeroSignUpCustomerData['hero']
+  userType: 'service-provider' | 'customer'
 }
 
-const HeroSignUp: FC<HeroContentType> = ({ heroData }) => {
+const HeroSignUp: FC<HeroContentType> = ({ heroData, userType }) => {
   const { image, list, titleForm } = heroData
   const cleanedDataSmallTitle = cleanedTitleWithIcons(titleForm || [])
 
@@ -35,7 +36,7 @@ const HeroSignUp: FC<HeroContentType> = ({ heroData }) => {
                 className={styles['form__title']}
                 centred
               />
-              <BodyForm />
+              <BodyForm userType={userType} />
             </div>
           </div>
           <div

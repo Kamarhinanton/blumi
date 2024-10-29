@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import TextField from '@/ui/TextField/TextField'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import Link from 'next/link'
@@ -6,6 +6,7 @@ import routes from '@/utils/routes'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, Resolver, useForm } from 'react-hook-form'
 import { validationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
+import sdk from '@/utils/api/createInstanceSharetribe'
 
 import styles from './BodyForm.module.scss'
 
@@ -16,6 +17,10 @@ const defaultValues = {
   password: '',
 }
 
+type BodyFormType = {
+  userType: string
+}
+
 type FormData = {
   firstName: string
   lastName: string
@@ -23,7 +28,7 @@ type FormData = {
   password: string
 }
 
-const BodyForm = () => {
+const BodyForm: FC<BodyFormType> = ({ userType }) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -35,7 +40,21 @@ const BodyForm = () => {
   })
 
   const onSubmit = async (data: FormData) => {
-    console.log(data)
+    const { firstName, lastName, email, password } = data
+
+    try {
+      const response = await sdk.currentUser.create({
+        email,
+        password,
+        firstName,
+        lastName,
+        publicData: { userType: userType },
+      })
+      console.log('The user has been created successfully:', response.data)
+    } catch (error) {
+      console.error('Error creating a user:', error)
+    }
+
     reset(defaultValues)
   }
 

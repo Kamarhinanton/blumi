@@ -11,7 +11,7 @@ const SignUpCustomerContent = ({ signUpCustomerData }: SignUpCustomerType) => {
 
   return (
     <main>
-      {hero && <HeroSignUp heroData={hero} />}
+      {hero && <HeroSignUp userType="customer" heroData={hero} />}
       {howItWorks && <HowItWorks howItWorksData={howItWorks} />}
       {whatTheySay && (
         <Container size={'small'} className={'bg-pink'}>
