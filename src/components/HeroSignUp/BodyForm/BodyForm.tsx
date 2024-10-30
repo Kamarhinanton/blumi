@@ -6,7 +6,6 @@ import routes from '@/utils/routes'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, Resolver, useForm } from 'react-hook-form'
 import { validationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
-import sdk from '@/utils/api/createInstanceSharetribe'
 import FormPopup from '@/components/HeroSignUp/FormPopup/FormPopup'
 import { AnimatePresence } from 'framer-motion'
 
@@ -46,40 +45,45 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
     resolver: yupResolver(validationSchema) as Resolver<FormData>,
   })
 
+  const resetForm = (message: string) => {
+    reset(defaultValues)
+    setIsVisible({
+      visible: true,
+      message: message,
+    })
+  }
+
   const onSubmit = async (data: FormData) => {
     setSending(true)
-
     const { firstName, lastName, email, password } = data
 
     try {
-      await sdk.currentUser.create({
-        email,
-        password,
-        firstName,
-        lastName,
-        publicData: { userType: userType },
+      const response = await fetch('/api/createUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+          userType,
+        }),
       })
-      reset(defaultValues)
 
-      setIsVisible((prev) => {
-        return {
-          ...prev,
-          visible: true,
-          message:
-            'Account successfully created! Please check your email and confirm your registration!',
-        }
-      })
+      if (!response.ok) {
+        resetForm('Oops! There was an error creating your account...')
+        setSending(false)
+        return
+      }
+
+      resetForm(
+        'Account successfully created! Please check your email and confirm your registration!',
+      )
     } catch (error) {
       console.error(error)
-      reset(defaultValues)
-
-      setIsVisible((prev) => {
-        return {
-          ...prev,
-          visible: true,
-          message: 'Oops! There was an error creating your account...',
-        }
-      })
+      resetForm('Oops! There was an error creating your account...')
     }
     setSending(false)
   }
