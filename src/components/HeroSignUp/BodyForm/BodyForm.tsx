@@ -143,7 +143,7 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
               )
             }}
           />
-          {userType.phoneNumberSettings?.displayInSignUp && (
+          {userType.defaultUserFields.phoneNumber && (
             <Controller
               control={control}
               name={'phoneNumber'}
@@ -160,7 +160,7 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
               }}
             />
           )}
-          {userType.displayNameSettings?.displayInSignUp && (
+          {userType.defaultUserFields.displayName && (
             <Controller
               control={control}
               name={'displayName'}
