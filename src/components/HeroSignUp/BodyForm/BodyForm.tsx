@@ -8,6 +8,7 @@ import { Controller, Resolver, useForm } from 'react-hook-form'
 import { validationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
 import FormPopup from '@/components/HeroSignUp/FormPopup/FormPopup'
 import { AnimatePresence } from 'framer-motion'
+import { UserType } from '@/utils/handleTypes'
 
 import styles from './BodyForm.module.scss'
 
@@ -16,10 +17,12 @@ const defaultValues = {
   lastName: '',
   email: '',
   password: '',
+  phoneNumber: '',
+  displayName: '',
 }
 
 type BodyFormType = {
-  userType: string
+  userType: UserType
 }
 
 type FormData = {
@@ -27,6 +30,8 @@ type FormData = {
   lastName: string
   email: string
   password: string
+  phoneNumber?: string
+  displayName?: string
 }
 
 const BodyForm: FC<BodyFormType> = ({ userType }) => {
@@ -55,7 +60,7 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
 
   const onSubmit = async (data: FormData) => {
     setSending(true)
-    const { firstName, lastName, email, password } = data
+    const { firstName, lastName, email, password, phoneNumber } = data
 
     try {
       const response = await fetch('/api/createUser', {
@@ -68,7 +73,8 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
           lastName,
           email,
           password,
-          userType,
+          userType: userType.id,
+          phoneNumber,
         }),
       })
 
@@ -137,6 +143,40 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
               )
             }}
           />
+          {userType.phoneNumberSettings?.displayInSignUp && (
+            <Controller
+              control={control}
+              name={'phoneNumber'}
+              render={({ field }) => {
+                return (
+                  <TextField
+                    {...field}
+                    className={styles['form__input-wrapper_input']}
+                    placeholder={'Phone Number'}
+                    type={'text'}
+                    error={errors['phoneNumber']?.message}
+                  />
+                )
+              }}
+            />
+          )}
+          {userType.displayNameSettings?.displayInSignUp && (
+            <Controller
+              control={control}
+              name={'displayName'}
+              render={({ field }) => {
+                return (
+                  <TextField
+                    {...field}
+                    className={styles['form__input-wrapper_input']}
+                    placeholder={'Display Name'}
+                    type={'text'}
+                    error={errors['displayName']?.message}
+                  />
+                )
+              }}
+            />
+          )}
           <Controller
             control={control}
             name={'password'}

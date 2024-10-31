@@ -73,12 +73,14 @@
 
       .blockImage {
         position: relative;
+        align-self: center;
         width: 100%;
         max-width: 588rem;
         height: 709rem;
         margin: 0 48rem 0 0;
 
         @media (width<=$breakpoint-mob) {
+          align-self: initial;
           height: 392rem;
           margin: 0;
         }

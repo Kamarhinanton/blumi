@@ -9,7 +9,15 @@ export default async function handler(
     return res.status(405).json({ message: 'Method Not Allowed' })
   }
 
-  const { firstName, lastName, email, password, userType } = req.body
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    userType,
+    phoneNumber,
+    displayName,
+  } = req.body
 
   try {
     await sdk.currentUser.create({
@@ -17,22 +25,13 @@ export default async function handler(
       password,
       firstName,
       lastName,
+      displayName,
       publicData: { userType },
+      protectedData: { phoneNumber },
     })
     res.status(200).json({ message: 'Account successfully created!' })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Error creating account' })
   }
-  // sdk
-  //   .assetByAlias({
-  //     path: 'users/user-types.json',
-  //     alias: 'latest',
-  //   })
-  //   .then((response) => {
-  //     res.status(200).json(response.data)
-  //   })
-  //   .catch((error) => {
-  //     res.status(500).json({ error: error.message })
-  //   })
 }

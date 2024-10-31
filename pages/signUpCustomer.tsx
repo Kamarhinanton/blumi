@@ -8,18 +8,27 @@ import { QueryResultHeaderData } from '@/components/Header/utils/types'
 import { HeaderData } from '@/components/Header/utils/apolloQueries'
 import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { FooterData } from '@/components/Footer/utils/apolloQueries'
+import sdk from '@/utils/api/createInstanceSharetribe'
+import { QueryResultUserTypes } from '@/utils/handleTypes'
 
 export type SignUpCustomerType = {
   signUpCustomerData: QueryResultSignUpCustomerData
+  userTypes: QueryResultUserTypes
 }
 
-const SignUpCustomer = ({ signUpCustomerData }: SignUpCustomerType) => {
+const SignUpCustomer = ({
+  signUpCustomerData,
+  userTypes,
+}: SignUpCustomerType) => {
   return (
     <>
       <Head>
         <title>Sign up</title>
       </Head>
-      <SignUpCustomerContent signUpCustomerData={signUpCustomerData} />
+      <SignUpCustomerContent
+        userTypes={userTypes}
+        signUpCustomerData={signUpCustomerData}
+      />
     </>
   )
 }
@@ -39,8 +48,12 @@ export const getStaticProps = async () => {
       await client.query<QueryResultSignUpCustomerData>({
         query: SignUpCustomerData,
       })
+    const { data: userTypes } = await sdk.assetByAlias({
+      path: 'users/user-types.json',
+      alias: 'latest',
+    })
     return {
-      props: { signUpCustomerData, headerData, footerData },
+      props: { signUpCustomerData, headerData, footerData, userTypes },
       revalidate: 10,
     }
   } catch (error) {
