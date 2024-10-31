@@ -12,15 +12,6 @@ import { UserType } from '@/utils/handleTypes'
 
 import styles from './BodyForm.module.scss'
 
-const defaultValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: '',
-  phoneNumber: '',
-  displayName: '',
-}
-
 type BodyFormType = {
   userType: UserType
 }
@@ -40,6 +31,15 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
     visible: false,
     message: '',
   })
+
+  const defaultValues = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    ...(userType.defaultUserFields.phoneNumber && { phoneNumber: '' }),
+    ...(userType.defaultUserFields.displayName && { displayName: '' }),
+  }
   const {
     handleSubmit,
     formState: { errors },
