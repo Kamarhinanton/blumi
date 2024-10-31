@@ -60,7 +60,8 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
 
   const onSubmit = async (data: FormData) => {
     setSending(true)
-    const { firstName, lastName, email, password, phoneNumber } = data
+    const { firstName, lastName, email, password, phoneNumber, displayName } =
+      data
 
     try {
       const response = await fetch('/api/createUser', {
@@ -73,6 +74,7 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
           lastName,
           email,
           password,
+          displayName,
           userType: userType.id,
           phoneNumber,
         }),

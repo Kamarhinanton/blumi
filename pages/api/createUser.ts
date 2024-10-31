@@ -19,16 +19,20 @@ export default async function handler(
     displayName,
   } = req.body
 
-  try {
-    await sdk.currentUser.create({
+  const filteredData = Object.fromEntries(
+    Object.entries({
       email,
       password,
       firstName,
       lastName,
       displayName,
-      publicData: { userType },
-      protectedData: { phoneNumber },
-    })
+      publicData: userType ? { userType } : undefined,
+      protectedData: phoneNumber ? { phoneNumber } : undefined,
+    }).filter(([, value]) => value !== undefined && value !== ''),
+  )
+
+  try {
+    await sdk.currentUser.create(filteredData)
     res.status(200).json({ message: 'Account successfully created!' })
   } catch (error) {
     console.error(error)
