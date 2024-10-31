@@ -11,4 +11,10 @@ export type UserType = {
     phoneNumber?: boolean
     displayName?: boolean
   }
+  phoneNumberSettings?: {
+    displayInSignUp?: boolean
+  }
+  displayNameSettings?: {
+    displayInSignUp?: boolean
+  }
 }

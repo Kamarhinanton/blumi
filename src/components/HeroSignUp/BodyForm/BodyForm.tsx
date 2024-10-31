@@ -32,13 +32,21 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
     message: '',
   })
 
+  const isPhoneFieldShouldVisible =
+    userType.phoneNumberSettings?.displayInSignUp &&
+    userType.defaultUserFields.phoneNumber
+
+  const isDisplayFieldShouldVisible =
+    userType.displayNameSettings?.displayInSignUp &&
+    userType.defaultUserFields.displayName
+
   const defaultValues = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    ...(userType.defaultUserFields.phoneNumber && { phoneNumber: '' }),
-    ...(userType.defaultUserFields.displayName && { displayName: '' }),
+    ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
+    ...(isDisplayFieldShouldVisible && { displayName: '' }),
   }
   const {
     handleSubmit,
@@ -145,7 +153,7 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
               )
             }}
           />
-          {userType.defaultUserFields.phoneNumber && (
+          {isPhoneFieldShouldVisible && (
             <Controller
               control={control}
               name={'phoneNumber'}
@@ -162,7 +170,7 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
               }}
             />
           )}
-          {userType.defaultUserFields.displayName && (
+          {isDisplayFieldShouldVisible && (
             <Controller
               control={control}
               name={'displayName'}
