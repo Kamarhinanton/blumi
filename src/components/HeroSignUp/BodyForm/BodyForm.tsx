@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import TextField from '@/ui/TextField/TextField'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import Link from 'next/link'
@@ -8,14 +8,15 @@ import { Controller, Resolver, useForm } from 'react-hook-form'
 import { validationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
 import FormPopup from '@/components/HeroSignUp/FormPopup/FormPopup'
 import { AnimatePresence } from 'framer-motion'
-import { UserType } from '@/utils/handleTypes'
+import { UserField, UserType } from '@/utils/handleTypes'
 import ControlField from '@/ui/ControlField/ControlField'
+import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
 
 import styles from './BodyForm.module.scss'
-import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
 
 type BodyFormType = {
   userType: UserType
+  userFields: UserField[]
 }
 
 type FormData = {
@@ -25,15 +26,21 @@ type FormData = {
   password: string
   phoneNumber?: string
   displayName?: string
-  radioGroup?: string
+  test1?: string
+  test2?: string[]
+  test3?: string
 }
 
-const BodyForm: FC<BodyFormType> = ({ userType }) => {
+const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
   const [sending, setSending] = useState(false)
   const [isVisible, setIsVisible] = useState({
     visible: false,
     message: '',
   })
+
+  useEffect(() => {
+    console.log(userFields)
+  }, [])
 
   const isPhoneFieldShouldVisible =
     userType.phoneNumberSettings?.displayInSignUp &&
@@ -50,7 +57,9 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
     password: '',
     ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
     ...(isDisplayFieldShouldVisible && { displayName: '' }),
-    radioGroup: '',
+    test1: '',
+    test2: [],
+    test3: '',
   }
   const {
     handleSubmit,
@@ -63,7 +72,8 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
     resolver: yupResolver(validationSchema) as Resolver<FormData>,
   })
 
-  const watchedBudgetGroup = watch('radioGroup', defaultValues.radioGroup)
+  const watcherTest1 = watch('test1', defaultValues.test1)
+  const watcherTest2 = watch('test2', defaultValues.test2)
 
   const resetForm = (message: string) => {
     reset(defaultValues)
@@ -211,37 +221,96 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
             }}
           />
         </div>
-        <div className={styles['form__controls']}>
-          <Controller
-            control={control}
-            name="radioGroup"
-            render={({ field }) => (
-              <ControlField
-                {...field}
-                type={'radio'}
-                value={'test 1'}
-                name={'1'}
-                title={'hello 1'}
-                watcher={watchedBudgetGroup}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="radioGroup"
-            render={({ field }) => (
-              <ControlField
-                {...field}
-                value={'test 2'}
-                type={'radio'}
-                name={'1'}
-                title={'hello 2'}
-                watcher={watchedBudgetGroup}
-              />
-            )}
-          />
-          <ErrorMessage error={errors['radioGroup']?.message} />
-        </div>
+        {userFields
+          .filter(
+            (field) =>
+              (field.userTypeConfig?.limitToUserTypeIds &&
+                field.userTypeConfig.userTypeIds?.includes(userType.id)) ||
+              !field.userTypeConfig?.limitToUserTypeIds,
+          )
+          .map((fieldInput) => {
+            switch (fieldInput.schemaType) {
+              case 'multi-enum':
+                return (
+                  <div
+                    key={fieldInput.key}
+                    className={styles['form__controls']}
+                  >
+                    {fieldInput.enumOptions?.map((item) => (
+                      <Controller
+                        control={control}
+                        key={item.option}
+                        name={'test2'}
+                        render={({ field }) => (
+                          <ControlField
+                            {...field}
+                            type={'checkbox'}
+                            value={item.option}
+                            title={item.label}
+                            watcher={watcherTest2}
+                          />
+                        )}
+                      />
+                    ))}
+                    <ErrorMessage
+                      label={fieldInput.label}
+                      error={errors['test2']?.message}
+                    />
+                  </div>
+                )
+
+              case 'enum':
+                return (
+                  <div
+                    key={fieldInput.key}
+                    className={styles['form__controls']}
+                  >
+                    {fieldInput.enumOptions?.map((item) => (
+                      <Controller
+                        control={control}
+                        key={item.option}
+                        name={'test1'}
+                        render={({ field }) => (
+                          <ControlField
+                            {...field}
+                            type={'radio'}
+                            name={'1'}
+                            value={item.option}
+                            title={item.label}
+                            watcher={watcherTest1}
+                          />
+                        )}
+                      />
+                    ))}
+                    <ErrorMessage
+                      label={fieldInput.label}
+                      error={errors['test1']?.message}
+                    />
+                  </div>
+                )
+
+              case 'text':
+                return (
+                  <Controller
+                    control={control}
+                    name={'test3'}
+                    render={({ field }) => {
+                      return (
+                        <TextField
+                          {...field}
+                          className={styles['form__input-wrapper_input']}
+                          placeholder={fieldInput.label}
+                          error={errors['test3']?.message}
+                        />
+                      )
+                    }}
+                  />
+                )
+
+              default:
+                return null
+            }
+          })}
         <p className={styles['form__bottom-subtext']}>
           By selecting <strong>Agree and continue</strong>, I agree to Blumi’s{' '}
           <Link className={'border-link'} href={'/'}>

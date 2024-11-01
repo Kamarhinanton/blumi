@@ -30,7 +30,7 @@ export type UserField = {
     label: string
     option: string
   }[]
-  id?: string
+  key?: string
   label?: string
   saveConfig?: {
     displayInSignUp?: boolean
@@ -43,6 +43,6 @@ export type UserField = {
   scope?: string
   userTypeConfig?: {
     limitToUserTypeIds?: boolean
+    userTypeIds?: string[]
   }
-  userTypeIds?: string[]
 }

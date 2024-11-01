@@ -16,7 +16,11 @@ type HeroContentType = {
   userFields: UserField[]
 }
 
-const HeroSignUp: FC<HeroContentType> = ({ heroData, userType }) => {
+const HeroSignUp: FC<HeroContentType> = ({
+  heroData,
+  userType,
+  userFields,
+}) => {
   const { image, list, titleForm } = heroData
   const cleanedDataSmallTitle = cleanedTitleWithIcons(titleForm || [])
 
@@ -38,7 +42,7 @@ const HeroSignUp: FC<HeroContentType> = ({ heroData, userType }) => {
                 className={styles['form__title']}
                 centred
               />
-              <BodyForm userType={userType} />
+              <BodyForm userFields={userFields} userType={userType} />
             </div>
           </div>
           <div

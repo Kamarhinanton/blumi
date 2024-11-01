@@ -19,5 +19,9 @@ export const validationSchema = Yup.object().shape({
   }),
   email: Yup.string().required('Email is required').email('Email is invalid'),
   password: Yup.string().required('Password is required'),
-  radioGroup: Yup.string().required('Please select an option'),
+  test1: Yup.string().required('Please select an option'),
+  test2: Yup.array()
+    .of(Yup.string())
+    .min(1, 'Please select at least one checkbox'),
+  test3: Yup.string().required('Field is required'),
 })
