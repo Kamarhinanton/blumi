@@ -3,10 +3,24 @@
 .form {
   &__input-wrapper {
     display: grid;
-    grid-gap: 12rem 7rem;
+    grid-gap: 8rem;
     grid-template-columns: repeat(2, 1fr);
 
     &_input {
+      &.controls {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8rem;
+        padding: 0 0 23rem;
+
+        &__errorMessage {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+
       &:nth-child(-n + 2) {
         grid-column: span 1;
 
@@ -21,21 +35,6 @@
     }
   }
 
-  &__controls {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8rem;
-    margin: 12rem 0 0;
-    padding: 0 0 23rem;
-
-    &__errorMessage {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-  }
-
   &__button {
     width: 100%;
     margin: 32rem 0 0;
@@ -46,12 +45,12 @@
   }
 
   &__bottom-subtext {
-    margin: 12rem 0 0;
+    margin: 32rem 0 0;
     color: var(--grey-secondary);
     font-size: 12rem;
 
     @media (width<=$breakpoint-mob) {
-      margin: 0;
+      margin: 12rem 0 0;
       font-size: 10rem;
     }
 

@@ -13,6 +13,7 @@ import ControlField from '@/ui/ControlField/ControlField'
 import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
 
 import styles from './BodyForm.module.scss'
+import classNames from 'classnames'
 
 type BodyFormType = {
   userType: UserType
@@ -263,96 +264,104 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
               )
             }}
           />
-        </div>
-        {userFields
-          .filter((field) => isUserFieldsShouldVisible(field, userType.id))
-          .map((fieldInput, index) => {
-            const { key, schemaType, enumOptions } = fieldInput
-            switch (schemaType) {
-              case 'multi-enum':
-                return (
-                  <div
-                    key={`${key + index}`}
-                    className={styles['form__controls']}
-                  >
-                    {enumOptions?.map(({ option, label }) => (
-                      <Controller
-                        control={control}
-                        key={option}
-                        name={fieldInput.key}
-                        render={({ field }) => (
-                          <ControlField
-                            {...field}
-                            type={'checkbox'}
-                            value={option}
-                            title={label}
-                            watcher={watchedFieldsMap[key]}
-                          />
-                        )}
-                      />
-                    ))}
-                    <ErrorMessage
-                      label={fieldInput.label}
-                      error={errors[fieldInput.key]?.message}
-                    />
-                  </div>
-                )
-
-              case 'enum':
-                return (
-                  <div
-                    key={`${key + index}`}
-                    className={styles['form__controls']}
-                  >
-                    {enumOptions?.map(({ option, label }) => (
-                      <Controller
-                        control={control}
-                        key={option}
-                        name={fieldInput.key}
-                        render={({ field }) => (
-                          <ControlField
-                            {...field}
-                            type={'radio'}
-                            name={fieldInput.key}
-                            value={option}
-                            title={label}
-                            watcher={watchedFieldsMap[key]}
-                          />
-                        )}
-                      />
-                    ))}
-                    <ErrorMessage
-                      label={fieldInput.label}
-                      error={errors[fieldInput.key]?.message}
-                    />
-                  </div>
-                )
-
-              case 'text':
-                return (
-                  <Controller
-                    control={control}
-                    key={`${key + index}`}
-                    name={key}
-                    render={({ field }) => {
-                      return (
-                        <TextField
-                          {...field}
-                          value={field.value as string}
-                          onChange={(e) => field.onChange(e.target.value)}
-                          className={styles['form__input-wrapper_input']}
-                          placeholder={fieldInput.label}
-                          error={errors[fieldInput.key]?.message}
+          {userFields
+            .filter((field) => isUserFieldsShouldVisible(field, userType.id))
+            .map((fieldInput, index) => {
+              const { key, schemaType, enumOptions } = fieldInput
+              switch (schemaType) {
+                case 'multi-enum':
+                  return (
+                    <div
+                      key={`${key + index}`}
+                      className={classNames(
+                        styles['controls'],
+                        styles['form__input-wrapper_input'],
+                      )}
+                    >
+                      {enumOptions?.map(({ option, label }) => (
+                        <Controller
+                          control={control}
+                          key={option}
+                          name={fieldInput.key}
+                          render={({ field }) => (
+                            <ControlField
+                              {...field}
+                              type={'checkbox'}
+                              value={option}
+                              title={label}
+                              watcher={watchedFieldsMap[key]}
+                            />
+                          )}
                         />
-                      )
-                    }}
-                  />
-                )
+                      ))}
+                      <ErrorMessage
+                        label={fieldInput.label}
+                        error={errors[fieldInput.key]?.message}
+                        className={styles['controls__errorMessage']}
+                      />
+                    </div>
+                  )
 
-              default:
-                return null
-            }
-          })}
+                case 'enum':
+                  return (
+                    <div
+                      key={`${key + index}`}
+                      className={classNames(
+                        styles['controls'],
+                        styles['form__input-wrapper_input'],
+                      )}
+                    >
+                      {enumOptions?.map(({ option, label }) => (
+                        <Controller
+                          control={control}
+                          key={option}
+                          name={fieldInput.key}
+                          render={({ field }) => (
+                            <ControlField
+                              {...field}
+                              type={'radio'}
+                              name={fieldInput.key}
+                              value={option}
+                              title={label}
+                              watcher={watchedFieldsMap[key]}
+                            />
+                          )}
+                        />
+                      ))}
+                      <ErrorMessage
+                        label={fieldInput.label}
+                        error={errors[fieldInput.key]?.message}
+                        className={styles['controls__errorMessage']}
+                      />
+                    </div>
+                  )
+
+                case 'text':
+                  return (
+                    <Controller
+                      control={control}
+                      key={`${key + index}`}
+                      name={key}
+                      render={({ field }) => {
+                        return (
+                          <TextField
+                            {...field}
+                            value={field.value as string}
+                            onChange={(e) => field.onChange(e.target.value)}
+                            className={styles['form__input-wrapper_input']}
+                            placeholder={fieldInput.label}
+                            error={errors[fieldInput.key]?.message}
+                          />
+                        )
+                      }}
+                    />
+                  )
+
+                default:
+                  return null
+              }
+            })}
+        </div>
         <p className={styles['form__bottom-subtext']}>
           By selecting <strong>Agree and continue</strong>, I agree to Blumi’s{' '}
           <Link className={'border-link'} href={'/'}>
