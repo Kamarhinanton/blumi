@@ -29,6 +29,7 @@ type FormData = {
   test1?: string
   test2?: string[]
   test3?: string
+  [key: string]: string | string[] | undefined
 }
 
 const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
@@ -50,17 +51,34 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     userType.displayNameSettings?.displayInSignUp &&
     userType.defaultUserFields.displayName
 
-  const defaultValues = {
+  const defaultValues: FormData = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
-    ...(isDisplayFieldShouldVisible && { displayName: '' }),
     test1: '',
     test2: [],
     test3: '',
+    ...userFields.reduce((acc: Partial<FormData>, userField) => {
+      if (userField.key) {
+        switch (userField.schemaType) {
+          case 'text':
+          case 'enum':
+            acc[userField.key] = ''
+            break
+
+          case 'multi-enum':
+            acc[userField.key] = []
+            break
+
+          default:
+            break
+        }
+      }
+      return acc
+    }, {}),
   }
+
   const {
     handleSubmit,
     formState: { errors },
