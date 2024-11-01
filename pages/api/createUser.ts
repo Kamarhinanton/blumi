@@ -17,6 +17,7 @@ export default async function handler(
     userType,
     phoneNumber,
     displayName,
+    ...userFields
   } = req.body
 
   const filteredData = Object.fromEntries(
@@ -26,7 +27,10 @@ export default async function handler(
       firstName,
       lastName,
       displayName,
-      publicData: userType ? { userType } : undefined,
+      publicData: {
+        userType,
+        ...userFields,
+      },
       protectedData: phoneNumber ? { phoneNumber } : undefined,
     }).filter(([, value]) => value !== undefined && value !== ''),
   )

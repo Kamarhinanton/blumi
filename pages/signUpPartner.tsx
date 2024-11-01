@@ -9,14 +9,22 @@ import SignUpPartnerContent from '@/modules/SignUpPartner/ui/SignUpPartnerConten
 import { QueryResultSignUpPartnerData } from '@/modules/SignUpPartner/utils/types'
 import { SignUpPartnerData } from '@/modules/SignUpPartner/utils/apolloQueries'
 import sdk from '@/utils/api/createInstanceSharetribe'
-import { QueryResultUserTypes } from '@/utils/handleTypes'
+import {
+  QueryResultUserFields,
+  QueryResultUserTypes,
+} from '@/utils/handleTypes'
 
 export type SignUpPartnerType = {
   signUpPartnerData: QueryResultSignUpPartnerData
   userTypes: QueryResultUserTypes
+  userFields: QueryResultUserFields
 }
 
-const SignUpPartner = ({ signUpPartnerData, userTypes }: SignUpPartnerType) => {
+const SignUpPartner = ({
+  signUpPartnerData,
+  userTypes,
+  userFields,
+}: SignUpPartnerType) => {
   return (
     <>
       <Head>
@@ -24,6 +32,7 @@ const SignUpPartner = ({ signUpPartnerData, userTypes }: SignUpPartnerType) => {
       </Head>
       <SignUpPartnerContent
         userTypes={userTypes}
+        userFields={userFields}
         signUpPartnerData={signUpPartnerData}
       />
     </>
@@ -51,8 +60,19 @@ export const getStaticProps = async () => {
       alias: 'latest',
     })
 
+    const { data: userFields } = await sdk.assetByAlias({
+      path: 'users/user-fields.json',
+      alias: 'latest',
+    })
+
     return {
-      props: { signUpPartnerData, headerData, footerData, userTypes },
+      props: {
+        signUpPartnerData,
+        headerData,
+        footerData,
+        userTypes,
+        userFields,
+      },
       revalidate: 10,
     }
   } catch (error) {
