@@ -5,7 +5,7 @@ import Link from 'next/link'
 import routes from '@/utils/routes'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, Resolver, useForm } from 'react-hook-form'
-import { validationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
+import { generateValidationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
 import FormPopup from '@/components/HeroSignUp/FormPopup/FormPopup'
 import { AnimatePresence } from 'framer-motion'
 import { UserField, UserType } from '@/utils/handleTypes'
@@ -26,9 +26,6 @@ type FormData = {
   password: string
   phoneNumber?: string
   displayName?: string
-  test1?: string
-  test2?: string[]
-  test3?: string
   [key: string]: string | string[] | undefined
 }
 
@@ -39,9 +36,7 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     message: '',
   })
 
-  useEffect(() => {
-    console.log(userFields)
-  }, [])
+  const validationSchema = generateValidationSchema(userFields, userType)
 
   const isPhoneFieldShouldVisible =
     userType.phoneNumberSettings?.displayInSignUp &&
@@ -56,9 +51,6 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     lastName: '',
     email: '',
     password: '',
-    test1: '',
-    test2: [],
-    test3: '',
     ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
     ...(isDisplayFieldShouldVisible && { displayName: '' }),
     ...userFields.reduce((acc: Partial<FormData>, userField) => {
@@ -87,13 +79,30 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     control,
     reset,
     watch,
-  } = useForm<FormData>({
+  } = useForm<Partial<FormData>>({
     values: defaultValues,
-    resolver: yupResolver(validationSchema) as Resolver<FormData>,
+    resolver: yupResolver(validationSchema) as Resolver<Partial<FormData>>,
   })
 
-  const watcherTest1 = watch('test1', defaultValues.test1)
-  const watcherTest2 = watch('test2', defaultValues.test2)
+  const watchedFields = userFields
+    .filter(
+      (field) =>
+        field.schemaType === 'enum' || field.schemaType === 'multi-enum',
+    )
+    .map((field) => ({
+      key: field.key,
+      value: watch(field.key, defaultValues[field.key]),
+    }))
+
+  const watchedFieldsMap = Object.fromEntries(
+    watchedFields.map(({ key, value }) => [key, value]),
+  )
+
+  useEffect(() => {
+    console.log('userFields', userFields)
+    console.log('validationSchema', validationSchema)
+    console.log('watchedFields', watchedFieldsMap)
+  }, [])
 
   const resetForm = (message: string) => {
     reset(defaultValues)
@@ -103,7 +112,7 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     })
   }
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: Partial<FormData>) => {
     console.log(data)
     setSending(true)
     const { firstName, lastName, email, password, phoneNumber, displayName } =
@@ -251,9 +260,11 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
           )
           .map((fieldInput, index) => {
             const { key, schemaType, enumOptions } = fieldInput
-
             switch (schemaType) {
               case 'multi-enum':
+                const watchedFields = watch(key, defaultValues[key])
+                console.log('w', watchedFields)
+
                 return (
                   <div
                     key={`${key + index}`}
@@ -270,14 +281,14 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
                             type={'checkbox'}
                             value={option}
                             title={label}
-                            watcher={watcherTest2}
+                            watcher={watchedFieldsMap[key]}
                           />
                         )}
                       />
                     ))}
                     <ErrorMessage
                       label={fieldInput.label}
-                      error={errors['test2']?.message}
+                      error={errors[fieldInput.key]?.message}
                     />
                   </div>
                 )
@@ -297,17 +308,17 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
                           <ControlField
                             {...field}
                             type={'radio'}
-                            name={'1'}
+                            name={fieldInput.key}
                             value={option}
                             title={label}
-                            watcher={watcherTest1}
+                            watcher={watchedFieldsMap[key]}
                           />
                         )}
                       />
                     ))}
                     <ErrorMessage
                       label={fieldInput.label}
-                      error={errors['test1']?.message}
+                      error={errors[fieldInput.key]?.message}
                     />
                   </div>
                 )
@@ -326,7 +337,7 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
                           onChange={(e) => field.onChange(e.target.value)}
                           className={styles['form__input-wrapper_input']}
                           placeholder={fieldInput.label}
-                          error={errors['test3']?.message}
+                          error={errors[fieldInput.key]?.message}
                         />
                       )
                     }}
