@@ -6,13 +6,14 @@ import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
 import { QueryResultHeroSignUpCustomerData } from '@/modules/SignUpCustomer/ui/HeroSignUp/utils/types'
 import BodyForm from '@/components/HeroSignUp/BodyForm/BodyForm'
-import { UserType } from '@/utils/handleTypes'
+import { UserField, UserType } from '@/utils/handleTypes'
 
 import styles from './HeroSignUp.module.scss'
 
 type HeroContentType = {
   heroData: QueryResultHeroSignUpCustomerData['hero']
   userType: UserType
+  userFields: UserField[]
 }
 
 const HeroSignUp: FC<HeroContentType> = ({ heroData, userType }) => {

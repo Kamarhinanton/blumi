@@ -19,4 +19,5 @@ export const validationSchema = Yup.object().shape({
   }),
   email: Yup.string().required('Email is required').email('Email is invalid'),
   password: Yup.string().required('Password is required'),
+  radioGroup: Yup.string().required('Please select an option'),
 })

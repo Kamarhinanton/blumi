@@ -9,8 +9,10 @@ import { validationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validati
 import FormPopup from '@/components/HeroSignUp/FormPopup/FormPopup'
 import { AnimatePresence } from 'framer-motion'
 import { UserType } from '@/utils/handleTypes'
+import ControlField from '@/ui/ControlField/ControlField'
 
 import styles from './BodyForm.module.scss'
+import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
 
 type BodyFormType = {
   userType: UserType
@@ -23,6 +25,7 @@ type FormData = {
   password: string
   phoneNumber?: string
   displayName?: string
+  radioGroup?: string
 }
 
 const BodyForm: FC<BodyFormType> = ({ userType }) => {
@@ -47,16 +50,20 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
     password: '',
     ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
     ...(isDisplayFieldShouldVisible && { displayName: '' }),
+    radioGroup: '',
   }
   const {
     handleSubmit,
     formState: { errors },
     control,
     reset,
+    watch,
   } = useForm<FormData>({
     values: defaultValues,
     resolver: yupResolver(validationSchema) as Resolver<FormData>,
   })
+
+  const watchedBudgetGroup = watch('radioGroup', defaultValues.radioGroup)
 
   const resetForm = (message: string) => {
     reset(defaultValues)
@@ -203,6 +210,37 @@ const BodyForm: FC<BodyFormType> = ({ userType }) => {
               )
             }}
           />
+        </div>
+        <div className={styles['form__controls']}>
+          <Controller
+            control={control}
+            name="radioGroup"
+            render={({ field }) => (
+              <ControlField
+                {...field}
+                type={'radio'}
+                value={'test 1'}
+                name={'1'}
+                title={'hello 1'}
+                watcher={watchedBudgetGroup}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="radioGroup"
+            render={({ field }) => (
+              <ControlField
+                {...field}
+                value={'test 2'}
+                type={'radio'}
+                name={'1'}
+                title={'hello 2'}
+                watcher={watchedBudgetGroup}
+              />
+            )}
+          />
+          <ErrorMessage error={errors['radioGroup']?.message} />
         </div>
         <p className={styles['form__bottom-subtext']}>
           By selecting <strong>Agree and continue</strong>, I agree to Blumi’s{' '}

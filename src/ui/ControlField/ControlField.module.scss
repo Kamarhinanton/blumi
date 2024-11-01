@@ -1,0 +1,45 @@
+@import '@/app/styles/variables/breakpoints';
+
+.checkbox {
+  display: flex;
+  border-radius: 34rem;
+  cursor: pointer;
+
+  &.checked {
+    .checkbox {
+      &__title {
+        color: var(--white);
+        background-color: var(--pink-primary);
+        border: 1px solid var(--pink-primary);
+      }
+    }
+  }
+
+  &__title {
+    padding: 8rem 10rem;
+    color: var(--grey-secondary);
+    font: var(--font-s);
+    line-height: 100%;
+    border: 1rem solid var(--grey-secondary);
+    border-radius: 34rem;
+    transition: var(--duration-hover) var(--ease);
+
+    @media (width <= $breakpoint-mob) {
+      padding: 6rem 15rem;
+      font-size: 14rem;
+    }
+
+    @media (width > $breakpoint-mob) {
+      &:hover {
+        color: var(--white);
+        background-color: var(--pink-primary);
+        border: 1rem solid var(--pink-primary);
+      }
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+}

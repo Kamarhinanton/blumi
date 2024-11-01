@@ -18,3 +18,31 @@ export type UserType = {
     displayInSignUp?: boolean
   }
 }
+
+export type QueryResultUserFields = {
+  data: {
+    userFields: UserField[]
+  }
+}
+
+export type UserField = {
+  enumOptions?: {
+    label: string
+    option: string
+  }[]
+  id?: string
+  label?: string
+  saveConfig?: {
+    displayInSignUp?: boolean
+    required?: boolean
+  }
+  showConfig?: {
+    unselectedOptions?: boolean
+  }
+  schemaType?: string
+  scope?: string
+  userTypeConfig?: {
+    limitToUserTypeIds?: boolean
+  }
+  userTypeIds?: string[]
+}

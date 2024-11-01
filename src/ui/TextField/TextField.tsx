@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ForwardedRef, forwardRef, useState } from 'react'
 import classNames from 'classnames'
-import ErrorIcon from '../../../public/icons/danger.svg'
 import EyeIcon from '../../../public/icons/eye.svg'
+import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
 
 import styles from './TextField.module.scss'
 
@@ -77,12 +77,11 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(
           />
         )}
 
-        {(label || error) && (
-          <p className={styles['text-field__label']}>
-            <ErrorIcon />
-            {error ? error : label}
-          </p>
-        )}
+        <ErrorMessage
+          className={styles['text-field__label']}
+          label={label}
+          error={error}
+        />
 
         {password && (
           <EyeIcon

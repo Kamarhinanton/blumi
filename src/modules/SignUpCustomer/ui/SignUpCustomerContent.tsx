@@ -8,14 +8,18 @@ import HeroSignUp from '@/components/HeroSignUp/HeroSignUp'
 const SignUpCustomerContent = ({
   signUpCustomerData,
   userTypes,
+  userFields,
 }: SignUpCustomerType) => {
   const { howItWorks, whatTheySay } = signUpCustomerData.home
   const { hero } = signUpCustomerData.signUpModel
-  const { userTypes: users } = userTypes.data
+  const { userTypes: types } = userTypes.data
+  const { userFields: fields } = userFields.data
 
   return (
     <main>
-      {hero && <HeroSignUp userType={users[1]} heroData={hero} />}
+      {hero && (
+        <HeroSignUp userFields={fields} userType={types[1]} heroData={hero} />
+      )}
       {howItWorks && <HowItWorks howItWorksData={howItWorks} />}
       {whatTheySay && (
         <Container size={'small'} className={'bg-pink'}>

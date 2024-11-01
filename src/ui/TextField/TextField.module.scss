@@ -11,12 +11,6 @@
       &__input {
         border: 1rem solid var(--red);
       }
-
-      &__label {
-        svg {
-          color: var(--red);
-        }
-      }
     }
   }
 
@@ -61,24 +55,5 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    color: var(--grey-secondary);
-    font-size: 12rem;
-    line-height: 100%;
-
-    @media (width<=$breakpoint-mob) {
-      font-size: 10rem;
-    }
-
-    svg {
-      width: 16rem;
-      height: 16rem;
-      margin: 0 4rem 0 0;
-      color: var(--primary-text);
-      vertical-align: -3rem;
-
-      @media (width<=$breakpoint-mob) {
-        vertical-align: -4rem;
-      }
-    }
   }
 }
