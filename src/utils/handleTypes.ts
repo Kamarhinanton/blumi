@@ -30,8 +30,8 @@ export type UserField = {
     label: string
     option: string
   }[]
-  key?: string
-  label?: string
+  key: string
+  label: string
   saveConfig?: {
     displayInSignUp?: boolean
     required?: boolean

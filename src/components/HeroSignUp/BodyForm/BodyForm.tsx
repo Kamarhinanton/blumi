@@ -59,6 +59,8 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     test1: '',
     test2: [],
     test3: '',
+    ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
+    ...(isDisplayFieldShouldVisible && { displayName: '' }),
     ...userFields.reduce((acc: Partial<FormData>, userField) => {
       if (userField.key) {
         switch (userField.schemaType) {
@@ -102,6 +104,7 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
   }
 
   const onSubmit = async (data: FormData) => {
+    console.log(data)
     setSending(true)
     const { firstName, lastName, email, password, phoneNumber, displayName } =
       data
@@ -246,25 +249,27 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
                 field.userTypeConfig.userTypeIds?.includes(userType.id)) ||
               !field.userTypeConfig?.limitToUserTypeIds,
           )
-          .map((fieldInput) => {
-            switch (fieldInput.schemaType) {
+          .map((fieldInput, index) => {
+            const { key, schemaType, enumOptions } = fieldInput
+
+            switch (schemaType) {
               case 'multi-enum':
                 return (
                   <div
-                    key={fieldInput.key}
+                    key={`${key + index}`}
                     className={styles['form__controls']}
                   >
-                    {fieldInput.enumOptions?.map((item) => (
+                    {enumOptions?.map(({ option, label }) => (
                       <Controller
                         control={control}
-                        key={item.option}
-                        name={'test2'}
+                        key={option}
+                        name={fieldInput.key}
                         render={({ field }) => (
                           <ControlField
                             {...field}
                             type={'checkbox'}
-                            value={item.option}
-                            title={item.label}
+                            value={option}
+                            title={label}
                             watcher={watcherTest2}
                           />
                         )}
@@ -280,21 +285,21 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
               case 'enum':
                 return (
                   <div
-                    key={fieldInput.key}
+                    key={`${key + index}`}
                     className={styles['form__controls']}
                   >
-                    {fieldInput.enumOptions?.map((item) => (
+                    {enumOptions?.map(({ option, label }) => (
                       <Controller
                         control={control}
-                        key={item.option}
-                        name={'test1'}
+                        key={option}
+                        name={fieldInput.key}
                         render={({ field }) => (
                           <ControlField
                             {...field}
                             type={'radio'}
                             name={'1'}
-                            value={item.option}
-                            title={item.label}
+                            value={option}
+                            title={label}
                             watcher={watcherTest1}
                           />
                         )}
@@ -311,11 +316,14 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
                 return (
                   <Controller
                     control={control}
-                    name={'test3'}
+                    key={`${key + index}`}
+                    name={key}
                     render={({ field }) => {
                       return (
                         <TextField
                           {...field}
+                          value={field.value as string}
+                          onChange={(e) => field.onChange(e.target.value)}
                           className={styles['form__input-wrapper_input']}
                           placeholder={fieldInput.label}
                           error={errors['test3']?.message}
