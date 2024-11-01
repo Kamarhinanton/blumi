@@ -1,5 +1,6 @@
 import * as Yup from 'yup'
 import { UserField, UserType } from '@/utils/handleTypes'
+import { isUserFieldsShouldVisible } from '@/components/HeroSignUp/BodyForm/BodyForm'
 
 type ValidationSchema = {
   firstName: Yup.StringSchema
@@ -38,29 +39,31 @@ export const generateValidationSchema = (
     schema.displayName = Yup.string().required('Field is required')
   }
 
-  userFields.forEach((field) => {
-    if (field.key) {
-      switch (field.schemaType) {
-        case 'text':
-          schema[field.key] = Yup.string().required(
-            `${field.label} is required`,
-          )
-          break
-        case 'enum':
-          schema[field.key] = Yup.string().required(
-            `${field.label} is required`,
-          )
-          break
-        case 'multi-enum':
-          schema[field.key] = Yup.array()
-            .of(Yup.string())
-            .min(1, 'Please select at least one option')
-          break
-        default:
-          break
+  userFields
+    .filter((field) => isUserFieldsShouldVisible(field, userType.id))
+    .forEach((field) => {
+      if (field.key) {
+        switch (field.schemaType) {
+          case 'text':
+            schema[field.key] = Yup.string().required(
+              `${field.label} is required`,
+            )
+            break
+          case 'enum':
+            schema[field.key] = Yup.string().required(
+              `${field.label} is required`,
+            )
+            break
+          case 'multi-enum':
+            schema[field.key] = Yup.array()
+              .of(Yup.string())
+              .min(1, 'Please select at least one option')
+            break
+          default:
+            break
+        }
       }
-    }
-  })
+    })
 
   return Yup.object().shape(schema)
 }

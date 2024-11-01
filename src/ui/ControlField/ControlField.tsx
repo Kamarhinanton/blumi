@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ForwardedRef, forwardRef, useEffect } from 'react'
+import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
 import classNames from 'classnames'
 import { ControllerRenderProps } from 'react-hook-form'
 
@@ -27,9 +27,6 @@ const ControlField = forwardRef<HTMLInputElement, CheckboxType>(
     }: CheckboxType,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    useEffect(() => {
-      console.log('watcher', watcher)
-    }, [])
     const isChecked =
       type === 'checkbox'
         ? Array.isArray(watcher) && watcher.includes(value)

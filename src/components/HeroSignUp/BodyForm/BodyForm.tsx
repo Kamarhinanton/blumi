@@ -29,6 +29,11 @@ type FormData = {
   [key: string]: string | string[] | undefined
 }
 
+export const isUserFieldsShouldVisible = (field: UserField, id: string) =>
+  (field.userTypeConfig?.limitToUserTypeIds &&
+    field.userTypeConfig.userTypeIds?.includes(id)) ||
+  !field.userTypeConfig?.limitToUserTypeIds
+
 const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
   const [sending, setSending] = useState(false)
   const [isVisible, setIsVisible] = useState({
@@ -36,8 +41,9 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     message: '',
   })
 
-  const validationSchema = generateValidationSchema(userFields, userType)
+  useEffect(() => console.log(userFields), [])
 
+  const validationSchema = generateValidationSchema(userFields, userType)
   const isPhoneFieldShouldVisible =
     userType.phoneNumberSettings?.displayInSignUp &&
     userType.defaultUserFields.phoneNumber
@@ -53,25 +59,30 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     password: '',
     ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
     ...(isDisplayFieldShouldVisible && { displayName: '' }),
-    ...userFields.reduce((acc: Partial<FormData>, userField) => {
-      if (userField.key) {
-        switch (userField.schemaType) {
-          case 'text':
-          case 'enum':
-            acc[userField.key] = ''
-            break
+    ...userFields
+      .filter((field) => isUserFieldsShouldVisible(field, userType.id))
+      .reduce((acc: Partial<FormData>, userField) => {
+        if (userField.key) {
+          switch (userField.schemaType) {
+            case 'text':
+            case 'enum':
+              acc[userField.key] = ''
+              break
 
-          case 'multi-enum':
-            acc[userField.key] = []
-            break
+            case 'multi-enum':
+              acc[userField.key] = []
+              break
 
-          default:
-            break
+            default:
+              break
+          }
         }
-      }
-      return acc
-    }, {}),
+        return acc
+      }, {}),
   }
+
+  console.log('dv', defaultValues)
+  console.log('vs', validationSchema)
 
   const {
     handleSubmit,
@@ -97,12 +108,6 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
   const watchedFieldsMap = Object.fromEntries(
     watchedFields.map(({ key, value }) => [key, value]),
   )
-
-  useEffect(() => {
-    console.log('userFields', userFields)
-    console.log('validationSchema', validationSchema)
-    console.log('watchedFields', watchedFieldsMap)
-  }, [])
 
   const resetForm = (message: string) => {
     reset(defaultValues)
@@ -252,19 +257,11 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
           />
         </div>
         {userFields
-          .filter(
-            (field) =>
-              (field.userTypeConfig?.limitToUserTypeIds &&
-                field.userTypeConfig.userTypeIds?.includes(userType.id)) ||
-              !field.userTypeConfig?.limitToUserTypeIds,
-          )
+          .filter((field) => isUserFieldsShouldVisible(field, userType.id))
           .map((fieldInput, index) => {
             const { key, schemaType, enumOptions } = fieldInput
             switch (schemaType) {
               case 'multi-enum':
-                const watchedFields = watch(key, defaultValues[key])
-                console.log('w', watchedFields)
-
                 return (
                   <div
                     key={`${key + index}`}
