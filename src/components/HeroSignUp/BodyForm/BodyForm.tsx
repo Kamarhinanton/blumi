@@ -30,10 +30,18 @@ type FormData = {
   [key: string]: string | string[] | undefined
 }
 
-export const isUserFieldsShouldVisible = (field: UserField, id: string) =>
-  (field.userTypeConfig?.limitToUserTypeIds &&
-    field.userTypeConfig.userTypeIds?.includes(id)) ||
-  !field.userTypeConfig?.limitToUserTypeIds
+export const isUserFieldsShouldVisible = (field: UserField, id: string) => {
+  const { userTypeConfig, saveConfig } = field
+  if (!saveConfig?.displayInSignUp) {
+    return false
+  }
+
+  return (
+    !userTypeConfig?.limitToUserTypeIds ||
+    (userTypeConfig?.userTypeIds?.includes(id) &&
+      userTypeConfig?.limitToUserTypeIds)
+  )
+}
 
 const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
   const [sending, setSending] = useState(false)
