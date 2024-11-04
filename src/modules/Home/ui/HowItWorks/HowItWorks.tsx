@@ -72,7 +72,7 @@ const HowItWorks: FC<HowItWorksType> = memo(({ howItWorksData }) => {
                       className={styles['slider__slide']}
                     >
                       <span className={styles['slider__slide_step']}>
-                        {`Step ${index + 1}`}
+                        {slide.step ? slide.step : index + 1}
                       </span>
                       <BackgroundImage
                         src={slide.image.url}

@@ -23,6 +23,7 @@ export const HowItWorksFragment = gql`
       title
       description
       id
+      step
     }
   }
 `

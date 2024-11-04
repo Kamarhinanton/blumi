@@ -124,6 +124,7 @@ type ComponentHomeListSlider {
     icon: UploadFile
     id: ID!
     image: UploadFile!
+    step: String
     title: String!
 }
 
@@ -238,9 +239,9 @@ type Home {
     locale: String
     localizations: [Home]!
     localizations_connection: HomeRelationResponseCollection
-    pageName: String!
     publishedAt: DateTime
     thingsWondering: ComponentHomeThingsWondering
+    title: String!
     updatedAt: DateTime
     whatTheySay(filters: ComponentHomeWhatTheySayFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeWhatTheySay]
 }
@@ -791,6 +792,7 @@ input ComponentHomeListSliderFiltersInput {
     description: StringFilterInput
     not: ComponentHomeListSliderFiltersInput
     or: [ComponentHomeListSliderFiltersInput]
+    step: StringFilterInput
     title: StringFilterInput
 }
 
@@ -799,6 +801,7 @@ input ComponentHomeListSliderInput {
     icon: ID
     id: ID
     image: ID
+    step: String
     title: String
 }
 
@@ -950,9 +953,9 @@ input HomeInput {
     howItWorks: ComponentHomeHowItWorksInput
     latestListing: ComponentHomeLatestListingInput
     locale: String
-    pageName: String
     publishedAt: DateTime
     thingsWondering: ComponentHomeThingsWonderingInput
+    title: String
     whatTheySay: [ComponentHomeWhatTheySayInput]
 }
 

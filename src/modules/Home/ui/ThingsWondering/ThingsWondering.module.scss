@@ -1,49 +1,71 @@
 @import '@/app/styles/variables/breakpoints';
 
-.thingsWondering{
+.thingsWondering {
   margin: 120rem 0;
 
-  @media (width<=$breakpoint-mob){
+  @media (width<=$breakpoint-mob) {
     margin: 80rem 0;
   }
 
-    &__content{
+  &__content {
+    display: flex;
+    gap: 40rem;
+
+    @media (width<=$breakpoint-mob) {
+      flex-direction: column;
+    }
+
+    &_text {
       display: flex;
-      gap: 40rem;
+      flex: 0 1 50%;
+      flex-direction: column;
 
-      @media (width<=$breakpoint-mob){
-        flex-direction: column;
-      }
+      .smallHeading {
+        max-width: 344rem;
+        margin: 84rem 0 0;
 
-      &_text{
-        display: flex;
-        flex: 0 1 50%;
-        flex-direction: column;
-
-        .smallHeading{
-          max-width: 344rem;
-          margin: 84rem 0 0;
-
-          @media (width<=$breakpoint-mob){
-            margin: 10rem 0 0;
-          }
-        }
-
-        .link{
-          align-self: flex-start;
-          margin: 40rem 0 0;
-
-          @media (width<=$breakpoint-mob){
-            margin: 28rem 0 0;
-          }
-
+        @media (width<=$breakpoint-mob) {
+          margin: 10rem 0 0;
         }
       }
 
-      &_list{
-        flex: 0 1 50%;
+      .link {
+        position: relative;
+        margin: 40rem 0 0;
+        padding: 0 0 0 36rem;
+        color: var(--primary-text);
+        transition: color var(--duration-hover) var(--ease);
+
+        @media (width>$breakpoint-mob) {
+          &:hover {
+            color: var(--pink-primary);
+          }
+        }
+
+        @media (width<=$breakpoint-mob) {
+          margin: 28rem 0 0;
+        }
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 24rem;
+          height: 24rem;
+          background-image: url("/icons/chat.svg");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          transform: translateY(-50%);
+          content: '';
+        }
       }
     }
+
+    &_list {
+      flex: 0 1 50%;
+    }
+  }
 }
 
 .desk-view {

@@ -426,6 +426,7 @@ export type ComponentHomeListSlider = {
   icon?: Maybe<UploadFile>;
   id: Scalars['ID']['output'];
   image: UploadFile;
+  step?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
 };
 
@@ -434,6 +435,7 @@ export type ComponentHomeListSliderFiltersInput = {
   description?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentHomeListSliderFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentHomeListSliderFiltersInput>>>;
+  step?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
 };
 
@@ -442,6 +444,7 @@ export type ComponentHomeListSliderInput = {
   icon?: InputMaybe<Scalars['ID']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Scalars['ID']['input']>;
+  step?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -795,9 +798,9 @@ export type Home = {
   locale?: Maybe<Scalars['String']['output']>;
   localizations: Array<Maybe<Home>>;
   localizations_connection?: Maybe<HomeRelationResponseCollection>;
-  pageName: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   thingsWondering?: Maybe<ComponentHomeThingsWondering>;
+  title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   whatTheySay?: Maybe<Array<Maybe<ComponentHomeWhatTheySay>>>;
 };
@@ -817,9 +820,9 @@ export type HomeInput = {
   howItWorks?: InputMaybe<ComponentHomeHowItWorksInput>;
   latestListing?: InputMaybe<ComponentHomeLatestListingInput>;
   locale?: InputMaybe<Scalars['String']['input']>;
-  pageName?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   thingsWondering?: InputMaybe<ComponentHomeThingsWonderingInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
   whatTheySay?: InputMaybe<Array<InputMaybe<ComponentHomeWhatTheySayInput>>>;
 };
 

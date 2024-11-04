@@ -4,7 +4,7 @@ import { QueryResultThingsWonderingData } from '@/modules/Home/ui/ThingsWonderin
 import { cleanedTitleWithIcons } from '@/utils/global'
 import Heading from '@/components/Heading/Heading'
 import FAQSection from '@/modules/Home/ui/ThingsWondering/FAQSection/FAQSection'
-import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
+import Link from 'next/link'
 
 import Icon from '../../../../../public/icons/light.svg'
 
@@ -15,7 +15,7 @@ type ThingsWonderingType = {
 }
 
 const ThingsWondering: FC<ThingsWonderingType> = ({ thingsWondering }) => {
-  const { bigTitle, smallTitle, description, subText, buttonText, list } =
+  const { bigTitle, smallTitle, description, subText, email, list } =
     thingsWondering
   const cleanedDataBigTitle = cleanedTitleWithIcons(bigTitle || [])
   const cleanedDataSmallTitle = cleanedTitleWithIcons(smallTitle || [])
@@ -40,9 +40,9 @@ const ThingsWondering: FC<ThingsWonderingType> = ({ thingsWondering }) => {
               titleSize={'h4 variant'}
               className={styles['smallHeading']}
             />
-            <ButtonPrimary className={styles['link']} href={'/'}>
-              {buttonText}
-            </ButtonPrimary>
+            <Link className={styles['link']} href={`mailto:${email}`}>
+              {email}
+            </Link>
           </div>
           <div className={styles['thingsWondering__content_list']}>
             <FAQSection className={styles['desk-view']} data={list} />
