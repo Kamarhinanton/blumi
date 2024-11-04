@@ -79,20 +79,22 @@ const WhatTheySay: FC<WhatTheyType> = memo(
                     <p className={styles['description']}>
                       <small>{review.description}</small>
                     </p>
-                    <ul className={styles['image-list']}>
-                      {review.images_connection.nodes.map((image) => (
-                        <li
-                          className={styles['image-list__item']}
-                          key={image.documentId}
-                        >
-                          <BackgroundImage
-                            position={'cover'}
-                            src={image.url}
-                            alt={'image'}
-                          />
-                        </li>
-                      ))}
-                    </ul>
+                    {review.images_connection.nodes.length > 0 && (
+                      <ul className={styles['image-list']}>
+                        {review.images_connection.nodes.map((image) => (
+                          <li
+                            className={styles['image-list__item']}
+                            key={image.documentId}
+                          >
+                            <BackgroundImage
+                              position={'cover'}
+                              src={image.url}
+                              alt={'image'}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <div className={styles['author']}>
                       {review.author && (
                         <BackgroundImage
