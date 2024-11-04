@@ -33,7 +33,11 @@ const WhatTheySay: FC<WhatTheyType> = memo(
     const cleanedData = cleanedTitleWithIcons(title?.titleWithIcons || [])
 
     return (
-      <section className={styles['whatTheySay']}>
+      <section
+        className={classNames(styles['whatTheySay'], {
+          [styles['reverse']]: !reverseDirection,
+        })}
+      >
         {title && (
           <Heading
             description={title.description || ''}

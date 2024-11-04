@@ -1,6 +1,15 @@
 @import '@/app/styles/variables/breakpoints';
 
 .whatTheySay{
+  &.reverse{
+    .slider{
+      &__slide{
+        align-items: flex-end;
+        align-self: flex-end;
+      }
+    }
+  }
+
   .slider{
     position: relative;
     margin: 56rem 0 0;
@@ -24,10 +33,6 @@
         gap: 8rem;
         width: 278rem;
         margin: 0 8rem 0 0;
-      }
-
-      &.reverse{
-        align-items: flex-end;
       }
 
       &_icon{
