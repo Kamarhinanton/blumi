@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 import TextField from '@/ui/TextField/TextField'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import Link from 'next/link'
@@ -11,9 +11,9 @@ import { AnimatePresence } from 'framer-motion'
 import { UserField, UserType } from '@/utils/handleTypes'
 import ControlField from '@/ui/ControlField/ControlField'
 import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
+import classNames from 'classnames'
 
 import styles from './BodyForm.module.scss'
-import classNames from 'classnames'
 
 type BodyFormType = {
   userType: UserType
@@ -43,31 +43,35 @@ export const isUserFieldsShouldVisible = (field: UserField, id: string) => {
   )
 }
 
+export const isFieldShouldBeVisible = (
+  field1: boolean | undefined,
+  field2: boolean | undefined,
+) => field1 && field2
+
 const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
+  const { displayNameSettings, phoneNumberSettings, defaultUserFields } =
+    userType
   const [sending, setSending] = useState(false)
   const [isVisible, setIsVisible] = useState({
     visible: false,
     message: '',
   })
 
-  useEffect(() => console.log(userFields), [])
-
   const validationSchema = generateValidationSchema(userFields, userType)
-  const isPhoneFieldShouldVisible =
-    userType.phoneNumberSettings?.displayInSignUp &&
-    userType.defaultUserFields.phoneNumber
-
-  const isDisplayFieldShouldVisible =
-    userType.displayNameSettings?.displayInSignUp &&
-    userType.defaultUserFields.displayName
 
   const defaultValues: FormData = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    ...(isPhoneFieldShouldVisible && { phoneNumber: '' }),
-    ...(isDisplayFieldShouldVisible && { displayName: '' }),
+    ...(isFieldShouldBeVisible(
+      phoneNumberSettings?.displayInSignUp,
+      defaultUserFields.phoneNumber,
+    ) && { phoneNumber: '' }),
+    ...(isFieldShouldBeVisible(
+      displayNameSettings?.displayInSignUp,
+      defaultUserFields.displayName,
+    ) && { displayName: '' }),
     ...userFields
       .filter((field) => isUserFieldsShouldVisible(field, userType.id))
       .reduce((acc: Partial<FormData>, userField) => {
@@ -90,9 +94,6 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
       }, {}),
   }
 
-  console.log('dv', defaultValues)
-  console.log('vs', validationSchema)
-
   const {
     handleSubmit,
     formState: { errors },
@@ -104,18 +105,13 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     resolver: yupResolver(validationSchema) as Resolver<Partial<FormData>>,
   })
 
-  const watchedFields = userFields
-    .filter(
-      (field) =>
-        field.schemaType === 'enum' || field.schemaType === 'multi-enum',
-    )
-    .map((field) => ({
-      key: field.key,
-      value: watch(field.key, defaultValues[field.key]),
-    }))
-
   const watchedFieldsMap = Object.fromEntries(
-    watchedFields.map(({ key, value }) => [key, value]),
+    userFields
+      .filter(
+        (field) =>
+          field.schemaType === 'enum' || field.schemaType === 'multi-enum',
+      )
+      .map((field) => [field.key, watch(field.key, defaultValues[field.key])]),
   )
 
   const resetForm = (message: string) => {
@@ -127,7 +123,6 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
   }
 
   const onSubmit = async (data: Partial<FormData>) => {
-    console.log(data)
     setSending(true)
     const {
       firstName,
@@ -222,7 +217,10 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
               )
             }}
           />
-          {isPhoneFieldShouldVisible && (
+          {isFieldShouldBeVisible(
+            phoneNumberSettings?.displayInSignUp,
+            defaultUserFields.phoneNumber,
+          ) && (
             <Controller
               control={control}
               name={'phoneNumber'}
@@ -239,7 +237,10 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
               }}
             />
           )}
-          {isDisplayFieldShouldVisible && (
+          {isFieldShouldBeVisible(
+            displayNameSettings?.displayInSignUp,
+            defaultUserFields.displayName,
+          ) && (
             <Controller
               control={control}
               name={'displayName'}

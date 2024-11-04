@@ -1,6 +1,9 @@
 import * as Yup from 'yup'
 import { UserField, UserType } from '@/utils/handleTypes'
-import { isUserFieldsShouldVisible } from '@/components/HeroSignUp/BodyForm/BodyForm'
+import {
+  isFieldShouldBeVisible,
+  isUserFieldsShouldVisible,
+} from '@/components/HeroSignUp/BodyForm/BodyForm'
 
 type ValidationSchema = {
   firstName: Yup.StringSchema
@@ -14,14 +17,8 @@ export const generateValidationSchema = (
   userFields: UserField[],
   userType: UserType,
 ) => {
-  const isPhoneFieldShouldVisible =
-    userType.phoneNumberSettings?.displayInSignUp &&
-    userType.defaultUserFields.phoneNumber
-
-  const isDisplayFieldShouldVisible =
-    userType.displayNameSettings?.displayInSignUp &&
-    userType.defaultUserFields.displayName
-
+  const { displayNameSettings, phoneNumberSettings, defaultUserFields } =
+    userType
   const schema: ValidationSchema = {
     firstName: Yup.string().required('First name is required'),
     lastName: Yup.string().required('Last name is required'),
@@ -29,14 +26,24 @@ export const generateValidationSchema = (
     password: Yup.string().required('Password is required'),
   }
 
-  if (isPhoneFieldShouldVisible) {
+  if (
+    isFieldShouldBeVisible(
+      phoneNumberSettings?.displayInSignUp,
+      defaultUserFields.phoneNumber,
+    )
+  ) {
     schema.phoneNumber = Yup.string()
-      .required('Phone is required')
+      .required('Phone number is required')
       .matches(/^\d+$/, 'Phone number must contain only digits')
   }
 
-  if (isDisplayFieldShouldVisible) {
-    schema.displayName = Yup.string().required('Field is required')
+  if (
+    isFieldShouldBeVisible(
+      displayNameSettings?.displayInSignUp,
+      defaultUserFields.displayName,
+    )
+  ) {
+    schema.displayName = Yup.string().required('Display name is required')
   }
 
   userFields
