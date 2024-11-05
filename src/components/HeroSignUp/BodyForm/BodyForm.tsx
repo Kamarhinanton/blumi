@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react'
 import TextField from '@/ui/TextField/TextField'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
-import Link from 'next/link'
-import routes from '@/utils/routes'
+// import Link from 'next/link'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, Resolver, useForm } from 'react-hook-form'
 import { generateValidationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
@@ -181,7 +180,6 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
                   {...field}
                   className={styles['form__input-wrapper_input']}
                   placeholder={'First name'}
-                  label={'Make sure it matches your government ID.'}
                   error={errors['firstName']?.message}
                 />
               )
@@ -211,7 +209,6 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
                   className={styles['form__input-wrapper_input']}
                   placeholder={'Email'}
                   type={'email'}
-                  label={'We’ll email you confirmation and receipts.'}
                   error={errors['email']?.message}
                 />
               )
@@ -372,23 +369,8 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
             })}
         </div>
         <p className={styles['form__bottom-subtext']}>
-          By selecting <strong>Agree and continue</strong>, I agree to Blumi’s{' '}
-          <Link className={'border-link'} href={'/'}>
-            Terms of Service
-          </Link>
-          ,
-          <Link className={'border-link'} href={'/'}>
-            Payments Terms of Service{' '}
-          </Link>
-          and{' '}
-          <Link className={'border-link'} href={'/'}>
-            Nondiscrimination Policy
-          </Link>{' '}
-          and acknowledge the{' '}
-          <Link className={'border-link'} href={'/'}>
-            Privacy Policy
-          </Link>
-          .
+          By signing up I accept the <strong>Terms of Service </strong> and{' '}
+          <strong>Privacy Policy</strong>
         </p>
         <ButtonSecondary
           type="submit"
@@ -396,14 +378,14 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
           variant={'pink'}
           disabled={sending}
         >
-          Agree and Continue
+          Sign up
         </ButtonSecondary>
-        <p className={styles['form__bottom-text']}>
-          You’re a model?{' '}
-          <Link className={'border-link'} href={routes.public.signUpCustomer}>
-            Sign up as a Model
-          </Link>
-        </p>
+        {/*<p className={styles['form__bottom-text']}>*/}
+        {/*  You’re a model?{' '}*/}
+        {/*  <Link className={'border-link'} href={routes.public.signUpCustomer}>*/}
+        {/*    Sign up as a Model*/}
+        {/*  </Link>*/}
+        {/*</p>*/}
       </form>
       <AnimatePresence>
         {isVisible.visible && (

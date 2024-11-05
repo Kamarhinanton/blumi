@@ -17,10 +17,10 @@
 
   &__title {
     padding: 8rem 10rem;
-    color: var(--grey-secondary);
+    color: var(--grey-dark);
     font: var(--font-s);
     line-height: 100%;
-    border: 1rem solid var(--grey-secondary);
+    border: 1rem solid var(--grey-dark);
     border-radius: 34rem;
     transition: var(--duration-hover) var(--ease);
 
@@ -41,5 +41,4 @@
   input {
     display: none;
   }
-
 }

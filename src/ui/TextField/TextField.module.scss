@@ -19,7 +19,7 @@
     padding: 20rem 40rem 20rem 32rem;
     color: var(--primary-text);
     font: var(--font-s);
-    border: 1rem solid var(--grey-primary);
+    border: 1rem solid var(--grey-dark);
     border-radius: 18rem;
 
     @media (width<=$breakpoint-mob) {
@@ -30,7 +30,7 @@
     }
 
     &::placeholder {
-      color: var(--grey-secondary);
+      color: var(--grey-dark);
     }
 
     &:focus {
