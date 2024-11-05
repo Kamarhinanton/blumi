@@ -5,6 +5,7 @@ import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import SmallForm from '@/components/SmallForm/SmallForm'
 import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
+import { useRouter } from 'next/router'
 
 import Icon from '../../../../../public/icons/bulb.svg'
 
@@ -17,8 +18,14 @@ type HeroContentType = {
 const Hero: FC<HeroContentType> = ({ heroData }) => {
   const { list, picture, listIcons, cta, heading } = heroData
   const { description, titleWithIcons } = heading
+  const router = useRouter()
 
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
+
+  const handleSearch = async (value: string) => {
+    const searchUrl = `https://blumi.co.uk/s?keywords=${encodeURIComponent(value)}`
+    await router.push(searchUrl)
+  }
 
   return (
     <section className={styles['hero']}>
@@ -69,6 +76,7 @@ const Hero: FC<HeroContentType> = ({ heroData }) => {
               placeholderText={cta.placeholderText}
               buttonText={cta.buttonText}
               className={styles['form']}
+              onSearch={handleSearch}
             />
           </div>
         </div>
