@@ -142,11 +142,13 @@
           margin: 0 29rem 0 0;
           padding: 8rem 12rem 8rem 48rem;
           font: var(--font-s);
+          letter-spacing: -0.56rem;
           white-space: nowrap;
           background-color: var(--pink-secondary);
           background-clip: padding-box;
           border: solid $border transparent;
           border-radius: 12rem;
+          transition: background-color var(--duration-hover) var(--ease);
 
           &::before {
             position: absolute;
@@ -157,6 +159,20 @@
             opacity: .3;
             content: '';
             inset: 0;
+          }
+
+          @media (width>$breakpoint-mob) {
+            &:hover {
+              background-color: var(--white);
+
+              .list{
+                &__link{
+                  &_icon{
+                    transform: translateY(-50%) rotateY(180deg);
+                  }
+                }
+              }
+            }
           }
 
           @media (width<=$breakpoint-mob) {
@@ -176,6 +192,8 @@
             width: 32rem;
             height: 32rem;
             transform: translateY(-50%);
+            transition: transform var(--duration-hover) var(--ease);
+            will-change: transform;
 
             @media (width<=$breakpoint-mob) {
               left: 6rem;

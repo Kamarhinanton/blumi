@@ -56,7 +56,7 @@ type ComponentFooterInnerFooterColumn {
 type ComponentHeaderTitleColumn {
     id: ID!
     list(filters: ComponentBaseListFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBaseList]
-    title: String!
+    title: String
 }
 
 type ComponentHomeBookBlumi {
@@ -102,6 +102,7 @@ type ComponentHomeListCities {
 }
 
 type ComponentHomeListIcons {
+    href: String
     icon: UploadFile!
     id: ID!
     text: String!
@@ -135,7 +136,7 @@ type ComponentHomeListSliderReviews {
     icon: UploadFile!
     id: ID!
     images(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UploadFile]!
-    images_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
+    images_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
     title: String!
 }
 
@@ -749,12 +750,14 @@ input ComponentHomeListCitiesInput {
 
 input ComponentHomeListIconsFiltersInput {
     and: [ComponentHomeListIconsFiltersInput]
+    href: StringFilterInput
     not: ComponentHomeListIconsFiltersInput
     or: [ComponentHomeListIconsFiltersInput]
     text: StringFilterInput
 }
 
 input ComponentHomeListIconsInput {
+    href: String
     icon: ID
     id: ID
     text: String

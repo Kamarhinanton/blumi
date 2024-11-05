@@ -66,7 +66,9 @@ const HeaderSubmenu: FC<SubmenuType> = ({
                   className={styles['list']}
                   key={`menu-${menu.id || index}`}
                 >
-                  <p className={styles['list__title']}>{menu.title}</p>
+                  {menu.title && (
+                    <p className={styles['list__title']}>{menu.title}</p>
+                  )}
                   <ul className={styles['list-inner']}>
                     {menu.list &&
                       menu.list.map(

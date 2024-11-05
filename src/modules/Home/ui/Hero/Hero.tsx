@@ -6,6 +6,7 @@ import SmallForm from '@/components/SmallForm/SmallForm'
 import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import Icon from '../../../../../public/icons/bulb.svg'
 
@@ -57,21 +58,26 @@ const Hero: FC<HeroContentType> = ({ heroData }) => {
               alt={'picture'}
               position={'cover'}
             />
-            <ul className={styles['list']}>
+            <nav className={styles['list']}>
               {listIcons.map(
                 (link) =>
-                  link && (
-                    <li className={styles['list__link']} key={link.id}>
+                  link &&
+                  link.href && (
+                    <Link
+                      href={link.href}
+                      className={styles['list__link']}
+                      key={link.id}
+                    >
                       <BackgroundImage
                         src={link.icon.url}
                         alt={'icon'}
                         className={styles['list__link_icon']}
                       />
                       {link.text}
-                    </li>
+                    </Link>
                   ),
               )}
-            </ul>
+            </nav>
             <SmallForm
               placeholderText={cta.placeholderText}
               buttonText={cta.buttonText}
