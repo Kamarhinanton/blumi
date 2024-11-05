@@ -110,6 +110,7 @@ type ComponentHomeListIcons {
 
 type ComponentHomeListImages {
     description: String!
+    href: String
     id: ID!
     image: UploadFile!
     title: String!
@@ -766,6 +767,7 @@ input ComponentHomeListIconsInput {
 input ComponentHomeListImagesFiltersInput {
     and: [ComponentHomeListImagesFiltersInput]
     description: StringFilterInput
+    href: StringFilterInput
     not: ComponentHomeListImagesFiltersInput
     or: [ComponentHomeListImagesFiltersInput]
     title: StringFilterInput
@@ -773,6 +775,7 @@ input ComponentHomeListImagesFiltersInput {
 
 input ComponentHomeListImagesInput {
     description: String
+    href: String
     id: ID
     image: ID
     title: String

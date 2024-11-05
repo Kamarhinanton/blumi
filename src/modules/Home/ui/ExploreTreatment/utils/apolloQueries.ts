@@ -17,6 +17,7 @@ export const ExploreTreatmentFragment = gql`
       description
       id
       title
+      href
       image {
         url
       }

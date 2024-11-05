@@ -126,7 +126,10 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
               <IconArrow />
             </ArrowSlider>
           </div>
-          <ButtonPrimary className={styles['button']} href={'/'}>
+          <ButtonPrimary
+            className={styles['button']}
+            href={'https://blumi.co.uk/s'}
+          >
             {buttonText}
           </ButtonPrimary>
         </div>

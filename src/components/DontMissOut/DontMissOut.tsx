@@ -19,6 +19,7 @@ import Icon from '../../../public/icons/light.svg'
 
 import styles from './DontMissOut.module.scss'
 import { breakpointMob } from '@/utils/variables'
+import routes from '@/utils/routes'
 
 type DontMissOutType = {
   dontMissOut: QueryResultDontMissOutData['dontMissOut']
@@ -48,7 +49,10 @@ const DontMissOut: FC<DontMissOutType> = ({ dontMissOut }) => {
             >
               <Icon />
             </Heading>
-            <ButtonPrimary className={styles['button']}>
+            <ButtonPrimary
+              href={routes.public.signUpCustomer}
+              className={styles['button']}
+            >
               {buttonText}
             </ButtonPrimary>
           </div>

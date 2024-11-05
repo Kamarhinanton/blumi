@@ -56,7 +56,8 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
           <ul className={styles['list']}>
             {listImages?.map(
               (item) =>
-                item && (
+                item &&
+                item.href && (
                   <li
                     onClick={() => handleClick(item.id)}
                     className={classNames(styles['list__item'], {
@@ -64,7 +65,7 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
                     })}
                     key={item.id}
                   >
-                    <Link href={'/'} className={styles['description']}>
+                    <Link href={item.href} className={styles['description']}>
                       <h4
                         className={classNames(
                           'h4',
@@ -92,7 +93,10 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
                 ),
             )}
           </ul>
-          <ButtonSecondary className={styles['button']} href={'/'}>
+          <ButtonSecondary
+            className={styles['button']}
+            href={'https://blumi.co.uk/s'}
+          >
             {buttonText}
           </ButtonSecondary>
         </div>
