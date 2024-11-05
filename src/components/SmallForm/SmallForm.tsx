@@ -9,7 +9,7 @@ type SmallFormType = {
   buttonText: string
   className?: string
   size?: 'small'
-  onSearch: (e: string) => void
+  onSearch?: (e: string) => void
 }
 
 const SmallForm: FC<SmallFormType> = ({
@@ -21,8 +21,11 @@ const SmallForm: FC<SmallFormType> = ({
   const [value, setValue] = useState('')
 
   const handleClick = () => {
-    onSearch(value)
-    setValue('')
+    if (onSearch) {
+      onSearch(value)
+      setValue('')
+    }
+    return
   }
 
   return (
