@@ -10,9 +10,9 @@ import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { breakpointMob } from '@/utils/variables'
 import Heading from '@/components/Heading/Heading'
 import { cleanedTitleWithIcons } from '@/utils/global'
+import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 
 import styles from './ExploreTreatment.module.scss'
-import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 
 type ExploreTreatmentContentType = {
   exploreTreatmentData: QueryResultExploreTreatmentData['exploreTreatment']
