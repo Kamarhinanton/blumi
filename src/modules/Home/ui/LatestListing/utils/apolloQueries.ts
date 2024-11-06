@@ -21,6 +21,8 @@ export const LatestListingFragment = gql`
     listSlider {
       id
       title
+      fullPrice
+      discountPrice
       description
       image {
         url

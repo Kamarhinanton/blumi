@@ -123,6 +123,9 @@ type ComponentHomeListMarked {
 
 type ComponentHomeListSlider {
     description: String!
+    discountPrice: String
+    fullPrice: String
+    href: String
     icon: UploadFile
     id: ID!
     image: UploadFile!
@@ -796,6 +799,9 @@ input ComponentHomeListMarkedInput {
 input ComponentHomeListSliderFiltersInput {
     and: [ComponentHomeListSliderFiltersInput]
     description: StringFilterInput
+    discountPrice: StringFilterInput
+    fullPrice: StringFilterInput
+    href: StringFilterInput
     not: ComponentHomeListSliderFiltersInput
     or: [ComponentHomeListSliderFiltersInput]
     step: StringFilterInput
@@ -804,6 +810,9 @@ input ComponentHomeListSliderFiltersInput {
 
 input ComponentHomeListSliderInput {
     description: String
+    discountPrice: String
+    fullPrice: String
+    href: String
     icon: ID
     id: ID
     image: ID

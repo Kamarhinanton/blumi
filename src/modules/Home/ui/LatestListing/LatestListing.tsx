@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { QueryResultLatestListing } from '@/modules/Home/ui/LatestListing/utils/types'
 import Container from '@/app/layouts/layouts/Container'
 import Heading from '@/components/Heading/Heading'
-import Link from 'next/link'
+// import Link from 'next/link'
 import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -42,7 +42,7 @@ const swiperProps: SwiperProps = {
 }
 
 const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
-  const { title, listCities, listSlider, buttonText } = latestListingData
+  const { title, listSlider, buttonText } = latestListingData
   const { description, titleWithIcons, subText } = title
 
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
@@ -62,21 +62,21 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
             >
               <Icon />
             </Heading>
-            <ul className={styles['cityList']}>
-              {listCities.map(
-                (city) =>
-                  city && (
-                    <li className={styles['cityList__item']} key={city.id}>
-                      <Link
-                        className={styles['cityList__item_link']}
-                        href={city.link}
-                      >
-                        {city.title}
-                      </Link>
-                    </li>
-                  ),
-              )}
-            </ul>
+            {/*<ul className={styles['cityList']}>*/}
+            {/*  {listCities.map(*/}
+            {/*    (city) =>*/}
+            {/*      city && (*/}
+            {/*        <li className={styles['cityList__item']} key={city.id}>*/}
+            {/*          <Link*/}
+            {/*            className={styles['cityList__item_link']}*/}
+            {/*            href={city.link}*/}
+            {/*          >*/}
+            {/*            {city.title}*/}
+            {/*          </Link>*/}
+            {/*        </li>*/}
+            {/*      ),*/}
+            {/*  )}*/}
+            {/*</ul>*/}
           </div>
           <div className={styles['latestListing__content_bottom']}>
             <Swiper
@@ -96,6 +96,20 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
                         alt={'picture'}
                         position={'cover'}
                       />
+                      {(slide.fullPrice || slide.discountPrice) && (
+                        <div className={styles['price']}>
+                          {slide.fullPrice && (
+                            <p className={styles['price__full']}>
+                              {slide.fullPrice}
+                            </p>
+                          )}
+                          {slide.discountPrice && (
+                            <p className={styles['price__discount']}>
+                              {slide.discountPrice}
+                            </p>
+                          )}
+                        </div>
+                      )}
                       <h4
                         className={classNames(
                           'h4',
