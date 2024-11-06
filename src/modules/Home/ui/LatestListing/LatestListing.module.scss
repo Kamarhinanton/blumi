@@ -94,6 +94,22 @@
         &__slide {
           width: 416rem;
 
+          .slider-link{
+            @media (width>$breakpoint-mob) {
+              &:hover {
+                .slider {
+                  &__slide {
+                    &_image {
+                      img {
+                        scale: 1.1;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
           @media (width<=$breakpoint-mob) {
             width: 255rem;
           }
@@ -103,6 +119,11 @@
             margin: 0 0 16rem;
             overflow: hidden;
             border-radius: 24rem;
+
+            img {
+              transition: scale var(--duration-hover) var(--ease);
+              will-change: scale;
+            }
 
             @media (width<=$breakpoint-mob) {
               height: 255rem;

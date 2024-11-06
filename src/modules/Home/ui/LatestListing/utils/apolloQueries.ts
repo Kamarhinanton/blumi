@@ -22,6 +22,7 @@ export const LatestListingFragment = gql`
       id
       title
       fullPrice
+      href
       discountPrice
       description
       image {

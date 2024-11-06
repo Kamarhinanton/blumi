@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { QueryResultLatestListing } from '@/modules/Home/ui/LatestListing/utils/types'
 import Container from '@/app/layouts/layouts/Container'
 import Heading from '@/components/Heading/Heading'
-// import Link from 'next/link'
+import Link from 'next/link'
 import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -12,11 +12,13 @@ import classNames from 'classnames'
 import ArrowSlider from '@/ui/ArrowSlider/ArrowSlider'
 import { breakpointMob } from '@/utils/variables'
 import { cleanedTitleWithIcons } from '@/utils/global'
+import { ComponentHomeListSlider, Maybe } from '@/gql/graphql'
 
 import Icon from '../../../../../public/icons/light.svg'
 import IconArrow from '../../../../../public/icons/arrow-pink.svg'
 
 import styles from './LatestListing.module.scss'
+import 'swiper/css'
 
 type LatestListingDataType = {
   latestListingData: QueryResultLatestListing['latestListing']
@@ -62,67 +64,27 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
             >
               <Icon />
             </Heading>
-            {/*<ul className={styles['cityList']}>*/}
-            {/*  {listCities.map(*/}
-            {/*    (city) =>*/}
-            {/*      city && (*/}
-            {/*        <li className={styles['cityList__item']} key={city.id}>*/}
-            {/*          <Link*/}
-            {/*            className={styles['cityList__item_link']}*/}
-            {/*            href={city.link}*/}
-            {/*          >*/}
-            {/*            {city.title}*/}
-            {/*          </Link>*/}
-            {/*        </li>*/}
-            {/*      ),*/}
-            {/*  )}*/}
-            {/*</ul>*/}
           </div>
           <div className={styles['latestListing__content_bottom']}>
             <Swiper
               {...swiperProps}
               className={classNames(styles['slider'], 'gradient-fade')}
             >
-              {listSlider.map(
-                (slide) =>
-                  slide && (
-                    <SwiperSlide
-                      key={slide.id}
-                      className={styles['slider__slide']}
-                    >
-                      <BackgroundImage
-                        className={styles['slider__slide_image']}
-                        src={slide.image.url}
-                        alt={'picture'}
-                        position={'cover'}
-                      />
-                      {(slide.fullPrice || slide.discountPrice) && (
-                        <div className={styles['price']}>
-                          {slide.fullPrice && (
-                            <p className={styles['price__full']}>
-                              {slide.fullPrice}
-                            </p>
-                          )}
-                          {slide.discountPrice && (
-                            <p className={styles['price__discount']}>
-                              {slide.discountPrice}
-                            </p>
-                          )}
-                        </div>
-                      )}
-                      <h4
-                        className={classNames(
-                          'h4',
-                          styles['slider__slide_title'],
-                        )}
-                      >
-                        {slide.title}
-                      </h4>
-                      <p className={styles['slider__slide_description']}>
-                        {slide.description}
-                      </p>
-                    </SwiperSlide>
-                  ),
+              {listSlider.map((slide) =>
+                slide ? (
+                  <SwiperSlide
+                    key={slide.id}
+                    className={styles['slider__slide']}
+                  >
+                    {slide.href ? (
+                      <Link className={styles['slider-link']} href={slide.href}>
+                        <SlideContent slide={slide} />
+                      </Link>
+                    ) : (
+                      <SlideContent slide={slide} />
+                    )}
+                  </SwiperSlide>
+                ) : null,
               )}
             </Swiper>
             <ArrowSlider
@@ -151,5 +113,33 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
     </section>
   )
 }
+
+const SlideContent: FC<{
+  slide: Maybe<ComponentHomeListSlider>
+}> = ({ slide }) =>
+  slide && (
+    <>
+      <BackgroundImage
+        className={styles['slider__slide_image']}
+        src={slide.image.url}
+        alt={'picture'}
+        position={'cover'}
+      />
+      {(slide.fullPrice || slide.discountPrice) && (
+        <div className={styles['price']}>
+          {slide.fullPrice && (
+            <p className={styles['price__full']}>{slide.fullPrice}</p>
+          )}
+          {slide.discountPrice && (
+            <p className={styles['price__discount']}>{slide.discountPrice}</p>
+          )}
+        </div>
+      )}
+      <h4 className={classNames('h4', styles['slider__slide_title'])}>
+        {slide.title}
+      </h4>
+      <p className={styles['slider__slide_description']}>{slide.description}</p>
+    </>
+  )
 
 export default LatestListing
