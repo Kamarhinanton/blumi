@@ -10,6 +10,7 @@ export const HeaderData = gql`
         id
         description
         link
+        linkPrefix
       }
       buttonText
       submenu {
@@ -18,6 +19,7 @@ export const HeaderData = gql`
           link
           id
           description
+          linkPrefix
         }
       }
     }

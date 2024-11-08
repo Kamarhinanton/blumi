@@ -50,7 +50,7 @@ const HeaderSubmenu: FC<SubmenuType> = ({
                     >
                       <Link
                         className={styles['list-inner__item_link']}
-                        href={item.link}
+                        href={`${item.linkPrefix || ''}${item.link}`}
                       >
                         {item.description}
                       </Link>
@@ -80,7 +80,7 @@ const HeaderSubmenu: FC<SubmenuType> = ({
                             >
                               <Link
                                 className={styles['list-inner__item_link']}
-                                href={item.link}
+                                href={`${item.linkPrefix || ''}${item.link}`}
                               >
                                 {item.description}
                               </Link>

@@ -1,5 +1,7 @@
 import { ComponentBaseTitleWithIcons } from '@/gql/graphql'
 
+export const blumiAddress = 'https://blumi.co.uk'
+
 export const cleanedTitleWithIcons = (
   titleWithIcons: (ComponentBaseTitleWithIcons | null)[] = [],
 ) =>

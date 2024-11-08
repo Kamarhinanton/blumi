@@ -13,6 +13,8 @@ import usePageScroll from '@/hooks/usePageScroll'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import dynamic from 'next/dynamic'
 import useRouteChange from '@/hooks/useRoutChange'
+import routes from '@/utils/routes'
+import { blumiAddress } from '@/utils/global'
 
 const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
   ssr: false,
@@ -48,7 +50,10 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
         <div className={styles['blur']} />
         <Container className={styles['container']}>
           <div className={styles['header__content']}>
-            <Link href={'/'} className={styles['header__content_logo']}>
+            <Link
+              href={routes.public.index}
+              className={styles['header__content_logo']}
+            >
               <BackgroundImage src={logo.url} alt={'logo'} />
             </Link>
             <nav className={styles['navigation']}>
@@ -59,14 +64,17 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
                       <Link
                         className={styles['navigation__link']}
                         key={item.id}
-                        href={item.link}
+                        href={`${item.linkPrefix || ''}${item.link}`}
                       >
                         {item.description}
                       </Link>
                     ),
                 )}
             </nav>
-            <ButtonSecondary className={styles['buttonSecondary']} href={'/'}>
+            <ButtonSecondary
+              className={styles['buttonSecondary']}
+              href={`${blumiAddress || ''}${routes.public.allTreatments}`}
+            >
               Browse treatments
             </ButtonSecondary>
             <ButtonPrimary

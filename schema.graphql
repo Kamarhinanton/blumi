@@ -26,6 +26,7 @@ type ComponentBaseList {
     description: String!
     id: ID!
     link: String!
+    linkPrefix: String
 }
 
 type ComponentBaseTitleComponent {
@@ -629,6 +630,7 @@ input ComponentBaseListFiltersInput {
     and: [ComponentBaseListFiltersInput]
     description: StringFilterInput
     link: StringFilterInput
+    linkPrefix: StringFilterInput
     not: ComponentBaseListFiltersInput
     or: [ComponentBaseListFiltersInput]
 }
@@ -637,6 +639,7 @@ input ComponentBaseListInput {
     description: String
     id: ID
     link: String
+    linkPrefix: String
 }
 
 input ComponentBaseTitleComponentFiltersInput {
