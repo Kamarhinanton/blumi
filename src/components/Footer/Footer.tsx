@@ -5,6 +5,7 @@ import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Link from 'next/link'
 import SmallForm from '@/components/SmallForm/SmallForm'
 import routes from '@/utils/routes'
+import { useRouter } from 'next/router'
 
 import styles from './Footer.module.scss'
 
@@ -14,8 +15,14 @@ type FooterDataProps = {
 
 const Footer: FC<FooterDataProps> = memo(({ footerData }) => {
   const footer = footerData?.footer
+  const router = useRouter()
 
   const { logo, cta, columns, copyright, label } = footer
+
+  const handleSearch = async (value: string) => {
+    const searchUrl = `${process.env.NEXT_PUBLIC_EXTERNAL_LINK}/s?keywords=${encodeURIComponent(value)}`
+    await router.push(searchUrl)
+  }
 
   return (
     <footer className={styles['footer']}>
@@ -58,6 +65,7 @@ const Footer: FC<FooterDataProps> = memo(({ footerData }) => {
               <SmallForm
                 placeholderText={cta.placeholderText}
                 buttonText={cta.buttonText}
+                onSearch={handleSearch}
               />
             </div>
           </div>

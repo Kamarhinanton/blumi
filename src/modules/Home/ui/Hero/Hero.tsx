@@ -24,7 +24,7 @@ const Hero: FC<HeroContentType> = ({ heroData }) => {
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
 
   const handleSearch = async (value: string) => {
-    const searchUrl = `https://blumi.co.uk/s?keywords=${encodeURIComponent(value)}`
+    const searchUrl = `${process.env.NEXT_PUBLIC_EXTERNAL_LINK}/s?keywords=${encodeURIComponent(value)}`
     await router.push(searchUrl)
   }
 
