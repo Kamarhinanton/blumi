@@ -216,6 +216,7 @@ type GlobalRelationResponseCollection {
 }
 
 type Header {
+    buttonMobile: ComponentBaseList
     buttonText: String!
     createdAt: DateTime
     documentId: ID!
@@ -955,6 +956,7 @@ input GlobalInput {
 }
 
 input HeaderInput {
+    buttonMobile: ComponentBaseListInput
     buttonText: String
     link: [ComponentBaseListInput]
     locale: String

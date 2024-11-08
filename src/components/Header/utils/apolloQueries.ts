@@ -22,6 +22,11 @@ export const HeaderData = gql`
           linkPrefix
         }
       }
+      buttonMobile {
+        description
+        linkPrefix
+        link
+      }
     }
   }
 `

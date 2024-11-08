@@ -14,7 +14,6 @@ import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import dynamic from 'next/dynamic'
 import useRouteChange from '@/hooks/useRoutChange'
 import routes from '@/utils/routes'
-import { blumiAddress } from '@/utils/global'
 
 const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
   ssr: false,
@@ -42,7 +41,7 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
     [styles['scrolled']]: scrolled,
   }
 
-  const { logo, link, buttonText, submenu } = headerData?.header
+  const { logo, link, buttonText, submenu, buttonMobile } = headerData?.header
 
   return (
     <>
@@ -71,12 +70,14 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
                     ),
                 )}
             </nav>
-            <ButtonSecondary
-              className={styles['buttonSecondary']}
-              href={`${blumiAddress || ''}${routes.public.allTreatments}`}
-            >
-              Browse treatments
-            </ButtonSecondary>
+            {buttonMobile && (
+              <ButtonSecondary
+                className={styles['buttonSecondary']}
+                href={`${buttonMobile.linkPrefix || ''}${buttonMobile.link}`}
+              >
+                {buttonMobile.description}
+              </ButtonSecondary>
+            )}
             <ButtonPrimary
               callback={toggleMenu}
               activeBurger={isMenuActive}

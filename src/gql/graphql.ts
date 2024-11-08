@@ -762,6 +762,7 @@ export type GlobalRelationResponseCollection = {
 
 export type Header = {
   __typename?: 'Header';
+  buttonMobile?: Maybe<ComponentBaseList>;
   buttonText: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
@@ -790,6 +791,7 @@ export type HeaderSubmenuArgs = {
 };
 
 export type HeaderInput = {
+  buttonMobile?: InputMaybe<ComponentBaseListInput>;
   buttonText?: InputMaybe<Scalars['String']['input']>;
   link?: InputMaybe<Array<InputMaybe<ComponentBaseListInput>>>;
   locale?: InputMaybe<Scalars['String']['input']>;
