@@ -13,6 +13,10 @@ export const BookDontMissOutFragment = gql`
         }
       }
     }
-    buttonText
+    button {
+      description
+      link
+      isExternal
+    }
   }
 `

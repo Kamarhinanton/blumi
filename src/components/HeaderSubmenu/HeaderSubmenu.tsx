@@ -50,7 +50,11 @@ const HeaderSubmenu: FC<SubmenuType> = ({
                     >
                       <Link
                         className={styles['list-inner__item_link']}
-                        href={`${item.linkPrefix || ''}${item.link}`}
+                        href={
+                          item.isExternal
+                            ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + item.link
+                            : item.link
+                        }
                       >
                         {item.description}
                       </Link>
@@ -80,7 +84,12 @@ const HeaderSubmenu: FC<SubmenuType> = ({
                             >
                               <Link
                                 className={styles['list-inner__item_link']}
-                                href={`${item.linkPrefix || ''}${item.link}`}
+                                href={
+                                  item.isExternal
+                                    ? process.env.NEXT_PUBLIC_EXTERNAL_LINK +
+                                      item.link
+                                    : item.link
+                                }
                               >
                                 {item.description}
                               </Link>

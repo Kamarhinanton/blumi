@@ -63,7 +63,11 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
                       <Link
                         className={styles['navigation__link']}
                         key={item.id}
-                        href={`${item.linkPrefix || ''}${item.link}`}
+                        href={
+                          item.isExternal
+                            ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + item.link
+                            : item.link
+                        }
                       >
                         {item.description}
                       </Link>
@@ -73,7 +77,11 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
             {buttonMobile && (
               <ButtonSecondary
                 className={styles['buttonSecondary']}
-                href={`${buttonMobile.linkPrefix || ''}${buttonMobile.link}`}
+                href={
+                  buttonMobile.isExternal
+                    ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + buttonMobile.link
+                    : buttonMobile.link
+                }
               >
                 {buttonMobile.description}
               </ButtonSecondary>

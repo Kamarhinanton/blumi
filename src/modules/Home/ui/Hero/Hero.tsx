@@ -64,7 +64,11 @@ const Hero: FC<HeroContentType> = ({ heroData }) => {
                   link &&
                   link.href && (
                     <Link
-                      href={link.href}
+                      href={
+                        link.isExternal
+                          ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + link.href
+                          : link.href
+                      }
                       className={styles['list__link']}
                       key={link.id}
                     >

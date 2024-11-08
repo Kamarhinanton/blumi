@@ -10,7 +10,7 @@ export const HeaderData = gql`
         id
         description
         link
-        linkPrefix
+        isExternal
       }
       buttonText
       submenu {
@@ -19,12 +19,12 @@ export const HeaderData = gql`
           link
           id
           description
-          linkPrefix
+          isExternal
         }
       }
       buttonMobile {
         description
-        linkPrefix
+        isExternal
         link
       }
     }

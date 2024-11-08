@@ -18,10 +18,15 @@ export const ExploreTreatmentFragment = gql`
       id
       title
       href
+      isExternal
       image {
         url
       }
     }
-    buttonText
+    buttonBottom {
+      description
+      link
+      isExternal
+    }
   }
 `

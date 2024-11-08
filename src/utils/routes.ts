@@ -3,6 +3,5 @@ export default {
     index: '/',
     signUpPartner: '/signUpPartner',
     signUpCustomer: '/signUpCustomer',
-    allTreatments: '/s',
   },
 }

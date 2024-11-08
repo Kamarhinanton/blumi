@@ -7,6 +7,7 @@ import ButtonPrimary from '@/ui/ButtonPrimary/ButtonPrimary'
 import useCardMousePosition from '@/hooks/useCardMousePosition'
 import dynamic from 'next/dynamic'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
+import { breakpointMob } from '@/utils/variables'
 
 const Gradient = dynamic(
   () => import('@/components/DontMissOut/Gradient/Gradient'),
@@ -18,15 +19,13 @@ const Gradient = dynamic(
 import Icon from '../../../public/icons/light.svg'
 
 import styles from './DontMissOut.module.scss'
-import { breakpointMob } from '@/utils/variables'
-import routes from '@/utils/routes'
 
 type DontMissOutType = {
   dontMissOut: QueryResultDontMissOutData['dontMissOut']
 }
 
 const DontMissOut: FC<DontMissOutType> = ({ dontMissOut }) => {
-  const { title, buttonText } = dontMissOut
+  const { title, button } = dontMissOut
   const { titleWithIcons, description, subText } = title
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
   const { ref, cardMouseX, cardMouseY } = useCardMousePosition()
@@ -49,12 +48,18 @@ const DontMissOut: FC<DontMissOutType> = ({ dontMissOut }) => {
             >
               <Icon />
             </Heading>
-            <ButtonPrimary
-              href={routes.public.signUpCustomer}
-              className={styles['button']}
-            >
-              {buttonText}
-            </ButtonPrimary>
+            {button && (
+              <ButtonPrimary
+                href={
+                  button.isExternal
+                    ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + button.link
+                    : button.link
+                }
+                className={styles['button']}
+              >
+                {button?.description}
+              </ButtonPrimary>
+            )}
           </div>
         </div>
       </Container>

@@ -44,7 +44,7 @@ const swiperProps: SwiperProps = {
 }
 
 const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
-  const { title, listSlider, buttonText } = latestListingData
+  const { title, listSlider, buttonBottom } = latestListingData
   const { description, titleWithIcons, subText } = title
 
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
@@ -77,7 +77,14 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
                     className={styles['slider__slide']}
                   >
                     {slide.href ? (
-                      <Link className={styles['slider-link']} href={slide.href}>
+                      <Link
+                        className={styles['slider-link']}
+                        href={
+                          slide.isExternal
+                            ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + slide.href
+                            : slide.href
+                        }
+                      >
                         <SlideContent slide={slide} />
                       </Link>
                     ) : (
@@ -102,12 +109,18 @@ const LatestListing: FC<LatestListingDataType> = ({ latestListingData }) => {
               <IconArrow />
             </ArrowSlider>
           </div>
-          <ButtonPrimary
-            className={styles['button']}
-            href={'https://blumi.co.uk/s'}
-          >
-            {buttonText}
-          </ButtonPrimary>
+          {buttonBottom && (
+            <ButtonPrimary
+              className={styles['button']}
+              href={
+                buttonBottom.isExternal
+                  ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + buttonBottom.link
+                  : buttonBottom.link
+              }
+            >
+              {buttonBottom?.description}
+            </ButtonPrimary>
+          )}
         </div>
       </Container>
     </section>

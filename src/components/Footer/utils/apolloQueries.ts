@@ -11,6 +11,7 @@ export const FooterData = gql`
           description
           link
           id
+          isExternal
         }
         title
         id

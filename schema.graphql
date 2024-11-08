@@ -17,7 +17,7 @@ type ComponentBaseCta {
 }
 
 type ComponentBaseDontMissOut {
-    buttonText: String!
+    button: ComponentBaseList
     id: ID!
     title: ComponentBaseTitleComponent!
 }
@@ -25,8 +25,8 @@ type ComponentBaseDontMissOut {
 type ComponentBaseList {
     description: String!
     id: ID!
+    isExternal: Boolean
     link: String!
-    linkPrefix: String
 }
 
 type ComponentBaseTitleComponent {
@@ -67,7 +67,7 @@ type ComponentHomeBookBlumi {
 }
 
 type ComponentHomeExploreTreatment {
-    buttonText: String
+    buttonBottom: ComponentBaseList
     heading: ComponentBaseTitleComponent!
     id: ID!
     listImages(filters: ComponentHomeListImagesFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListImages]
@@ -89,7 +89,7 @@ type ComponentHomeHowItWorks {
 }
 
 type ComponentHomeLatestListing {
-    buttonText: String!
+    buttonBottom: ComponentBaseList
     id: ID!
     listCities(filters: ComponentHomeListCitiesFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListCities]!
     listSlider(filters: ComponentHomeListSliderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentHomeListSlider]!
@@ -106,6 +106,7 @@ type ComponentHomeListIcons {
     href: String
     icon: UploadFile!
     id: ID!
+    isExternal: Boolean
     text: String!
 }
 
@@ -114,6 +115,7 @@ type ComponentHomeListImages {
     href: String
     id: ID!
     image: UploadFile!
+    isExternal: Boolean
     title: String!
 }
 
@@ -130,6 +132,7 @@ type ComponentHomeListSlider {
     icon: UploadFile
     id: ID!
     image: UploadFile!
+    isExternal: Boolean
     step: String
     title: String!
 }
@@ -622,7 +625,7 @@ input ComponentBaseCtaInput {
 }
 
 input ComponentBaseDontMissOutInput {
-    buttonText: String
+    button: ComponentBaseListInput
     id: ID
     title: ComponentBaseTitleComponentInput
 }
@@ -630,8 +633,8 @@ input ComponentBaseDontMissOutInput {
 input ComponentBaseListFiltersInput {
     and: [ComponentBaseListFiltersInput]
     description: StringFilterInput
+    isExternal: BooleanFilterInput
     link: StringFilterInput
-    linkPrefix: StringFilterInput
     not: ComponentBaseListFiltersInput
     or: [ComponentBaseListFiltersInput]
 }
@@ -639,8 +642,8 @@ input ComponentBaseListFiltersInput {
 input ComponentBaseListInput {
     description: String
     id: ID
+    isExternal: Boolean
     link: String
-    linkPrefix: String
 }
 
 input ComponentBaseTitleComponentFiltersInput {
@@ -713,7 +716,7 @@ input ComponentHomeBookBlumiInput {
 }
 
 input ComponentHomeExploreTreatmentInput {
-    buttonText: String
+    buttonBottom: ComponentBaseListInput
     heading: ComponentBaseTitleComponentInput
     id: ID
     listImages: [ComponentHomeListImagesInput]
@@ -735,7 +738,7 @@ input ComponentHomeHowItWorksInput {
 }
 
 input ComponentHomeLatestListingInput {
-    buttonText: String
+    buttonBottom: ComponentBaseListInput
     id: ID
     listCities: [ComponentHomeListCitiesInput]
     listSlider: [ComponentHomeListSliderInput]
@@ -759,6 +762,7 @@ input ComponentHomeListCitiesInput {
 input ComponentHomeListIconsFiltersInput {
     and: [ComponentHomeListIconsFiltersInput]
     href: StringFilterInput
+    isExternal: BooleanFilterInput
     not: ComponentHomeListIconsFiltersInput
     or: [ComponentHomeListIconsFiltersInput]
     text: StringFilterInput
@@ -768,6 +772,7 @@ input ComponentHomeListIconsInput {
     href: String
     icon: ID
     id: ID
+    isExternal: Boolean
     text: String
 }
 
@@ -775,6 +780,7 @@ input ComponentHomeListImagesFiltersInput {
     and: [ComponentHomeListImagesFiltersInput]
     description: StringFilterInput
     href: StringFilterInput
+    isExternal: BooleanFilterInput
     not: ComponentHomeListImagesFiltersInput
     or: [ComponentHomeListImagesFiltersInput]
     title: StringFilterInput
@@ -785,6 +791,7 @@ input ComponentHomeListImagesInput {
     href: String
     id: ID
     image: ID
+    isExternal: Boolean
     title: String
 }
 
@@ -806,6 +813,7 @@ input ComponentHomeListSliderFiltersInput {
     discountPrice: StringFilterInput
     fullPrice: StringFilterInput
     href: StringFilterInput
+    isExternal: BooleanFilterInput
     not: ComponentHomeListSliderFiltersInput
     or: [ComponentHomeListSliderFiltersInput]
     step: StringFilterInput
@@ -820,6 +828,7 @@ input ComponentHomeListSliderInput {
     icon: ID
     id: ID
     image: ID
+    isExternal: Boolean
     step: String
     title: String
 }

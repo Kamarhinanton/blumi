@@ -4,6 +4,7 @@ import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import Link from 'next/link'
 import SmallForm from '@/components/SmallForm/SmallForm'
+import routes from '@/utils/routes'
 
 import styles from './Footer.module.scss'
 
@@ -21,9 +22,9 @@ const Footer: FC<FooterDataProps> = memo(({ footerData }) => {
       <Container>
         <div className={styles['footer__content']}>
           <div className={styles['footer__content_top']}>
-            <div className={styles['logo']}>
+            <Link href={routes.public.index} className={styles['logo']}>
               <BackgroundImage src={logo.url} alt={'logo'} />
-            </div>
+            </Link>
             <div className={styles['columns']}>
               {columns?.map((column) => (
                 <div key={column?.id} className={styles['columns__column']}>
@@ -36,7 +37,12 @@ const Footer: FC<FooterDataProps> = memo(({ footerData }) => {
                         item?.link && (
                           <Link
                             className={styles['link']}
-                            href={item.link}
+                            href={
+                              item.isExternal
+                                ? process.env.NEXT_PUBLIC_EXTERNAL_LINK +
+                                  item.link
+                                : item.link
+                            }
                             key={item?.id}
                           >
                             {item?.description}

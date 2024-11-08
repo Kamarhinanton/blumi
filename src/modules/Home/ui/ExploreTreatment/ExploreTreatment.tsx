@@ -21,7 +21,7 @@ type ExploreTreatmentContentType = {
 const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
   exploreTreatmentData,
 }) => {
-  const { heading, buttonText, listImages } = exploreTreatmentData
+  const { heading, listImages, buttonBottom } = exploreTreatmentData
   const { titleWithIcons, description } = heading
   const [activeIndex, setActiveIndex] = useState<string | null>(
     listImages?.[0]?.id || null,
@@ -65,7 +65,14 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
                     })}
                     key={item.id}
                   >
-                    <Link href={item.href} className={styles['description']}>
+                    <Link
+                      href={
+                        item.isExternal
+                          ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + item.href
+                          : item.href
+                      }
+                      className={styles['description']}
+                    >
                       <h4
                         className={classNames(
                           'h4',
@@ -93,12 +100,18 @@ const ExploreTreatment: FC<ExploreTreatmentContentType> = ({
                 ),
             )}
           </ul>
-          <ButtonSecondary
-            className={styles['button']}
-            href={'https://blumi.co.uk/s'}
-          >
-            {buttonText}
-          </ButtonSecondary>
+          {buttonBottom && (
+            <ButtonSecondary
+              className={styles['button']}
+              href={
+                buttonBottom.isExternal
+                  ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + buttonBottom.link
+                  : buttonBottom.link
+              }
+            >
+              {buttonBottom?.description}
+            </ButtonSecondary>
+          )}
         </div>
       </Container>
     </section>

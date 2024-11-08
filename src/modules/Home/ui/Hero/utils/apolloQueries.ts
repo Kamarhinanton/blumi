@@ -28,6 +28,7 @@ export const HeroFragment = gql`
       }
       text
       href
+      isExternal
     }
     picture {
       url

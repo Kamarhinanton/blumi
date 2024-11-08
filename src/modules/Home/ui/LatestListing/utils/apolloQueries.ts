@@ -28,7 +28,12 @@ export const LatestListingFragment = gql`
       image {
         url
       }
+      isExternal
     }
-    buttonText
+    buttonBottom {
+      isExternal
+      link
+      description
+    }
   }
 `
