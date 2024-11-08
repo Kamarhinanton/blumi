@@ -3,5 +3,5 @@ import { QueryResultFAQSignUpPartnerData } from '@/modules/SignUpPartner/ui/FAQ/
 
 export type QueryResultSignUpPartnerData = {
   signUpPartner: QueryResultHeroSignUpPartnerData &
-    QueryResultFAQSignUpPartnerData
+    QueryResultFAQSignUpPartnerData & { title?: string }
 }

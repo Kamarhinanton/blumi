@@ -28,7 +28,7 @@ const SignUpPartner = ({
   return (
     <>
       <Head>
-        <title>Sign up</title>
+        <title>{signUpPartnerData.signUpPartner.title}</title>
       </Head>
       <SignUpPartnerContent
         userTypes={userTypes}

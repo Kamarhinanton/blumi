@@ -17,6 +17,7 @@ export const SignUpCustomerData = gql`
       }
     }
     signUpModel {
+      title
       hero {
         ...SignUpCustomerFields
       }

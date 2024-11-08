@@ -19,6 +19,7 @@ export const HomeData = gql`
   ${BookDontMissOutFragment}
   query {
     home {
+      title
       hero {
         ...HeroFields
       }

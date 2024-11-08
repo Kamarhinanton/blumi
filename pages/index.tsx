@@ -7,32 +7,16 @@ import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { QueryResultHomeData } from '@/modules/Home/utils/types'
 import { QueryResultHeaderData } from '@/components/Header/utils/types'
 import { HomeContent } from '@/modules/Home'
-// import { useEffect } from 'react'
 
 export type HomeContentType = {
   homeData: QueryResultHomeData
 }
 
 export default function Home({ homeData }: HomeContentType) {
-  // useEffect(() => {
-  //   fetch('/api/sharetribe')
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch data')
-  //       }
-  //       return response.json()
-  //     })
-  //     .then((data) => {
-  //       console.log('API Response:', data)
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error:', error)
-  //     })
-  // }, [])
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>{homeData.home.title}</title>
       </Head>
       <HomeContent homeData={homeData} />
     </>

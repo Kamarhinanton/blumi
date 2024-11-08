@@ -7,6 +7,7 @@ export const SignUpPartnerData = gql`
   ${SignUpPartnersFAQFragment}
   query {
     signUpPartner {
+      title
       hero {
         ...SignUpPartnersFields
       }

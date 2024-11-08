@@ -15,5 +15,5 @@ export type QueryResultHomeData = {
     QueryResultBookBlumiData &
     QueryResultWhatTheySayData &
     QueryResultThingsWonderingData &
-    QueryResultDontMissOutData
+    QueryResultDontMissOutData & { title?: string }
 }

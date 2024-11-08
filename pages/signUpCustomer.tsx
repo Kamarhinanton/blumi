@@ -28,7 +28,7 @@ const SignUpCustomer = ({
   return (
     <>
       <Head>
-        <title>Sign up</title>
+        <title>{signUpCustomerData.signUpModel.title}</title>
       </Head>
       <SignUpCustomerContent
         userTypes={userTypes}

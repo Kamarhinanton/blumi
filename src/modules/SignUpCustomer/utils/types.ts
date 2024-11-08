@@ -4,5 +4,5 @@ import { QueryResultHeroSignUpCustomerData } from '@/modules/SignUpCustomer/ui/H
 
 export type QueryResultSignUpCustomerData = {
   home: QueryResultHowItWorksData & QueryResultWhatTheySayData
-  signUpModel: QueryResultHeroSignUpCustomerData
+  signUpModel: QueryResultHeroSignUpCustomerData & { title?: string }
 }
