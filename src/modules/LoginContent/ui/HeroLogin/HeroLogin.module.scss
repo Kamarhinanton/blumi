@@ -1,0 +1,52 @@
+@import '@/app/styles/variables/breakpoints';
+
+.heroLogin {
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding: 16rem 0;
+
+  @media (width<=$breakpoint-mob) {
+    min-height: initial;
+    margin: 77rem 0 40rem;
+  }
+
+  &__content {
+    padding: 150rem 0;
+    overflow: hidden;
+    background-image: url("/images/gradient-signin.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 1rem solid var(--grey-secondary);
+    border-radius: 20rem;
+
+    @media (width<=$breakpoint-mob) {
+      padding: 9rem;
+    }
+
+    .form {
+      width: 100%;
+      max-width: 636rem;
+      height: 100%;
+      margin: 0 auto;
+      padding: 51rem 32rem;
+      background-color: var(--white);
+      border-radius: 24rem;
+
+      @media (width<=$breakpoint-mob) {
+        margin: 0 0 20rem;
+        padding: 24rem 12rem;
+        border-radius: 14rem;
+      }
+
+      &__title {
+        margin: 0 0 36rem;
+
+        @media (width<=$breakpoint-mob) {
+          margin: 0 0 32rem;
+        }
+      }
+    }
+  }
+}
