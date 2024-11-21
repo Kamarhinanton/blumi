@@ -16,29 +16,16 @@
     }
   }
 
-  //&__bottom-subtext {
-  //  margin: 32rem 0 0;
-  //  color: var(--grey-dark);
-  //  font-size: 12rem;
-  //
-  //  @media (width<=$breakpoint-mob) {
-  //    margin: 12rem 0 0;
-  //    font-size: 10rem;
-  //  }
-  //
-  //  strong {
-  //    color: var(--primary-text);
-  //    font-weight: 700;
-  //    font-size: 12rem;
-  //    font-style: italic;
-  //
-  //    @media (width<=$breakpoint-mob) {
-  //      font-weight: 400;
-  //      font-size: 10rem;
-  //      font-style: initial;
-  //    }
-  //  }
-  //}
+  &__bottom-subtext {
+    margin: 12rem 0;
+    color: var(--red);
+    text-align: center;
+
+    @media (width<=$breakpoint-mob) {
+      margin: 8rem 0;
+    }
+  }
+
   //
   //&__bottom-text {
   //  margin: 12rem 0 0;

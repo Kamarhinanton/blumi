@@ -15,7 +15,7 @@ type FormData = {
 
 const BodyForm = () => {
   const [sending, setSending] = useState(false)
-
+  const [error, setError] = useState({ visible: false, message: '' })
   const defaultValues: FormData = {
     email: '',
     password: '',
@@ -37,31 +37,40 @@ const BodyForm = () => {
 
   const onSubmit = async (data: Partial<FormData>) => {
     setSending(true)
-    // const { email, password } = data
+    setError({ visible: false, message: '' })
+    const { email, password } = data
 
     try {
-      // const response = await fetch('/api/createUser', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     email,
-      //     password,
-      //   }),
-      // })
-      console.log(data)
+      const response = await fetch('/api/loginUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
 
-      // if (!response.ok) {
-      //   resetForm()
-      //   setSending(false)
-      //   return
-      // }
+      if (!response.ok) {
+        resetForm()
+        setSending(false)
+        setError({
+          visible: true,
+          message:
+            "The email and password you provided don't match our records. Please double-check and try again.",
+        })
+        return
+      }
 
       resetForm()
     } catch (error) {
       console.error(error)
       resetForm()
+      setError({
+        visible: true,
+        message: 'Something went wrong, please try again later',
+      })
     }
     setSending(false)
   }
@@ -101,10 +110,9 @@ const BodyForm = () => {
           }}
         />
       </div>
-      {/*<p className={styles['form__bottom-subtext']}>*/}
-      {/*  By signing up I accept the <strong>Terms of Service </strong> and{' '}*/}
-      {/*  <strong>Privacy Policy</strong>*/}
-      {/*</p>*/}
+      {error.visible && (
+        <p className={styles['form__bottom-subtext']}>{error.message}</p>
+      )}
       <ButtonSecondary
         type="submit"
         className={styles['form__button']}
