@@ -4,6 +4,8 @@ import Link from 'next/link'
 import classNames from 'classnames'
 import Container from '@/app/layouts/layouts/Container'
 import dynamic from 'next/dynamic'
+import { defaultProfileLinks } from '@/components/HeaderSubmenu/data'
+import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 
 const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
   ssr: false,
@@ -39,6 +41,42 @@ const HeaderSubmenu: FC<SubmenuType> = ({
             active={true}
           />
           <p className={styles['menu__title']}>Menu</p>
+          {/*Default profile links*/}
+          <div className={classNames(styles['list'], styles['defaultLinks'])}>
+            <ul className={styles['list-inner']}>
+              {defaultProfileLinks?.map(
+                (item) =>
+                  item && (
+                    <li
+                      className={styles['list-inner__item']}
+                      key={`link-${item.id}`}
+                    >
+                      <BackgroundImage
+                        className={styles['list-inner__item_icon']}
+                        src={item.iconSrc}
+                        alt={'icon'}
+                      />
+                      <Link
+                        className={styles['list-inner__item_link']}
+                        href={
+                          item.isExternal
+                            ? process.env.NEXT_PUBLIC_EXTERNAL_LINK + item.link
+                            : item.link
+                        }
+                      >
+                        {item.description}
+                      </Link>
+                    </li>
+                  ),
+              )}
+            </ul>
+          </div>
+          <div className={styles['list']}>
+            <p className={classNames(styles['list__title'], styles['linkOut'])}>
+              Log out
+            </p>
+          </div>
+          {/*End default profile links*/}
           <div className={classNames(styles['list'], 'mobile-view')}>
             <ul className={styles['list-inner']}>
               {link?.map(

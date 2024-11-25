@@ -105,6 +105,25 @@
       padding: 24rem 0;
       border-bottom: 1rem solid var(--pink-secondary);
 
+      &.defaultLinks {
+        .list-inner {
+          &__item {
+            display: flex;
+            align-items: center;
+
+            &_link {
+              color: var(--secondary-text);
+            }
+
+            &_icon {
+              flex: 0 0 32rem;
+              height: 32rem;
+              margin: 0 4rem 0 0;
+            }
+          }
+        }
+      }
+
       @media (width<=$breakpoint-mob) {
         padding: 12rem 0;
       }
@@ -119,6 +138,20 @@
       }
 
       &__title {
+        &.linkOut{
+          display: inline-block;
+          margin: 0;
+          color: var(--grey-dark);
+          cursor: pointer;
+          transition: opacity var(--duration-hover) var(--ease);
+
+          @media (width>$breakpoint-mob) {
+            &:hover {
+              opacity: 0.6;
+            }
+          }
+        }
+
         margin: 0 0 12rem;
         color: var(--secondary-text);
         font-size: 24rem;
@@ -132,6 +165,13 @@
         &__item {
           margin: 0 0 8rem;
           font-size: 16rem;
+          transition: opacity var(--duration-hover) var(--ease);
+
+          @media (width>$breakpoint-mob) {
+            &:hover {
+              opacity: 0.6;
+            }
+          }
 
           &:last-child {
             margin: 0;
@@ -140,13 +180,6 @@
           &_link {
             color: var(--pink-primary);
             opacity: 1;
-            transition: opacity var(--duration-hover) var(--ease);
-
-            @media (width>$breakpoint-mob) {
-              &:hover {
-                opacity: 0.6;
-              }
-            }
           }
         }
       }
