@@ -30,6 +30,7 @@ const DontMissOut: FC<DontMissOutType> = ({ dontMissOut }) => {
   const cleanedData = cleanedTitleWithIcons(titleWithIcons || [])
   const { ref, cardMouseX, cardMouseY } = useCardMousePosition()
   const { width } = useWindowDimensions()
+
   return (
     <section className={styles['dontMissOut']}>
       <Container size={'small'}>

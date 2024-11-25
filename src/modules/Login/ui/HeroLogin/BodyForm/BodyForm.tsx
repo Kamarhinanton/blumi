@@ -3,7 +3,9 @@ import TextField from '@/ui/TextField/TextField'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, useForm } from 'react-hook-form'
-import { validationSchema } from '@/modules/LoginContent/ui/HeroLogin/BodyForm/validationSchema'
+import { validationSchema } from '@/modules/Login/ui/HeroLogin/BodyForm/validationSchema'
+import Cookie from 'js-cookie'
+
 // import Link from 'next/link'
 
 import styles from './BodyForm.module.scss'
@@ -43,6 +45,7 @@ const BodyForm = () => {
     try {
       const response = await fetch('/api/loginUser', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -51,6 +54,18 @@ const BodyForm = () => {
           password,
         }),
       })
+
+      const responseData = await response.json()
+
+      Cookie.set(
+        `st-${process.env.NEXT_PUBLIC_SHARETRIBE_INTEGRATION_CLIENT_ID}-token`,
+        JSON.stringify(responseData.response.data),
+        {
+          expires: 1,
+          // path: '/',
+          // httpOnly: false,
+        },
+      )
 
       if (!response.ok) {
         resetForm()

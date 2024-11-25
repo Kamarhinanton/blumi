@@ -5,7 +5,7 @@ import { QueryResultHeaderData } from '@/components/Header/utils/types'
 import { HeaderData } from '@/components/Header/utils/apolloQueries'
 import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { FooterData } from '@/components/Footer/utils/apolloQueries'
-import { LoginContent } from '@/modules/LoginContent'
+import { LoginContent } from '../src/modules/Login'
 
 const Login = () => {
   return (

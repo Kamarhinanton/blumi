@@ -2,8 +2,8 @@
 const sharetribeSdk = require('sharetribe-flex-sdk')
 
 const sdk = sharetribeSdk.createInstance({
-  clientId: process.env.SHARETRIBE_INTEGRATION_CLIENT_ID_test,
-  clientSecret: process.env.SHARETRIBE_INTEGRATION_CLIENT_SECRET_test,
+  clientId: process.env.NEXT_PUBLIC_SHARETRIBE_INTEGRATION_CLIENT_ID,
+  clientSecret: process.env.SHARETRIBE_INTEGRATION_CLIENT_SECRET,
 })
 
 export default sdk

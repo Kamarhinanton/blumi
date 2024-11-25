@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroLogin from '@/modules/LoginContent/ui/HeroLogin/HeroLogin'
+import HeroLogin from '@/modules/Login/ui/HeroLogin/HeroLogin'
 
 const LoginContent = () => {
   return (

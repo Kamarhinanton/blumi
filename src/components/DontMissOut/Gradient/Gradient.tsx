@@ -4,8 +4,8 @@ import { motion, MotionValue } from 'framer-motion'
 import styles from './Gradient.module.scss'
 
 type GradientType = {
-  cardMouseX: MotionValue
-  cardMouseY: MotionValue
+  cardMouseX?: MotionValue
+  cardMouseY?: MotionValue
 }
 
 const Gradient: FC<GradientType> = ({ cardMouseX, cardMouseY }) => {
@@ -15,13 +15,15 @@ const Gradient: FC<GradientType> = ({ cardMouseX, cardMouseY }) => {
       <div className={styles['gradient-2']} />
       <div className={styles['gradient-3']} />
       <div className={styles['gradient-4']} />
-      <motion.div
-        className={styles['cursor']}
-        style={{
-          x: cardMouseX,
-          y: cardMouseY,
-        }}
-      />
+      {cardMouseX && cardMouseY && (
+        <motion.div
+          className={styles['cursor']}
+          style={{
+            x: cardMouseX,
+            y: cardMouseY,
+          }}
+        />
+      )}
     </div>
   )
 }

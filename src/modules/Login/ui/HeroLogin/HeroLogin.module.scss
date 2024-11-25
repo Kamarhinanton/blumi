@@ -12,17 +12,19 @@
   }
 
   &__content {
+    position: relative;
     padding: 150rem 0;
     overflow: hidden;
-    background-image: url("/images/gradient-signin.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     border: 1rem solid var(--grey-secondary);
     border-radius: 20rem;
 
     @media (width<=$breakpoint-mob) {
       padding: 9rem;
+      background-color: initial;
+      background-image: url("/images/gradient.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
     }
 
     .form {
