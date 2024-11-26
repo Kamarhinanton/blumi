@@ -34,6 +34,11 @@ export default bundleAnalyzer({
         hostname: 'blumi-avv3ggrlq-kamarhinantons-projects.vercel.app',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'sharetribe.imgix.net',
+        pathname: '/**'
+      }
     ],
   },
   webpack(config) {

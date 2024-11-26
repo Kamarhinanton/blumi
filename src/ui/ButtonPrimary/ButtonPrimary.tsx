@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames'
 import Cross from '@/ui/Cross/Cross'
+import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 
 import styles from './ButtonPrimary.module.scss'
 
@@ -16,6 +17,7 @@ type ButtonPrimaryProps = {
   icon?: 'arrow' | 'burger'
   activeBurger?: boolean
   callback?: () => void
+  profileUrl?: string
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -31,6 +33,7 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
   icon = 'arrow',
   activeBurger,
   callback,
+  profileUrl,
   ...buttonProps
 }) => {
   const mods = {
@@ -47,7 +50,15 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
           {...buttonProps}
           onClick={callback}
         >
-          {children}
+          {profileUrl ? (
+            <BackgroundImage
+              className={styles['buttonPrimary__avatar']}
+              src={profileUrl}
+              alt={'avatar'}
+            />
+          ) : (
+            children
+          )}
           {icon === 'arrow' && <div className={styles['icon-wrapper']} />}
           {icon === 'burger' && (
             <div className={styles['icon-wrapper']}>
@@ -61,7 +72,15 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
           href={href}
           target={target}
         >
-          {children}
+          {profileUrl ? (
+            <BackgroundImage
+              className={styles['buttonPrimary__avatar']}
+              src={profileUrl}
+              alt={'avatar'}
+            />
+          ) : (
+            children
+          )}
           {icon === 'arrow' && <div className={styles['icon-wrapper']} />}
         </Link>
       )}

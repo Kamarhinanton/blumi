@@ -11,6 +11,13 @@
   background-color: var(--pink-primary);
   border-radius: 16rem;
 
+  &__avatar{
+    width: 40rem;
+    height: 40rem;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
   .icon-wrapper{
     position: relative;
     width: 40rem;
