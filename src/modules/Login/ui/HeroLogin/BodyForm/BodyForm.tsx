@@ -37,7 +37,7 @@ const BodyForm = () => {
     reset(defaultValues)
   }
 
-  const onSubmit = async (data: Partial<FormData>) => {
+  const onSubmit = async (data: FormData) => {
     setSending(true)
     setError({ visible: false, message: '' })
     const { email, password } = data
@@ -56,14 +56,13 @@ const BodyForm = () => {
       })
 
       const responseData = await response.json()
+      const { data: dataInner } = responseData.response
 
       Cookie.set(
         `st-${process.env.NEXT_PUBLIC_SHARETRIBE_INTEGRATION_CLIENT_ID}-token`,
-        JSON.stringify(responseData.response.data),
+        JSON.stringify(dataInner),
         {
           expires: 1,
-          // path: '/',
-          // httpOnly: false,
         },
       )
 
@@ -77,6 +76,29 @@ const BodyForm = () => {
         })
         return
       }
+
+      console.log('Authorization Header:', `Bearer ${dataInner.access_token}`)
+
+      const userResponse = await fetch('/api/showUser', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${dataInner.access_token}`,
+        },
+      })
+
+      if (!userResponse.ok) {
+        resetForm()
+        setSending(false)
+        setError({
+          visible: true,
+          message: 'Failed to fetch user data',
+        })
+        return
+      }
+
+      const userData = await userResponse.json()
+      console.log('Logged-in user:', userData)
 
       resetForm()
     } catch (error) {
