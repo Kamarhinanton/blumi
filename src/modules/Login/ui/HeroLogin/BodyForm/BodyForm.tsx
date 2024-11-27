@@ -10,6 +10,9 @@ import { AuthResponseType } from '@/utils/handleTypes'
 // import Link from 'next/link'
 
 import styles from './BodyForm.module.scss'
+import { AppDispatch } from '@/store/store'
+import { useDispatch } from 'react-redux'
+import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
 
 type FormData = {
   email: string
@@ -23,6 +26,8 @@ const BodyForm = () => {
     email: '',
     password: '',
   }
+
+  const dispatch: AppDispatch = useDispatch()
 
   const {
     handleSubmit,
@@ -65,6 +70,7 @@ const BodyForm = () => {
       if (!response.ok) {
         resetForm()
         setSending(false)
+        dispatch(setIsAuthorized(false))
         setError({
           visible: true,
           message:
@@ -86,12 +92,14 @@ const BodyForm = () => {
       if (!userResponse.ok) {
         resetForm()
         setSending(false)
+        dispatch(setIsAuthorized(false))
         setError({
           visible: true,
           message: 'Failed to fetch user data',
         })
         return
       }
+      dispatch(setIsAuthorized(true))
 
       resetForm()
     } catch (error) {

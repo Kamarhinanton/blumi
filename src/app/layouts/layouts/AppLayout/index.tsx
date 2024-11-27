@@ -46,6 +46,8 @@ const AppLayout: FC<AppLayoutProps> = ({
             }
           })
           .catch((err) => console.error('Request failed:', err))
+      } else {
+        dispatch(setIsAuthorized(true))
       }
     }
   }, [])

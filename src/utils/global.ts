@@ -31,6 +31,6 @@ export const getCookie = ({ tokenKey }: { tokenKey: string }) =>
 export const tokenExpired = ({ token }: { token: string }) => {
   const decoded = jwtDecode(JSON.parse(token).access_token)
   const currentTime = Math.floor(Date.now() / 1000)
-
+  // <
   return decoded.exp && decoded.exp - 60 < currentTime
 }
