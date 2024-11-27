@@ -4,7 +4,8 @@ import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, useForm } from 'react-hook-form'
 import { validationSchema } from '@/modules/Login/ui/HeroLogin/BodyForm/validationSchema'
-import Cookie from 'js-cookie'
+import { setCookie, tokenKey } from '@/utils/global'
+import { AuthResponseType } from '@/utils/handleTypes'
 
 // import Link from 'next/link'
 
@@ -56,15 +57,10 @@ const BodyForm = () => {
       })
 
       const responseData = await response.json()
-      const { data: dataInner } = responseData.response
+      const { data: dataInner }: { data: AuthResponseType } =
+        responseData.response
 
-      Cookie.set(
-        `st-${process.env.NEXT_PUBLIC_SHARETRIBE_INTEGRATION_CLIENT_ID}-token`,
-        JSON.stringify(dataInner),
-        {
-          expires: 1,
-        },
-      )
+      setCookie({ data: dataInner, tokenKey })
 
       if (!response.ok) {
         resetForm()
@@ -76,6 +72,8 @@ const BodyForm = () => {
         })
         return
       }
+
+      console.log('Token:', dataInner.access_token)
 
       const userResponse = await fetch('/api/showUser', {
         method: 'GET',
@@ -94,9 +92,6 @@ const BodyForm = () => {
         })
         return
       }
-
-      const userData = await userResponse.json()
-      console.log('Logged-in user:', userData)
 
       resetForm()
     } catch (error) {

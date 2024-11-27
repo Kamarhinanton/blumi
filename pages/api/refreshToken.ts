@@ -17,14 +17,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { scope, refresh_token } = JSON.parse(req.body.token)
 
   try {
-    await sdk.login({
+    const response = await sdk.login({
       client_id: `${process.env.NEXT_PUBLIC_SHARETRIBE_INTEGRATION_CLIENT_ID}`,
       grant_type: 'refresh_token',
       refresh_token: refresh_token,
       scope: scope,
     })
 
-    const response = await sdk.exchangeToken()
     res.status(200).json({ success: true, data: response.data })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
