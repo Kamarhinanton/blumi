@@ -77,8 +77,6 @@ const BodyForm = () => {
         return
       }
 
-      console.log('Authorization Header:', `Bearer ${dataInner.access_token}`)
-
       const userResponse = await fetch('/api/showUser', {
         method: 'GET',
         headers: {

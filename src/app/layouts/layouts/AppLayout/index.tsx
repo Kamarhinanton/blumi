@@ -7,6 +7,7 @@ import { AppDispatch } from '@/store/store'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import { setAuthToken } from '@/store/reducers/authTokenSlice'
+import { jwtDecode } from 'jwt-decode'
 
 type AppLayoutProps = {
   children: ReactNode
@@ -27,11 +28,34 @@ const AppLayout: FC<AppLayoutProps> = ({
     )
 
     if (!token) {
-      console.log('No token found in cookies')
       dispatch(setAuthToken(null))
     } else {
-      dispatch(setAuthToken(token))
-      console.log('Token found:', token)
+      const decoded = jwtDecode(token)
+      const currentTime = Math.floor(Date.now() / 1000)
+
+      if (decoded?.exp) {
+        // >
+        if (decoded.exp > currentTime) {
+          dispatch(setAuthToken(token))
+        } else {
+          fetch('/api/refreshToken', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({ token }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                console.log('Trusted token: ', data.data)
+              } else {
+                console.error('Error:', data.error)
+              }
+            })
+            .catch((err) => console.error('Request failed:', err))
+        }
+      }
     }
   }, [])
 

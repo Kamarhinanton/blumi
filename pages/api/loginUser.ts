@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import sdk from '@/utils/api/createInstanceSharetribe'
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-// const cookie = require('cookie')
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
