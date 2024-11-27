@@ -6,13 +6,15 @@ import { Controller, useForm } from 'react-hook-form'
 import { validationSchema } from '@/modules/Login/ui/HeroLogin/BodyForm/validationSchema'
 import { setCookie, tokenKey } from '@/utils/global'
 import { AuthResponseType } from '@/utils/handleTypes'
+import { useRouter } from 'next/router'
+import { AppDispatch } from '@/store/store'
+import { useDispatch } from 'react-redux'
+import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
 
 // import Link from 'next/link'
 
 import styles from './BodyForm.module.scss'
-import { AppDispatch } from '@/store/store'
-import { useDispatch } from 'react-redux'
-import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
+import routes from '@/utils/routes'
 
 type FormData = {
   email: string
@@ -26,6 +28,8 @@ const BodyForm = () => {
     email: '',
     password: '',
   }
+
+  const router = useRouter()
 
   const dispatch: AppDispatch = useDispatch()
 
@@ -100,8 +104,8 @@ const BodyForm = () => {
         return
       }
       dispatch(setIsAuthorized(true))
-
       resetForm()
+      await router.push(routes.public.index)
     } catch (error) {
       console.error(error)
       resetForm()

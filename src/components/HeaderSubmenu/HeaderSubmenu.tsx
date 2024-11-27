@@ -11,12 +11,14 @@ import { AppDispatch, RootState } from '@/store/store'
 import { deleteCookie, tokenKey } from '@/utils/global'
 import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
 import { useRouter } from 'next/router'
+import routes from '@/utils/routes'
 
 const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
   ssr: false,
 })
 
 import styles from './headerSubmenu.module.scss'
+import { setIsMenuActive } from '@/store/reducers/callMenuSlice'
 
 type SubmenuType = {
   submenu: Header['submenu']
@@ -58,7 +60,8 @@ const HeaderSubmenu: FC<SubmenuType> = ({
         throw new Error('Failed to log out on server')
       }
 
-      await router.push('/login')
+      await router.push(routes.public.login)
+      dispatch(setIsMenuActive(false))
     } catch (error) {
       console.error('Logout failed:', error)
     }
