@@ -25,6 +25,10 @@ export const setCookie = ({
   })
 }
 
+export const deleteCookie = (tokenKey: string) => {
+  Cookie.remove(tokenKey)
+}
+
 export const getCookie = ({ tokenKey }: { tokenKey: string }) =>
   Cookies.get(tokenKey)
 

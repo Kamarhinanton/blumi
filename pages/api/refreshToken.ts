@@ -9,7 +9,10 @@ type Data = {
   error?: string
 }
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>,
+) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method Not Allowed' })
   }
@@ -33,5 +36,3 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .json({ success: false, error: error.message || 'Internal Server Error' })
   }
 }
-
-export default handler

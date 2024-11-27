@@ -6,14 +6,17 @@ import Container from '@/app/layouts/layouts/Container'
 import dynamic from 'next/dynamic'
 import { defaultProfileLinks } from '@/components/HeaderSubmenu/data'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '@/store/store'
+import { deleteCookie, tokenKey } from '@/utils/global'
+import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
+import { useRouter } from 'next/router'
 
 const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
   ssr: false,
 })
 
 import styles from './headerSubmenu.module.scss'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store/store'
 
 type SubmenuType = {
   submenu: Header['submenu']
@@ -30,9 +33,37 @@ const HeaderSubmenu: FC<SubmenuType> = ({
   className,
   toggleBurger,
 }) => {
+  const router = useRouter()
+
   const isAuthorized = useSelector(
     (state: RootState) => state.authToken.isAuthorized,
   )
+
+  const dispatch: AppDispatch = useDispatch()
+
+  const handleLogOut = async () => {
+    try {
+      dispatch(setIsAuthorized(false))
+      deleteCookie(tokenKey)
+
+      const response = await fetch('/api/logoutUser', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to log out on server')
+      }
+
+      await router.push('/login')
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
+
   return (
     <div
       className={classNames(styles['submenu'], { [styles['active']]: active })}
@@ -87,6 +118,7 @@ const HeaderSubmenu: FC<SubmenuType> = ({
                     styles['list__title'],
                     styles['linkOut'],
                   )}
+                  onClick={handleLogOut}
                 >
                   Log out
                 </p>

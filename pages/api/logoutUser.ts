@@ -9,22 +9,13 @@ export default async function handler(
     return res.status(405).json({ message: 'Method Not Allowed' })
   }
 
-  const { email, password } = req.body
-
-  if (!email || !password) {
-    return res.status(400).json({ message: 'Email and password are required' })
-  }
-
   try {
-    const response = await sdk.login({
-      username: email,
-      password: password,
-    })
+    await sdk.logout()
 
-    res.status(200).json({ message: 'Login successful', response })
+    res.status(200).json({ message: 'Logout successful' })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    console.error('Login error:', error)
+    console.error('Logout error:', error)
     const statusCode = error?.status || 500
     res.status(statusCode).json({ message: error?.message || 'Login error' })
   }
