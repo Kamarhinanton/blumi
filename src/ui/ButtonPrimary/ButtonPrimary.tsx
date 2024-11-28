@@ -17,7 +17,7 @@ type ButtonPrimaryProps = {
   icon?: 'arrow' | 'burger'
   activeBurger?: boolean
   callback?: () => void
-  profileUrl?: string
+  profileAvatarUrl?: string | null
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -33,7 +33,7 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
   icon = 'arrow',
   activeBurger,
   callback,
-  profileUrl,
+  profileAvatarUrl,
   ...buttonProps
 }) => {
   const mods = {
@@ -50,10 +50,10 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
           {...buttonProps}
           onClick={callback}
         >
-          {profileUrl ? (
+          {profileAvatarUrl !== undefined ? (
             <BackgroundImage
               className={styles['buttonPrimary__avatar']}
-              src={profileUrl}
+              src={profileAvatarUrl ? profileAvatarUrl : '/images/profile.jpg'}
               alt={'avatar'}
             />
           ) : (
@@ -72,10 +72,10 @@ const ButtonPrimary: FC<ButtonPrimaryProps> = ({
           href={href}
           target={target}
         >
-          {profileUrl ? (
+          {profileAvatarUrl !== undefined ? (
             <BackgroundImage
               className={styles['buttonPrimary__avatar']}
-              src={profileUrl}
+              src={profileAvatarUrl ? profileAvatarUrl : '/images/profile.jpg'}
               alt={'avatar'}
             />
           ) : (

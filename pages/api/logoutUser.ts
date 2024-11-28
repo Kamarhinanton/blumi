@@ -10,7 +10,9 @@ export default async function handler(
   }
 
   try {
-    await sdk.logout()
+    await sdk.logout().then(() => {
+      console.log('Logout successful.')
+    })
 
     res.status(200).json({ message: 'Logout successful' })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

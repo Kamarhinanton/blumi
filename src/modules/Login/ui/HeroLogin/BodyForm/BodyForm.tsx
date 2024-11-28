@@ -10,11 +10,12 @@ import { useRouter } from 'next/router'
 import { AppDispatch } from '@/store/store'
 import { useDispatch } from 'react-redux'
 import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
+import routes from '@/utils/routes'
+import { fetchProfile } from '@/utils/api/fetchProfile'
 
 // import Link from 'next/link'
 
 import styles from './BodyForm.module.scss'
-import routes from '@/utils/routes'
 
 type FormData = {
   email: string
@@ -69,7 +70,7 @@ const BodyForm = () => {
       const { data: dataInner }: { data: AuthResponseType } =
         responseData.response
 
-      setCookie({ data: dataInner, tokenKey })
+      setCookie(dataInner, tokenKey)
 
       if (!response.ok) {
         resetForm()
@@ -83,29 +84,15 @@ const BodyForm = () => {
         return
       }
 
-      console.log('Token:', dataInner.access_token)
+      const profileFetched = await fetchProfile(
+        dataInner.access_token,
+        dispatch,
+        setError,
+      )
 
-      const userResponse = await fetch('/api/showUser', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${dataInner.access_token}`,
-        },
-      })
-
-      if (!userResponse.ok) {
-        resetForm()
-        setSending(false)
-        dispatch(setIsAuthorized(false))
-        setError({
-          visible: true,
-          message: 'Failed to fetch user data',
-        })
-        return
+      if (profileFetched) {
+        await router.push(routes.public.index)
       }
-      dispatch(setIsAuthorized(true))
-      resetForm()
-      await router.push(routes.public.index)
     } catch (error) {
       console.error(error)
       resetForm()
@@ -113,8 +100,10 @@ const BodyForm = () => {
         visible: true,
         message: 'Something went wrong, please try again later',
       })
+    } finally {
+      resetForm()
+      setSending(false)
     }
-    setSending(false)
   }
 
   return (

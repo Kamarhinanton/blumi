@@ -31,6 +31,10 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
   const isMenuActive = useSelector(
     (state: RootState) => state.callMenu.isMenuActive,
   ) as boolean
+  const isAuthorized = useSelector(
+    (state: RootState) => state.authToken.isAuthorized,
+  )
+  const profile = useSelector((state: RootState) => state.userProfile.profile)
   const toggleMenu = () => {
     dispatch(setIsMenuActive(!isMenuActive))
   }
@@ -89,8 +93,9 @@ const Header: FC<HeaderDataProps> = memo(({ headerData }) => {
             <ButtonPrimary
               callback={toggleMenu}
               activeBurger={isMenuActive}
-              icon={'burger'}
+              icon="burger"
               className={styles['button']}
+              profileAvatarUrl={isAuthorized ? profile.profileImage : undefined}
             >
               {buttonText}
             </ButtonPrimary>

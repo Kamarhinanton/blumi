@@ -45,9 +45,6 @@ const HeaderSubmenu: FC<SubmenuType> = ({
 
   const handleLogOut = async () => {
     try {
-      dispatch(setIsAuthorized(false))
-      deleteCookie(tokenKey)
-
       const response = await fetch('/api/logoutUser', {
         method: 'POST',
         credentials: 'include',
@@ -56,12 +53,15 @@ const HeaderSubmenu: FC<SubmenuType> = ({
         },
       })
 
+      dispatch(setIsMenuActive(false))
+      dispatch(setIsAuthorized(false))
+      deleteCookie(tokenKey)
+
       if (!response.ok) {
         throw new Error('Failed to log out on server')
       }
 
       await router.push(routes.public.login)
-      dispatch(setIsMenuActive(false))
     } catch (error) {
       console.error('Logout failed:', error)
     }

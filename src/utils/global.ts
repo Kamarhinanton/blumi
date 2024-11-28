@@ -13,13 +13,7 @@ export const cleanedTitleWithIcons = (
     (item): item is ComponentBaseTitleWithIcons => item !== null,
   )
 
-export const setCookie = ({
-  data,
-  tokenKey,
-}: {
-  data: AuthResponseType
-  tokenKey: string
-}) => {
+export const setCookie = (data: AuthResponseType, tokenKey: string) => {
   Cookie.set(tokenKey, JSON.stringify(data), {
     expires: 1,
   })
@@ -29,10 +23,9 @@ export const deleteCookie = (tokenKey: string) => {
   Cookie.remove(tokenKey)
 }
 
-export const getCookie = ({ tokenKey }: { tokenKey: string }) =>
-  Cookies.get(tokenKey)
+export const getCookie = (tokenKey: string) => Cookies.get(tokenKey)
 
-export const tokenExpired = ({ token }: { token: string }) => {
+export const tokenExpired = (token: string) => {
   const decoded = jwtDecode(JSON.parse(token).access_token)
   const currentTime = Math.floor(Date.now() / 1000)
   // <
