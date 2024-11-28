@@ -11,7 +11,7 @@ const ERROR_MESSAGES = {
 export const fetchProfile = async (
   token: string,
   dispatch: AppDispatch,
-  setError: Dispatch<SetStateAction<{ visible: boolean; message: string }>>,
+  setError?: Dispatch<SetStateAction<{ visible: boolean; message: string }>>,
 ) => {
   try {
     console.log(token)
@@ -24,7 +24,7 @@ export const fetchProfile = async (
     })
 
     if (!userResponse.ok) {
-      setError({ visible: true, message: ERROR_MESSAGES.userFetchFailed })
+      setError?.({ visible: true, message: ERROR_MESSAGES.userFetchFailed })
       dispatch(setIsAuthorized(false))
       return false
     }
@@ -44,7 +44,7 @@ export const fetchProfile = async (
     return true
   } catch (error) {
     console.error('Error fetching profile:', error)
-    setError({ visible: true, message: ERROR_MESSAGES.generalError })
+    setError?.({ visible: true, message: ERROR_MESSAGES.generalError })
     return false
   }
 }

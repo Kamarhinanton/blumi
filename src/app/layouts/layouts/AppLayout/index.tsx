@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useState } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
 import { QueryResultFooterData } from '@/components/Footer/utils/types'
@@ -21,7 +21,6 @@ const AppLayout: FC<AppLayoutProps> = ({
   headerData,
 }) => {
   const dispatch: AppDispatch = useDispatch()
-  const [, setError] = useState({ visible: false, message: '' })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,8 +46,7 @@ const AppLayout: FC<AppLayoutProps> = ({
 
           if (data.success) {
             setCookie(data.data, tokenKey)
-            console.log(data.data)
-            await fetchProfile(data.data.access_token, dispatch, setError)
+            await fetchProfile(data.data.access_token, dispatch)
 
             dispatch(setIsAuthorized(true))
           } else {
@@ -59,7 +57,7 @@ const AppLayout: FC<AppLayoutProps> = ({
         }
       } else {
         const tokenParse = await JSON.parse(token)
-        await fetchProfile(tokenParse.access_token, dispatch, setError)
+        await fetchProfile(tokenParse.access_token, dispatch)
         dispatch(setIsAuthorized(true))
       }
     }
