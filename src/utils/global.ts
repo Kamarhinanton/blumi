@@ -16,6 +16,8 @@ export const cleanedTitleWithIcons = (
 export const setCookie = (data: AuthResponseType, tokenKey: string) => {
   Cookie.set(tokenKey, JSON.stringify(data), {
     expires: 1,
+    domain:
+      process.env.NODE_ENV === 'production' ? '.modelmatch.co.uk' : undefined,
   })
 }
 
