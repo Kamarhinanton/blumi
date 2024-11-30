@@ -22,7 +22,10 @@ export const setCookie = (data: AuthResponseType, tokenKey: string) => {
 }
 
 export const deleteCookie = (tokenKey: string) => {
-  Cookie.remove(tokenKey)
+  Cookie.remove(tokenKey, {
+    domain:
+      process.env.NODE_ENV === 'production' ? '.modelmatch.co.uk' : undefined,
+  })
 }
 
 export const getCookie = (tokenKey: string) => Cookies.get(tokenKey)
