@@ -31,6 +31,13 @@ const AppLayout: FC<AppLayoutProps> = ({
         return
       }
 
+      const tokenParse = await JSON.parse(token)
+
+      if (tokenParse.scope === 'public-read') {
+        dispatch(setIsAuthorized(false))
+        return
+      }
+
       const isExpired = tokenExpired(token)
 
       if (isExpired) {
@@ -56,7 +63,6 @@ const AppLayout: FC<AppLayoutProps> = ({
           console.error('Request failed:', err)
         }
       } else {
-        const tokenParse = await JSON.parse(token)
         await fetchProfile(tokenParse.access_token, dispatch)
         dispatch(setIsAuthorized(true))
       }
