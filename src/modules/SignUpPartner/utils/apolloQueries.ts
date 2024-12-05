@@ -8,6 +8,10 @@ export const SignUpPartnerData = gql`
   query {
     signUpPartner {
       title
+      metaDescription
+      metaImage {
+        url
+      }
       hero {
         ...SignUpPartnersFields
       }

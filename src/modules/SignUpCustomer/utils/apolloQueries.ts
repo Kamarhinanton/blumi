@@ -18,6 +18,10 @@ export const SignUpCustomerData = gql`
     }
     signUpModel {
       title
+      metaDescription
+      metaImage {
+        url
+      }
       hero {
         ...SignUpCustomerFields
       }

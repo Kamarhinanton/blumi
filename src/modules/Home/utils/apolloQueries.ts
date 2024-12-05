@@ -20,6 +20,10 @@ export const HomeData = gql`
   query {
     home {
       title
+      metaDescription
+      metaImage {
+        url
+      }
       hero {
         ...HeroFields
       }

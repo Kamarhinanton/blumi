@@ -29,6 +29,30 @@ const SignupCustomer = ({
     <>
       <Head>
         <title>{signUpCustomerData.signUpModel.title}</title>
+        <meta
+          property="og:title"
+          content={signUpCustomerData.signUpModel.title}
+        />
+        <meta
+          name="description"
+          content={
+            signUpCustomerData.signUpModel.metaDescription
+              ? signUpCustomerData.signUpModel.metaDescription
+              : 'description'
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            signUpCustomerData.signUpModel.metaDescription
+              ? signUpCustomerData.signUpModel.metaDescription
+              : 'description'
+          }
+        />
+        <meta
+          property="og:image"
+          content={signUpCustomerData.signUpModel.metaImage?.url}
+        />
       </Head>
       <SignUpCustomerContent
         userTypes={userTypes}

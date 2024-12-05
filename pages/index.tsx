@@ -17,6 +17,24 @@ export default function Home({ homeData }: HomeContentType) {
     <>
       <Head>
         <title>{homeData.home.title}</title>
+        <meta property="og:title" content={homeData.home.title} />
+        <meta
+          name="description"
+          content={
+            homeData.home.metaDescription
+              ? homeData.home.metaDescription
+              : 'description'
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            homeData.home.metaDescription
+              ? homeData.home.metaDescription
+              : 'description'
+          }
+        />
+        <meta property="og:image" content={homeData.home.metaImage?.url} />
       </Head>
       <HomeContent homeData={homeData} />
     </>

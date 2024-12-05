@@ -6,12 +6,36 @@ import { HeaderData } from '@/components/Header/utils/apolloQueries'
 import { QueryResultFooterData } from '@/components/Footer/utils/types'
 import { FooterData } from '@/components/Footer/utils/apolloQueries'
 import { LoginContent } from '../src/modules/Login'
+import { LoginData } from '@/modules/Login/utils/apolloQueries'
+import { QueryResultLoginData } from '@/modules/Login/utils/types'
 
-const Login = () => {
+export type LoginType = {
+  loginData: QueryResultLoginData
+}
+
+const Login = ({ loginData }: LoginType) => {
   return (
     <>
       <Head>
-        <title>Log In</title>
+        <title>{loginData.login.title}</title>
+        <meta property="og:title" content={loginData.login.title} />
+        <meta
+          name="description"
+          content={
+            loginData.login.metaDescription
+              ? loginData.login.metaDescription
+              : 'description'
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            loginData.login.metaDescription
+              ? loginData.login.metaDescription
+              : 'description'
+          }
+        />
+        <meta property="og:image" content={loginData.login.metaImage?.url} />
       </Head>
       <LoginContent />
     </>
@@ -29,10 +53,14 @@ export const getStaticProps = async () => {
     const { data: footerData } = await client.query<QueryResultFooterData>({
       query: FooterData,
     })
+    const { data: loginData } = await client.query<QueryResultLoginData>({
+      query: LoginData,
+    })
     return {
       props: {
         headerData,
         footerData,
+        loginData,
       },
       revalidate: 10,
     }

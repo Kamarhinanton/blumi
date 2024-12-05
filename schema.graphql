@@ -8,7 +8,7 @@ schema {
 "Indicates exactly one field must be supplied and this field must not be `null`."
 directive @oneOf on INPUT_OBJECT
 
-union GenericMorph = ComponentBaseCta | ComponentBaseDontMissOut | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | ComponentSignUpFaq | ComponentSignUpHero | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | SignUpModel | SignUpPartner | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = ComponentBaseCta | ComponentBaseDontMissOut | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | ComponentSignUpFaq | ComponentSignUpHero | Footer | Global | Header | Home | I18NLocale | Login | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | SignUpModel | SignUpPartner | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type ComponentBaseCta {
     buttonText: String!
@@ -249,6 +249,8 @@ type Home {
     locale: String
     localizations: [Home]!
     localizations_connection: HomeRelationResponseCollection
+    metaDescription: String
+    metaImage: UploadFile
     publishedAt: DateTime
     thingsWondering: ComponentHomeThingsWondering
     title: String!
@@ -281,6 +283,23 @@ type I18NLocaleRelationResponseCollection {
     nodes: [I18NLocale!]!
 }
 
+type Login {
+    createdAt: DateTime
+    documentId: ID!
+    locale: String
+    localizations: [Login]!
+    localizations_connection: LoginRelationResponseCollection
+    metaDescription: String
+    metaImage: UploadFile
+    publishedAt: DateTime
+    title: String!
+    updatedAt: DateTime
+}
+
+type LoginRelationResponseCollection {
+    nodes: [Login!]!
+}
+
 type Mutation {
     "Change user password. Confirm with the current password."
     changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
@@ -294,6 +313,7 @@ type Mutation {
     deleteGlobal: DeleteMutationResponse
     deleteHeader: DeleteMutationResponse
     deleteHome: DeleteMutationResponse
+    deleteLogin: DeleteMutationResponse
     deleteReviewWorkflowsWorkflow(documentId: ID!): DeleteMutationResponse
     deleteReviewWorkflowsWorkflowStage(documentId: ID!): DeleteMutationResponse
     deleteSignUpModel: DeleteMutationResponse
@@ -316,6 +336,7 @@ type Mutation {
     updateGlobal(data: GlobalInput!, status: PublicationStatus = PUBLISHED): Global
     updateHeader(data: HeaderInput!, status: PublicationStatus = PUBLISHED): Header
     updateHome(data: HomeInput!, status: PublicationStatus = PUBLISHED): Home
+    updateLogin(data: LoginInput!, status: PublicationStatus = PUBLISHED): Login
     updateReviewWorkflowsWorkflow(data: ReviewWorkflowsWorkflowInput!, documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflow
     updateReviewWorkflowsWorkflowStage(data: ReviewWorkflowsWorkflowStageInput!, documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowStage
     updateSignUpModel(data: SignUpModelInput!, status: PublicationStatus = PUBLISHED): SignUpModel
@@ -342,6 +363,7 @@ type Query {
     i18NLocale(documentId: ID!, status: PublicationStatus = PUBLISHED): I18NLocale
     i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [I18NLocale]!
     i18NLocales_connection(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): I18NLocaleEntityResponseCollection
+    login(status: PublicationStatus = PUBLISHED): Login
     me: UsersPermissionsMe
     reviewWorkflowsWorkflow(documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflow
     reviewWorkflowsWorkflowStage(documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowStage
@@ -414,6 +436,8 @@ type SignUpModel {
     locale: String
     localizations: [SignUpModel]!
     localizations_connection: SignUpModelRelationResponseCollection
+    metaDescription: String
+    metaImage: UploadFile
     publishedAt: DateTime
     title: String!
     updatedAt: DateTime
@@ -431,6 +455,8 @@ type SignUpPartner {
     locale: String
     localizations: [SignUpPartner]!
     localizations_connection: SignUpPartnerRelationResponseCollection
+    metaDescription: String
+    metaImage: UploadFile
     publishedAt: DateTime
     title: String!
     updatedAt: DateTime
@@ -982,6 +1008,8 @@ input HomeInput {
     howItWorks: ComponentHomeHowItWorksInput
     latestListing: ComponentHomeLatestListingInput
     locale: String
+    metaDescription: String
+    metaImage: ID
     publishedAt: DateTime
     thingsWondering: ComponentHomeThingsWonderingInput
     title: String
@@ -1077,6 +1105,14 @@ input JSONFilterInput {
     startsWith: JSON
 }
 
+input LoginInput {
+    locale: String
+    metaDescription: String
+    metaImage: ID
+    publishedAt: DateTime
+    title: String
+}
+
 input PaginationArg {
     limit: Int
     page: Int
@@ -1133,6 +1169,8 @@ input ReviewWorkflowsWorkflowStageInput {
 input SignUpModelInput {
     hero: ComponentSignUpHeroInput
     locale: String
+    metaDescription: String
+    metaImage: ID
     publishedAt: DateTime
     title: String
 }
@@ -1141,6 +1179,8 @@ input SignUpPartnerInput {
     faq: ComponentSignUpFaqInput
     hero: ComponentSignUpHeroInput
     locale: String
+    metaDescription: String
+    metaImage: ID
     publishedAt: DateTime
     title: String
 }

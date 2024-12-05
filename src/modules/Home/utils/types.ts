@@ -6,6 +6,7 @@ import { QueryResultBookBlumiData } from '@/modules/Home/ui/BookBlumi/utils/type
 import { QueryResultWhatTheySayData } from '@/modules/Home/ui/WhatTheySay/utils/types'
 import { QueryResultThingsWonderingData } from '@/modules/Home/ui/ThingsWondering/utils/types'
 import { QueryResultDontMissOutData } from '@/components/DontMissOut/utils/types'
+import { Home } from '@/gql/graphql'
 
 export type QueryResultHomeData = {
   home: QueryResultHeroHomeData &
@@ -15,5 +16,9 @@ export type QueryResultHomeData = {
     QueryResultBookBlumiData &
     QueryResultWhatTheySayData &
     QueryResultThingsWonderingData &
-    QueryResultDontMissOutData & { title?: string }
+    QueryResultDontMissOutData & {
+      title?: Home['title']
+      metaDescription?: Home['metaDescription']
+      metaImage?: Home['metaImage']
+    }
 }

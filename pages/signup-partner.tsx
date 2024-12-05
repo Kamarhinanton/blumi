@@ -29,6 +29,30 @@ const SignupPartner = ({
     <>
       <Head>
         <title>{signUpPartnerData.signUpPartner.title}</title>
+        <meta
+          property="og:title"
+          content={signUpPartnerData.signUpPartner.title}
+        />
+        <meta
+          name="description"
+          content={
+            signUpPartnerData.signUpPartner.metaDescription
+              ? signUpPartnerData.signUpPartner.metaDescription
+              : 'description'
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            signUpPartnerData.signUpPartner.metaDescription
+              ? signUpPartnerData.signUpPartner.metaDescription
+              : 'description'
+          }
+        />
+        <meta
+          property="og:image"
+          content={signUpPartnerData.signUpPartner.metaImage?.url}
+        />
       </Head>
       <SignUpPartnerContent
         userTypes={userTypes}

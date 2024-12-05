@@ -740,7 +740,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = ComponentBaseCta | ComponentBaseDontMissOut | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | ComponentSignUpFaq | ComponentSignUpHero | Footer | Global | Header | Home | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | SignUpModel | SignUpPartner | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentBaseCta | ComponentBaseDontMissOut | ComponentBaseList | ComponentBaseTitleComponent | ComponentBaseTitleWithIcons | ComponentFooterInnerCopyright | ComponentFooterInnerFooterColumn | ComponentHeaderTitleColumn | ComponentHomeBookBlumi | ComponentHomeExploreTreatment | ComponentHomeHero | ComponentHomeHowItWorks | ComponentHomeLatestListing | ComponentHomeListCities | ComponentHomeListIcons | ComponentHomeListImages | ComponentHomeListMarked | ComponentHomeListSlider | ComponentHomeListSliderReviews | ComponentHomeThingsWondering | ComponentHomeWhatTheySay | ComponentSignUpFaq | ComponentSignUpHero | Footer | Global | Header | Home | I18NLocale | Login | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | SignUpModel | SignUpPartner | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -827,6 +827,8 @@ export type Home = {
   locale?: Maybe<Scalars['String']['output']>;
   localizations: Array<Maybe<Home>>;
   localizations_connection?: Maybe<HomeRelationResponseCollection>;
+  metaDescription?: Maybe<Scalars['String']['output']>;
+  metaImage?: Maybe<UploadFile>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   thingsWondering?: Maybe<ComponentHomeThingsWondering>;
   title: Scalars['String']['output'];
@@ -849,6 +851,8 @@ export type HomeInput = {
   howItWorks?: InputMaybe<ComponentHomeHowItWorksInput>;
   latestListing?: InputMaybe<ComponentHomeLatestListingInput>;
   locale?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
+  metaImage?: InputMaybe<Scalars['ID']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   thingsWondering?: InputMaybe<ComponentHomeThingsWonderingInput>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -987,6 +991,33 @@ export type JsonFilterInput = {
   startsWith?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type Login = {
+  __typename?: 'Login';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<Login>>;
+  localizations_connection?: Maybe<LoginRelationResponseCollection>;
+  metaDescription?: Maybe<Scalars['String']['output']>;
+  metaImage?: Maybe<UploadFile>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type LoginInput = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
+  metaImage?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type LoginRelationResponseCollection = {
+  __typename?: 'LoginRelationResponseCollection';
+  nodes: Array<Login>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
@@ -1001,6 +1032,7 @@ export type Mutation = {
   deleteGlobal?: Maybe<DeleteMutationResponse>;
   deleteHeader?: Maybe<DeleteMutationResponse>;
   deleteHome?: Maybe<DeleteMutationResponse>;
+  deleteLogin?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
   deleteSignUpModel?: Maybe<DeleteMutationResponse>;
@@ -1023,6 +1055,7 @@ export type Mutation = {
   updateGlobal?: Maybe<Global>;
   updateHeader?: Maybe<Header>;
   updateHome?: Maybe<Home>;
+  updateLogin?: Maybe<Login>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   updateSignUpModel?: Maybe<SignUpModel>;
@@ -1140,6 +1173,12 @@ export type MutationUpdateHomeArgs = {
 };
 
 
+export type MutationUpdateLoginArgs = {
+  data: LoginInput;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateReviewWorkflowsWorkflowArgs = {
   data: ReviewWorkflowsWorkflowInput;
   documentId: Scalars['ID']['input'];
@@ -1212,6 +1251,7 @@ export type Query = {
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<Maybe<I18NLocale>>;
   i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
+  login?: Maybe<Login>;
   me?: Maybe<UsersPermissionsMe>;
   reviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   reviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
@@ -1271,6 +1311,11 @@ export type QueryI18NLocales_ConnectionArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryLoginArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1541,6 +1586,8 @@ export type SignUpModel = {
   locale?: Maybe<Scalars['String']['output']>;
   localizations: Array<Maybe<SignUpModel>>;
   localizations_connection?: Maybe<SignUpModelRelationResponseCollection>;
+  metaDescription?: Maybe<Scalars['String']['output']>;
+  metaImage?: Maybe<UploadFile>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1549,6 +1596,8 @@ export type SignUpModel = {
 export type SignUpModelInput = {
   hero?: InputMaybe<ComponentSignUpHeroInput>;
   locale?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
+  metaImage?: InputMaybe<Scalars['ID']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1567,6 +1616,8 @@ export type SignUpPartner = {
   locale?: Maybe<Scalars['String']['output']>;
   localizations: Array<Maybe<SignUpPartner>>;
   localizations_connection?: Maybe<SignUpPartnerRelationResponseCollection>;
+  metaDescription?: Maybe<Scalars['String']['output']>;
+  metaImage?: Maybe<UploadFile>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1576,6 +1627,8 @@ export type SignUpPartnerInput = {
   faq?: InputMaybe<ComponentSignUpFaqInput>;
   hero?: InputMaybe<ComponentSignUpHeroInput>;
   locale?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
+  metaImage?: InputMaybe<Scalars['ID']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
