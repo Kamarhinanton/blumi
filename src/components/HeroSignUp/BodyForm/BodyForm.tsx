@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import TextField from '@/ui/TextField/TextField'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
-// import Link from 'next/link'
+import Link from 'next/link'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, Resolver, useForm } from 'react-hook-form'
 import { generateValidationSchema } from '@/modules/SignUpPartner/ui/HeroSignUp/validationSchema'
@@ -11,6 +11,8 @@ import { UserField, UserType } from '@/utils/handleTypes'
 import ControlField from '@/ui/ControlField/ControlField'
 import ErrorMessage from '@/ui/ErrorMessage/ErrorMessage'
 import classNames from 'classnames'
+import routes from '@/utils/routes'
+import { useRouter } from 'next/router'
 
 import styles from './BodyForm.module.scss'
 
@@ -166,6 +168,8 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
     }
     setSending(false)
   }
+
+  const router = useRouter()
 
   return (
     <>
@@ -380,12 +384,24 @@ const BodyForm: FC<BodyFormType> = ({ userType, userFields }) => {
         >
           Sign up
         </ButtonSecondary>
-        {/*<p className={styles['form__bottom-text']}>*/}
-        {/*  You’re a model?{' '}*/}
-        {/*  <Link className={'border-link'} href={routes.public.signUpCustomer}>*/}
-        {/*    Sign up as a Model*/}
-        {/*  </Link>*/}
-        {/*</p>*/}
+        <p className={styles['form__bottom-text']}>
+          Did you mean to
+          <Link
+            className={classNames(
+              'border-link',
+              styles['form__bottom-text_text'],
+            )}
+            href={
+              router.pathname === routes.public.signUpPartner
+                ? routes.public.signUpCustomer
+                : routes.public.signUpPartner
+            }
+          >
+            {router.pathname === routes.public.signUpCustomer
+              ? 'sign up as a partner'
+              : 'sign up as a customer'}
+          </Link>
+        </p>
       </form>
       <AnimatePresence>
         {isVisible.visible && (

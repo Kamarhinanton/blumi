@@ -1,5 +1,5 @@
 import React from 'react'
-import { SignUpPartnerType } from '../../../../pages/signUpPartner'
+import { SignUpPartnerType } from '../../../../pages/signup-partner'
 import FAQ from '@/modules/SignUpPartner/ui/FAQ/FAQ'
 import HeroSignUp from '@/components/HeroSignUp/HeroSignUp'
 

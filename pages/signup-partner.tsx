@@ -20,7 +20,7 @@ export type SignUpPartnerType = {
   userFields: QueryResultUserFields
 }
 
-const SignUpPartner = ({
+const SignupPartner = ({
   signUpPartnerData,
   userTypes,
   userFields,
@@ -39,7 +39,7 @@ const SignUpPartner = ({
   )
 }
 
-export default SignUpPartner
+export default SignupPartner
 
 export const getStaticProps = async () => {
   try {

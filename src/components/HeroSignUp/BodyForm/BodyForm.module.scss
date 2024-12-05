@@ -73,6 +73,10 @@
     font-size: 12rem;
     text-align: center;
 
+    &_text{
+      margin: 0 4rem;
+    }
+
     @media (width<=$breakpoint-mob) {
       font-size: 14rem;
     }

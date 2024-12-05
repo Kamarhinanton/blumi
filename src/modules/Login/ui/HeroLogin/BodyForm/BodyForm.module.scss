@@ -28,14 +28,18 @@
     }
   }
 
-  //
-  //&__bottom-text {
-  //  margin: 12rem 0 0;
-  //  font-size: 12rem;
-  //  text-align: center;
-  //
-  //  @media (width<=$breakpoint-mob) {
-  //    font-size: 14rem;
-  //  }
-  //}
+
+  &__bottom-text {
+    margin: 12rem 0 0;
+    font-size: 12rem;
+    text-align: center;
+
+    &_text{
+      margin: 0 4rem;
+    }
+
+    @media (width<=$breakpoint-mob) {
+      font-size: 14rem;
+    }
+  }
 }

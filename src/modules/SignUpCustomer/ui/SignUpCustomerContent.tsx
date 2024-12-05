@@ -1,5 +1,5 @@
 import React from 'react'
-import { SignUpCustomerType } from '../../../../pages/signUpCustomer'
+import { SignUpCustomerType } from '../../../../pages/signup-customer'
 import HowItWorks from '@/modules/Home/ui/HowItWorks/HowItWorks'
 import Container from '@/app/layouts/layouts/Container'
 import WhatTheySay from '@/modules/Home/ui/WhatTheySay/WhatTheySay'

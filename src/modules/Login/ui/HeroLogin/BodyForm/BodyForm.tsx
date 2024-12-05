@@ -12,10 +12,10 @@ import { useDispatch } from 'react-redux'
 import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
 import routes from '@/utils/routes'
 import { fetchProfile } from '@/utils/api/fetchProfile'
-
-// import Link from 'next/link'
+import Link from 'next/link'
 
 import styles from './BodyForm.module.scss'
+import classNames from 'classnames'
 
 type FormData = {
   email: string
@@ -152,12 +152,28 @@ const BodyForm = () => {
       >
         Continue
       </ButtonSecondary>
-      {/*<p className={styles['form__bottom-text']}>*/}
-      {/*  You’re a model?{' '}*/}
-      {/*  <Link className={'border-link'} href={routes.public.signUpCustomer}>*/}
-      {/*    Sign up as a Model*/}
-      {/*  </Link>*/}
-      {/*</p>*/}
+      <p className={styles['form__bottom-text']}>
+        New here?
+        <Link
+          className={classNames(
+            'border-link',
+            styles['form__bottom-text_text'],
+          )}
+          href={routes.public.signUpCustomer}
+        >
+          Customer sign up
+        </Link>
+        or
+        <Link
+          className={classNames(
+            'border-link',
+            styles['form__bottom-text_text'],
+          )}
+          href={routes.public.signUpPartner}
+        >
+          Partner sign up
+        </Link>
+      </p>
     </form>
   )
 }

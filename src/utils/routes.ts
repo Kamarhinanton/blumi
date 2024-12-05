@@ -1,8 +1,8 @@
 export default {
   public: {
     index: '/',
-    signUpPartner: '/signUpPartner',
-    signUpCustomer: '/signUpCustomer',
+    signUpPartner: '/signup-partner',
+    signUpCustomer: '/signup-customer',
     login: '/login',
   },
 }
