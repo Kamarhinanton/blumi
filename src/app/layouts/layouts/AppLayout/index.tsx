@@ -21,7 +21,6 @@ const AppLayout: FC<AppLayoutProps> = ({
   headerData,
 }) => {
   const dispatch: AppDispatch = useDispatch()
-  console.log('welcome')
 
   useEffect(() => {
     const fetchData = async () => {

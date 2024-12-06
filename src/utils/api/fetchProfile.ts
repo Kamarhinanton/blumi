@@ -14,7 +14,6 @@ export const fetchProfile = async (
   setError?: Dispatch<SetStateAction<{ visible: boolean; message: string }>>,
 ) => {
   try {
-    console.log(token)
     const userResponse = await fetch('/api/showUser', {
       method: 'GET',
       headers: {
