@@ -56,6 +56,7 @@ const HeroSignUp: FC<HeroContentType> = ({
                 className={styles['blockImage__image']}
                 src={image.url}
                 alt={'picture'}
+                priority
               />
               <ul className={styles['list']}>
                 {list?.map(

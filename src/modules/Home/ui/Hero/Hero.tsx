@@ -57,6 +57,7 @@ const Hero: FC<HeroContentType> = ({ heroData }) => {
               src={picture.url}
               alt={'picture'}
               position={'cover'}
+              priority
             />
             <nav className={styles['list']}>
               {listIcons.map(
