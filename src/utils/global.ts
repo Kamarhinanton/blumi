@@ -17,14 +17,18 @@ export const setCookie = (data: AuthResponseType, tokenKey: string) => {
   Cookie.set(tokenKey, JSON.stringify(data), {
     expires: 1,
     domain:
-      process.env.NODE_ENV === 'production' ? '.modelmatch.co.uk' : undefined,
+      process.env.NODE_ENV === 'production'
+        ? `.${process.env.NEXT_PUBLIC_URL}`
+        : undefined,
   })
 }
 
 export const deleteCookie = (tokenKey: string) => {
   Cookie.remove(tokenKey, {
     domain:
-      process.env.NODE_ENV === 'production' ? '.modelmatch.co.uk' : undefined,
+      process.env.NODE_ENV === 'production'
+        ? `.${process.env.NEXT_PUBLIC_URL}`
+        : undefined,
   })
 }
 
