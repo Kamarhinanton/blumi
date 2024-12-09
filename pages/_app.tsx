@@ -87,6 +87,9 @@ export default function App({
           name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
         />
+        {process.env.NEXT_PUBLIC_URL === 'modelmatch.co.uk' ? (
+          <meta name="robots" content="noindex, nofollow" />
+        ) : null}
       </Head>
       <Provider store={store}>
         <AppLayout footerData={footerData} headerData={headerData}>
