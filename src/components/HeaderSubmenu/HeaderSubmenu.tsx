@@ -3,7 +3,6 @@ import { Header } from '@/gql/graphql'
 import Link from 'next/link'
 import classNames from 'classnames'
 import Container from '@/app/layouts/layouts/Container'
-import dynamic from 'next/dynamic'
 import { defaultProfileLinks } from '@/components/HeaderSubmenu/data'
 import { BackgroundImage } from '@/ui/BackgroundImage/BackgroundImage'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,13 +11,10 @@ import { deleteCookie, tokenKey } from '@/utils/global'
 import { setIsAuthorized } from '@/store/reducers/authTokenSlice'
 import { useRouter } from 'next/router'
 import routes from '@/utils/routes'
-
-const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
-  ssr: false,
-})
+import { setIsMenuActive } from '@/store/reducers/callMenuSlice'
+import Cross from '@/ui/Cross/Cross'
 
 import styles from './headerSubmenu.module.scss'
-import { setIsMenuActive } from '@/store/reducers/callMenuSlice'
 
 type SubmenuType = {
   submenu: Header['submenu']

@@ -11,13 +11,9 @@ import { AppDispatch, RootState } from '@/store/store'
 import { useDispatch, useSelector } from 'react-redux'
 import usePageScroll from '@/hooks/usePageScroll'
 import ButtonSecondary from '@/ui/ButtonSecondary/ButtonSecondary'
-import dynamic from 'next/dynamic'
 import useRouteChange from '@/hooks/useRoutChange'
 import routes from '@/utils/routes'
-
-const Cross = dynamic(() => import('@/ui/Cross/Cross'), {
-  ssr: false,
-})
+import Cross from '@/ui/Cross/Cross'
 
 import styles from './Header.module.scss'
 
